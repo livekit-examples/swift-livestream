@@ -11,6 +11,9 @@
 		683865A72A29F9A3005D0947 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683865A62A29F9A3005D0947 /* ContentView.swift */; };
 		683865A92A29F9A4005D0947 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 683865A82A29F9A4005D0947 /* Assets.xcassets */; };
 		683865AD2A29F9A4005D0947 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 683865AC2A29F9A4005D0947 /* Preview Assets.xcassets */; };
+		687E311B2A2DC9B200032AE6 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E311A2A2DC9B200032AE6 /* StartView.swift */; };
+		687E311E2A2DCA1600032AE6 /* AppContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E311D2A2DCA1600032AE6 /* AppContext.swift */; };
+		687E31212A2DCAC500032AE6 /* LiveKit in Frameworks */ = {isa = PBXBuildFile; productRef = 687E31202A2DCAC500032AE6 /* LiveKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +23,8 @@
 		683865A82A29F9A4005D0947 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		683865AA2A29F9A4005D0947 /* swift_livestream.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = swift_livestream.entitlements; sourceTree = "<group>"; };
 		683865AC2A29F9A4005D0947 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		687E311A2A2DC9B200032AE6 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		687E311D2A2DCA1600032AE6 /* AppContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContext.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				687E31212A2DCAC500032AE6 /* LiveKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +44,7 @@
 			children = (
 				683865A32A29F9A3005D0947 /* swift-livestream */,
 				683865A22A29F9A3005D0947 /* Products */,
+				687E311F2A2DCAC500032AE6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -52,8 +59,10 @@
 		683865A32A29F9A3005D0947 /* swift-livestream */ = {
 			isa = PBXGroup;
 			children = (
+				687E311C2A2DCA0B00032AE6 /* Controllers */,
 				683865A42A29F9A3005D0947 /* swift_livestreamApp.swift */,
 				683865A62A29F9A3005D0947 /* ContentView.swift */,
+				687E311A2A2DC9B200032AE6 /* StartView.swift */,
 				683865A82A29F9A4005D0947 /* Assets.xcassets */,
 				683865AA2A29F9A4005D0947 /* swift_livestream.entitlements */,
 				683865AB2A29F9A4005D0947 /* Preview Content */,
@@ -67,6 +76,21 @@
 				683865AC2A29F9A4005D0947 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		687E311C2A2DCA0B00032AE6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				687E311D2A2DCA1600032AE6 /* AppContext.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		687E311F2A2DCAC500032AE6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -85,6 +109,9 @@
 			dependencies = (
 			);
 			name = "swift-livestream";
+			packageProductDependencies = (
+				687E31202A2DCAC500032AE6 /* LiveKit */,
+			);
 			productName = "swift-livestream";
 			productReference = 683865A12A29F9A3005D0947 /* swift-livestream.app */;
 			productType = "com.apple.product-type.application";
@@ -139,6 +166,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				687E311B2A2DC9B200032AE6 /* StartView.swift in Sources */,
+				687E311E2A2DCA1600032AE6 /* AppContext.swift in Sources */,
 				683865A72A29F9A3005D0947 /* ContentView.swift in Sources */,
 				683865A52A29F9A3005D0947 /* swift_livestreamApp.swift in Sources */,
 			);
@@ -354,6 +383,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		687E31202A2DCAC500032AE6 /* LiveKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LiveKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 683865992A29F9A3005D0947 /* Project object */;
 }
