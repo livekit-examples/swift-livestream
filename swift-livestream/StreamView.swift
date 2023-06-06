@@ -10,42 +10,6 @@ extension Comparable {
     }
 }
 
-struct MessagesView: View {
-
-    var body: some View {
-        ScrollView {
-            LazyVStack(spacing: 10) {
-                ForEach(0..<100) { _ in
-                    MessageTileView()
-                        .frame(maxWidth: .infinity)
-                        .padding(.horizontal, 5)
-
-                }
-            }
-        }
-
-        .coordinateSpace(name: "scroll")
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-}
-
-struct UsersView: View {
-
-    var body: some View {
-        ScrollView {
-            LazyVStack(spacing: 20) {
-                ForEach(0..<100) { _ in
-                    UserTileView()
-                        .frame(maxWidth: .infinity)
-                        .padding(.horizontal, 10)
-                }
-            }
-        }
-        .coordinateSpace(name: "scroll")
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-}
-
 struct StreamView: View {
 
     @EnvironmentObject var appCtx: AppContext
@@ -76,7 +40,7 @@ struct StreamView: View {
                                            startPoint: .top,
                                            endPoint: .bottom)
 
-                            MessagesView()
+                            MessagesListView()
                                 .mask(LinearGradient(gradient: Gradient(colors: [.black, .black, .black, .clear]),
                                                      startPoint: .bottom,
                                                      endPoint: .top))
@@ -91,7 +55,7 @@ struct StreamView: View {
                 showingMoreMenu.toggle()
             }
             .sheet(isPresented: $showingMoreMenu) {
-                UsersView()
+                UsersListView()
                     .padding(.top, 30)
                     .presentationDetents([.medium])
             }

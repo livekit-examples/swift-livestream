@@ -21,6 +21,8 @@
 		687E312C2A2E3B9E00032AE6 /* PublisherVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E312B2A2E3B9E00032AE6 /* PublisherVideoView.swift */; };
 		687E312E2A2EF39400032AE6 /* MessageTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E312D2A2EF39400032AE6 /* MessageTileView.swift */; };
 		687E31302A2EF6D100032AE6 /* UserTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E312F2A2EF6D100032AE6 /* UserTileView.swift */; };
+		687E31322A2EF8C600032AE6 /* MessagesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E31312A2EF8C600032AE6 /* MessagesListView.swift */; };
+		687E31342A2EF8F200032AE6 /* UsersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E31332A2EF8F200032AE6 /* UsersListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,8 @@
 		687E312B2A2E3B9E00032AE6 /* PublisherVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherVideoView.swift; sourceTree = "<group>"; };
 		687E312D2A2EF39400032AE6 /* MessageTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTileView.swift; sourceTree = "<group>"; };
 		687E312F2A2EF6D100032AE6 /* UserTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTileView.swift; sourceTree = "<group>"; };
+		687E31312A2EF8C600032AE6 /* MessagesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesListView.swift; sourceTree = "<group>"; };
+		687E31332A2EF8F200032AE6 /* UsersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +122,8 @@
 				687E312B2A2E3B9E00032AE6 /* PublisherVideoView.swift */,
 				687E312D2A2EF39400032AE6 /* MessageTileView.swift */,
 				687E312F2A2EF6D100032AE6 /* UserTileView.swift */,
+				687E31312A2EF8C600032AE6 /* MessagesListView.swift */,
+				687E31332A2EF8F200032AE6 /* UsersListView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -196,9 +202,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				687E31282A2E39CE00032AE6 /* TextLabel.swift in Sources */,
+				687E31342A2EF8F200032AE6 /* UsersListView.swift in Sources */,
 				687E31302A2EF6D100032AE6 /* UserTileView.swift in Sources */,
 				687E312C2A2E3B9E00032AE6 /* PublisherVideoView.swift in Sources */,
 				687E311B2A2DC9B200032AE6 /* StartView.swift in Sources */,
+				687E31322A2EF8C600032AE6 /* MessagesListView.swift in Sources */,
 				687E311E2A2DCA1600032AE6 /* AppContext.swift in Sources */,
 				683865A72A29F9A3005D0947 /* MainView.swift in Sources */,
 				687E312A2A2E3AF800032AE6 /* MessageBarView.swift in Sources */,
