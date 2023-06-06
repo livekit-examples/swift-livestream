@@ -9,7 +9,7 @@ final class AppContext: ObservableObject {
         case stream
     }
 
-    @Published public private(set) var step: Step = .start
+    @Published public private(set) var step: Step = .stream
 
     public func set(step: Step) {
         self.step = step

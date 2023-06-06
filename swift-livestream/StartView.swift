@@ -1,25 +1,21 @@
-//
-//  ContentView.swift
-//  swift-livestream
-//
-//  Created by Hiroshi Horie on 2023/06/02.
-//
-
 import SwiftUI
 
 struct StartView: View {
+
+    @EnvironmentObject var appCtx: AppContext
 
     @State private var flag1 = true
     @State private var flag2 = true
 
     var body: some View {
-        VStack(alignment: .leading) {
+
+        VStack(alignment: .leading, spacing: 20) {
             Text("Start Livestream")
                 .font(.system(size: 30, weight: .bold))
-            Color.white
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .cornerRadius(10)
+
+            PublisherVideoView()
                 .padding(.vertical, 10)
+
             Text("OPTIONS")
                 .font(.system(size: 14, weight: .bold))
                 .foregroundColor(.gray)
@@ -32,16 +28,16 @@ struct StartView: View {
                 .foregroundColor(.gray)
 
             Button {
-                //
+                appCtx.set(step: .stream)
             } label: {
                 Text("Go live")
                     .frame(maxWidth: .infinity)
                     .fontWeight(.bold)
+                    .padding(.vertical, 7)
             }
             .buttonStyle(.borderedProminent)
-            .background(Color.purple)
-            .cornerRadius(10)
-
+            .tint(Color.purple)
+            .cornerRadius(7)
         }
         .padding()
     }
