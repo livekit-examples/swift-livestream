@@ -8,20 +8,14 @@ struct MessageBarView: View {
 
     var body: some View {
         HStack {
-            TextField("Type your message...", text: $text, axis: .vertical)
+            TextField("Type your message...", text: $text)
                 .lineLimit(5)
                 .font(.system(size: 14))
                 .frame(maxWidth: .infinity)
 
-            Button {
+            StyledButton(title: "Send", style: .secondary) {
 
-            } label: {
-                Text("Send")
-                    .font(.system(size: 14))
             }
-            .buttonStyle(.borderedProminent)
-            // .tint(Color.purple)
-            .cornerRadius(7)
 
             Button {
                 moreAction()

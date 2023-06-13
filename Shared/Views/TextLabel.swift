@@ -9,7 +9,7 @@ struct TextLabel: View {
             .font(.system(size: 14))
             .padding(.horizontal, 7)
             .padding(.vertical, 5)
-            .background(.purple)
+            // .background(.purple)
             .cornerRadius(7)
     }
 }

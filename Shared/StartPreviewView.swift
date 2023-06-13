@@ -1,6 +1,7 @@
 import SwiftUI
+import LiveKitComponents
 
-struct StartView: View {
+struct StartPreviewView: View {
 
     @EnvironmentObject var appCtx: AppContext
 
@@ -10,34 +11,24 @@ struct StartView: View {
     var body: some View {
 
         VStack(alignment: .leading, spacing: 20) {
+
             Text("Start Livestream")
                 .font(.system(size: 30, weight: .bold))
 
             PublisherVideoView()
                 .padding(.vertical, 10)
 
-            Text("OPTIONS")
-                .font(.system(size: 14, weight: .bold))
-                .foregroundColor(.gray)
-
-            Toggle("Enable chat", isOn: $flag1)
-            Toggle("Viewers can request to join", isOn: $flag2)
-
             Text("After going live you’ll acquire a streaming link for sharing with your viewers.")
                 .font(.system(size: 14))
                 .foregroundColor(.gray)
 
-            Button {
-                appCtx.set(step: .stream)
-            } label: {
-                Text("Go live")
-                    .frame(maxWidth: .infinity)
-                    .fontWeight(.bold)
-                    .padding(.vertical, 7)
+            StyledButton(title: "Go live", style: .primary) {
+                appCtx.startPublisher()
             }
-            .buttonStyle(.borderedProminent)
-            .tint(Color.purple)
-            .cornerRadius(7)
+
+            StyledButton(title: "Back") {
+                appCtx.backToPrepare()
+            }
         }
         .padding()
     }

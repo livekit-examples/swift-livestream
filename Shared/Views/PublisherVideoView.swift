@@ -1,4 +1,5 @@
 import SwiftUI
+import LiveKitComponents
 
 extension Image {
     func centerCropped() -> some View {
@@ -19,8 +20,7 @@ struct PublisherVideoView: View {
         ZStack(alignment: .topLeading) {
 
             // Color.white
-            Image("Model")
-                .centerCropped()
+            LocalCameraVideoView()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .cornerRadius(7)
 

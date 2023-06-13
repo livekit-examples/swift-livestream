@@ -57,7 +57,7 @@ struct StreamView: View {
             .sheet(isPresented: $showingMoreMenu) {
                 UsersListView()
                     .padding(.top, 30)
-                    .presentationDetents([.medium])
+                // .presentationDetents([.medium])
             }
         }
     }

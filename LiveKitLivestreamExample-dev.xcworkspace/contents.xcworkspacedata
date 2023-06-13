@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:../client-components-swift">
+   </FileRef>
+   <FileRef
+      location = "group:/Users/hiroshi/repos/livekit/swift-livestream/LiveKitLivestreamExample.xcodeproj">
+   </FileRef>
+</Workspace>

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,9 +11,8 @@
 		683865A72A29F9A3005D0947 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683865A62A29F9A3005D0947 /* MainView.swift */; };
 		683865A92A29F9A4005D0947 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 683865A82A29F9A4005D0947 /* Assets.xcassets */; };
 		683865AD2A29F9A4005D0947 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 683865AC2A29F9A4005D0947 /* Preview Assets.xcassets */; };
-		687E311B2A2DC9B200032AE6 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E311A2A2DC9B200032AE6 /* StartView.swift */; };
+		687E311B2A2DC9B200032AE6 /* StartPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E311A2A2DC9B200032AE6 /* StartPreviewView.swift */; };
 		687E311E2A2DCA1600032AE6 /* AppContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E311D2A2DCA1600032AE6 /* AppContext.swift */; };
-		687E31212A2DCAC500032AE6 /* LiveKit in Frameworks */ = {isa = PBXBuildFile; productRef = 687E31202A2DCAC500032AE6 /* LiveKit */; };
 		687E31232A2E2AE700032AE6 /* StreamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E31222A2E2AE700032AE6 /* StreamView.swift */; };
 		687E31262A2E396900032AE6 /* SwitchCameraButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E31252A2E396900032AE6 /* SwitchCameraButton.swift */; };
 		687E31282A2E39CE00032AE6 /* TextLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E31272A2E39CE00032AE6 /* TextLabel.swift */; };
@@ -23,16 +22,20 @@
 		687E31302A2EF6D100032AE6 /* UserTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E312F2A2EF6D100032AE6 /* UserTileView.swift */; };
 		687E31322A2EF8C600032AE6 /* MessagesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E31312A2EF8C600032AE6 /* MessagesListView.swift */; };
 		687E31342A2EF8F200032AE6 /* UsersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E31332A2EF8F200032AE6 /* UsersListView.swift */; };
+		6895EA442A38B7FA00519535 /* LiveKitComponents in Frameworks */ = {isa = PBXBuildFile; productRef = 6895EA432A38B7FA00519535 /* LiveKitComponents */; };
+		68FBA36F2A381A530015853E /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBA36E2A381A530015853E /* WelcomeView.swift */; };
+		68FBA3712A381F650015853E /* StyledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBA3702A381F650015853E /* StyledButton.swift */; };
+		68FBA3732A3824020015853E /* StartPrepareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBA3722A3824020015853E /* StartPrepareView.swift */; };
+		68FBA3752A3824D80015853E /* StyledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBA3742A3824D80015853E /* StyledTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		683865A12A29F9A3005D0947 /* swift-livestream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swift-livestream.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		683865A12A29F9A3005D0947 /* LiveKitLivestreamExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveKitLivestreamExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		683865A42A29F9A3005D0947 /* swift_livestreamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swift_livestreamApp.swift; sourceTree = "<group>"; };
 		683865A62A29F9A3005D0947 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		683865A82A29F9A4005D0947 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		683865AA2A29F9A4005D0947 /* swift_livestream.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = swift_livestream.entitlements; sourceTree = "<group>"; };
 		683865AC2A29F9A4005D0947 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		687E311A2A2DC9B200032AE6 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		687E311A2A2DC9B200032AE6 /* StartPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPreviewView.swift; sourceTree = "<group>"; };
 		687E311D2A2DCA1600032AE6 /* AppContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContext.swift; sourceTree = "<group>"; };
 		687E31222A2E2AE700032AE6 /* StreamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamView.swift; sourceTree = "<group>"; };
 		687E31252A2E396900032AE6 /* SwitchCameraButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCameraButton.swift; sourceTree = "<group>"; };
@@ -43,6 +46,11 @@
 		687E312F2A2EF6D100032AE6 /* UserTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTileView.swift; sourceTree = "<group>"; };
 		687E31312A2EF8C600032AE6 /* MessagesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesListView.swift; sourceTree = "<group>"; };
 		687E31332A2EF8F200032AE6 /* UsersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListView.swift; sourceTree = "<group>"; };
+		6895EA462A38B85000519535 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		68FBA36E2A381A530015853E /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		68FBA3702A381F650015853E /* StyledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledButton.swift; sourceTree = "<group>"; };
+		68FBA3722A3824020015853E /* StartPrepareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPrepareView.swift; sourceTree = "<group>"; };
+		68FBA3742A3824D80015853E /* StyledTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,7 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				687E31212A2DCAC500032AE6 /* LiveKit in Frameworks */,
+				6895EA442A38B7FA00519535 /* LiveKitComponents in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,7 +68,8 @@
 		683865982A29F9A3005D0947 = {
 			isa = PBXGroup;
 			children = (
-				683865A32A29F9A3005D0947 /* swift-livestream */,
+				6895EA452A38B82100519535 /* macOS */,
+				683865A32A29F9A3005D0947 /* Shared */,
 				683865A22A29F9A3005D0947 /* Products */,
 				687E311F2A2DCAC500032AE6 /* Frameworks */,
 			);
@@ -69,25 +78,26 @@
 		683865A22A29F9A3005D0947 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				683865A12A29F9A3005D0947 /* swift-livestream.app */,
+				683865A12A29F9A3005D0947 /* LiveKitLivestreamExample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		683865A32A29F9A3005D0947 /* swift-livestream */ = {
+		683865A32A29F9A3005D0947 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				687E31242A2E391F00032AE6 /* Components */,
+				687E31242A2E391F00032AE6 /* Views */,
 				687E311C2A2DCA0B00032AE6 /* Controllers */,
 				683865A42A29F9A3005D0947 /* swift_livestreamApp.swift */,
 				683865A62A29F9A3005D0947 /* MainView.swift */,
 				687E31222A2E2AE700032AE6 /* StreamView.swift */,
-				687E311A2A2DC9B200032AE6 /* StartView.swift */,
+				68FBA3722A3824020015853E /* StartPrepareView.swift */,
+				687E311A2A2DC9B200032AE6 /* StartPreviewView.swift */,
+				68FBA36E2A381A530015853E /* WelcomeView.swift */,
 				683865A82A29F9A4005D0947 /* Assets.xcassets */,
-				683865AA2A29F9A4005D0947 /* swift_livestream.entitlements */,
 				683865AB2A29F9A4005D0947 /* Preview Content */,
 			);
-			path = "swift-livestream";
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		683865AB2A29F9A4005D0947 /* Preview Content */ = {
@@ -113,7 +123,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		687E31242A2E391F00032AE6 /* Components */ = {
+		687E31242A2E391F00032AE6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				687E31252A2E396900032AE6 /* SwitchCameraButton.swift */,
@@ -124,16 +134,26 @@
 				687E312F2A2EF6D100032AE6 /* UserTileView.swift */,
 				687E31312A2EF8C600032AE6 /* MessagesListView.swift */,
 				687E31332A2EF8F200032AE6 /* UsersListView.swift */,
+				68FBA3702A381F650015853E /* StyledButton.swift */,
+				68FBA3742A3824D80015853E /* StyledTextField.swift */,
 			);
-			path = Components;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		6895EA452A38B82100519535 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				6895EA462A38B85000519535 /* macOS.entitlements */,
+			);
+			path = macOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		683865A02A29F9A3005D0947 /* swift-livestream */ = {
+		683865A02A29F9A3005D0947 /* LiveKitLivestreamExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 683865B02A29F9A4005D0947 /* Build configuration list for PBXNativeTarget "swift-livestream" */;
+			buildConfigurationList = 683865B02A29F9A4005D0947 /* Build configuration list for PBXNativeTarget "LiveKitLivestreamExample" */;
 			buildPhases = (
 				6838659D2A29F9A3005D0947 /* Sources */,
 				6838659E2A29F9A3005D0947 /* Frameworks */,
@@ -143,12 +163,12 @@
 			);
 			dependencies = (
 			);
-			name = "swift-livestream";
+			name = LiveKitLivestreamExample;
 			packageProductDependencies = (
-				687E31202A2DCAC500032AE6 /* LiveKit */,
+				6895EA432A38B7FA00519535 /* LiveKitComponents */,
 			);
 			productName = "swift-livestream";
-			productReference = 683865A12A29F9A3005D0947 /* swift-livestream.app */;
+			productReference = 683865A12A29F9A3005D0947 /* LiveKitLivestreamExample.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -166,8 +186,8 @@
 					};
 				};
 			};
-			buildConfigurationList = 6838659C2A29F9A3005D0947 /* Build configuration list for PBXProject "swift-livestream" */;
-			compatibilityVersion = "Xcode 14.0";
+			buildConfigurationList = 6838659C2A29F9A3005D0947 /* Build configuration list for PBXProject "LiveKitLivestreamExample" */;
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -175,11 +195,13 @@
 				Base,
 			);
 			mainGroup = 683865982A29F9A3005D0947;
+			packageReferences = (
+			);
 			productRefGroup = 683865A22A29F9A3005D0947 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				683865A02A29F9A3005D0947 /* swift-livestream */,
+				683865A02A29F9A3005D0947 /* LiveKitLivestreamExample */,
 			);
 		};
 /* End PBXProject section */
@@ -205,13 +227,17 @@
 				687E31342A2EF8F200032AE6 /* UsersListView.swift in Sources */,
 				687E31302A2EF6D100032AE6 /* UserTileView.swift in Sources */,
 				687E312C2A2E3B9E00032AE6 /* PublisherVideoView.swift in Sources */,
-				687E311B2A2DC9B200032AE6 /* StartView.swift in Sources */,
+				68FBA36F2A381A530015853E /* WelcomeView.swift in Sources */,
+				68FBA3752A3824D80015853E /* StyledTextField.swift in Sources */,
+				687E311B2A2DC9B200032AE6 /* StartPreviewView.swift in Sources */,
 				687E31322A2EF8C600032AE6 /* MessagesListView.swift in Sources */,
 				687E311E2A2DCA1600032AE6 /* AppContext.swift in Sources */,
 				683865A72A29F9A3005D0947 /* MainView.swift in Sources */,
+				68FBA3732A3824020015853E /* StartPrepareView.swift in Sources */,
 				687E312A2A2E3AF800032AE6 /* MessageBarView.swift in Sources */,
 				687E31232A2E2AE700032AE6 /* StreamView.swift in Sources */,
 				687E31262A2E396900032AE6 /* SwitchCameraButton.swift in Sources */,
+				68FBA3712A381F650015853E /* StyledButton.swift in Sources */,
 				687E312E2A2EF39400032AE6 /* MessageTileView.swift in Sources */,
 				683865A52A29F9A3005D0947 /* swift_livestreamApp.swift in Sources */,
 			);
@@ -334,14 +360,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "swift-livestream/swift_livestream.entitlements";
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"swift-livestream/Preview Content\"";
 				DEVELOPMENT_TEAM = 76TVFCUKK7;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = Camera;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -352,12 +378,12 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "io.livekit.swift-livestream";
+				PRODUCT_BUNDLE_IDENTIFIER = io.livekit.example.livestream;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -372,14 +398,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "swift-livestream/swift_livestream.entitlements";
+				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"swift-livestream/Preview Content\"";
 				DEVELOPMENT_TEAM = 76TVFCUKK7;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = Camera;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -390,12 +416,12 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "io.livekit.swift-livestream";
+				PRODUCT_BUNDLE_IDENTIFIER = io.livekit.example.livestream;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -408,7 +434,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6838659C2A29F9A3005D0947 /* Build configuration list for PBXProject "swift-livestream" */ = {
+		6838659C2A29F9A3005D0947 /* Build configuration list for PBXProject "LiveKitLivestreamExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				683865AE2A29F9A4005D0947 /* Debug */,
@@ -417,7 +443,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		683865B02A29F9A4005D0947 /* Build configuration list for PBXNativeTarget "swift-livestream" */ = {
+		683865B02A29F9A4005D0947 /* Build configuration list for PBXNativeTarget "LiveKitLivestreamExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				683865B12A29F9A4005D0947 /* Debug */,
@@ -429,9 +455,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		687E31202A2DCAC500032AE6 /* LiveKit */ = {
+		6895EA432A38B7FA00519535 /* LiveKitComponents */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = LiveKit;
+			productName = LiveKitComponents;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

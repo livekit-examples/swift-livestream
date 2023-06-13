@@ -1,14 +1,14 @@
 import SwiftUI
+import LiveKitComponents
 
 @main
 struct swift_livestreamApp: App {
 
-    @StateObject var appCtx = AppContext()
-
     var body: some Scene {
         WindowGroup {
-            MainView()
-                .environmentObject(appCtx)
+            RoomScope {
+                MainView()
+            }
         }
     }
 }
