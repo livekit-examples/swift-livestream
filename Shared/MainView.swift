@@ -1,4 +1,5 @@
 import SwiftUI
+import LiveKit
 import LiveKitComponents
 
 struct MainView: View {
@@ -8,10 +9,10 @@ struct MainView: View {
     func viewForStep() -> AnyView {
         switch appCtx.step {
         case .welcome: return AnyView(WelcomeView())
-        case .startPrepare: return AnyView(StartPrepareView())
-        case .startPreview: return AnyView(StartPreviewView())
+        case .streamerPrepare: return AnyView(StartPrepareView())
+        case .streamerPreview: return AnyView(StartPreviewView())
+        case .viewerPrepare: return AnyView(JoinView())
         case .stream: return AnyView(StreamView())
-        default: return AnyView(EmptyView())
         }
     }
 

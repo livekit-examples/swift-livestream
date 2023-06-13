@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		683865A52A29F9A3005D0947 /* swift_livestreamApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683865A42A29F9A3005D0947 /* swift_livestreamApp.swift */; };
+		6801A7662A3900CD009FC4DA /* JoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6801A7652A3900CD009FC4DA /* JoinView.swift */; };
+		683865A52A29F9A3005D0947 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683865A42A29F9A3005D0947 /* App.swift */; };
 		683865A72A29F9A3005D0947 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683865A62A29F9A3005D0947 /* MainView.swift */; };
 		683865A92A29F9A4005D0947 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 683865A82A29F9A4005D0947 /* Assets.xcassets */; };
 		683865AD2A29F9A4005D0947 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 683865AC2A29F9A4005D0947 /* Preview Assets.xcassets */; };
@@ -30,8 +31,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6801A7652A3900CD009FC4DA /* JoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinView.swift; sourceTree = "<group>"; };
 		683865A12A29F9A3005D0947 /* LiveKitLivestreamExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveKitLivestreamExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		683865A42A29F9A3005D0947 /* swift_livestreamApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swift_livestreamApp.swift; sourceTree = "<group>"; };
+		683865A42A29F9A3005D0947 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		683865A62A29F9A3005D0947 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		683865A82A29F9A4005D0947 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		683865AC2A29F9A4005D0947 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -88,11 +90,12 @@
 			children = (
 				687E31242A2E391F00032AE6 /* Views */,
 				687E311C2A2DCA0B00032AE6 /* Controllers */,
-				683865A42A29F9A3005D0947 /* swift_livestreamApp.swift */,
+				683865A42A29F9A3005D0947 /* App.swift */,
 				683865A62A29F9A3005D0947 /* MainView.swift */,
 				687E31222A2E2AE700032AE6 /* StreamView.swift */,
 				68FBA3722A3824020015853E /* StartPrepareView.swift */,
 				687E311A2A2DC9B200032AE6 /* StartPreviewView.swift */,
+				6801A7652A3900CD009FC4DA /* JoinView.swift */,
 				68FBA36E2A381A530015853E /* WelcomeView.swift */,
 				683865A82A29F9A4005D0947 /* Assets.xcassets */,
 				683865AB2A29F9A4005D0947 /* Preview Content */,
@@ -233,13 +236,14 @@
 				687E31322A2EF8C600032AE6 /* MessagesListView.swift in Sources */,
 				687E311E2A2DCA1600032AE6 /* AppContext.swift in Sources */,
 				683865A72A29F9A3005D0947 /* MainView.swift in Sources */,
+				6801A7662A3900CD009FC4DA /* JoinView.swift in Sources */,
 				68FBA3732A3824020015853E /* StartPrepareView.swift in Sources */,
 				687E312A2A2E3AF800032AE6 /* MessageBarView.swift in Sources */,
 				687E31232A2E2AE700032AE6 /* StreamView.swift in Sources */,
 				687E31262A2E396900032AE6 /* SwitchCameraButton.swift in Sources */,
 				68FBA3712A381F650015853E /* StyledButton.swift in Sources */,
 				687E312E2A2EF39400032AE6 /* MessageTileView.swift in Sources */,
-				683865A52A29F9A3005D0947 /* swift_livestreamApp.swift in Sources */,
+				683865A52A29F9A3005D0947 /* App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +364,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -398,6 +403,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

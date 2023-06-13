@@ -11,9 +11,9 @@ final class AppContext: ObservableObject {
 
     enum Step {
         case welcome
-        case startPrepare
-        case startPreview
-        case join
+        case streamerPrepare
+        case streamerPreview
+        case viewerPrepare
         case stream
     }
 
@@ -31,16 +31,33 @@ final class AppContext: ObservableObject {
 
     public func backToPrepare() {
         Task { @MainActor in
-            self.step = .startPrepare
+            self.step = .streamerPrepare
         }
     }
 
     public func startPublisher() {
         Task {
-            try await room.connect(url, token)
-            try await room.localParticipant?.setCamera(enabled: true)
-            Task { @MainActor in
-                self.step = .stream
+            do {
+                try await room.connect(url, token)
+                try await room.localParticipant?.setCamera(enabled: true)
+                Task { @MainActor in
+                    self.step = .stream
+                }
+            } catch {
+                try await room.disconnect()
+            }
+        }
+    }
+
+    public func join() {
+        Task {
+            do {
+                try await room.connect(url, token)
+                Task { @MainActor in
+                    self.step = .stream
+                }
+            } catch {
+                try await room.disconnect()
             }
         }
     }

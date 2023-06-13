@@ -28,7 +28,7 @@ struct StartPrepareView: View {
             Spacer()
 
             StyledButton(title: "Continue", style: .primary) {
-                appCtx.set(step: .startPreview)
+                appCtx.set(step: .streamerPreview)
             }
 
             StyledButton(title: "Back") {

@@ -10,7 +10,7 @@ struct WelcomeView: View {
 
             Spacer()
 
-            Rectangle()
+            Image("AppIcon")
                 .frame(width: 100, height: 100)
                 .foregroundColor(.white)
                 .padding()
@@ -28,12 +28,13 @@ struct WelcomeView: View {
             Spacer()
 
             StyledButton(title: "Start a livestream", style: .primary) {
-                appCtx.set(step: .startPrepare)
+                appCtx.set(step: .streamerPrepare)
             }
 
             StyledButton(title: "Join a livestream") {
-                appCtx.set(step: .join)
+                appCtx.set(step: .viewerPrepare)
             }
         }
+        .padding()
     }
 }

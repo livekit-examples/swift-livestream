@@ -6,7 +6,7 @@ struct swift_livestreamApp: App {
 
     var body: some Scene {
         WindowGroup {
-            RoomScope {
+            ComponentsScope {
                 MainView()
             }
         }
