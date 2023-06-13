@@ -32,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		6801A7652A3900CD009FC4DA /* JoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinView.swift; sourceTree = "<group>"; };
+		6801A7672A3903E2009FC4DA /* LiveKitLivestreamExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "LiveKitLivestreamExample-Info.plist"; sourceTree = "<group>"; };
 		683865A12A29F9A3005D0947 /* LiveKitLivestreamExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveKitLivestreamExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		683865A42A29F9A3005D0947 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		683865A62A29F9A3005D0947 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -70,6 +71,7 @@
 		683865982A29F9A3005D0947 = {
 			isa = PBXGroup;
 			children = (
+				6801A7672A3903E2009FC4DA /* LiveKitLivestreamExample-Info.plist */,
 				6895EA452A38B82100519535 /* macOS */,
 				683865A32A29F9A3005D0947 /* Shared */,
 				683865A22A29F9A3005D0947 /* Products */,
@@ -372,6 +374,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "LiveKitLivestreamExample-Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = Camera;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -411,6 +414,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "LiveKitLivestreamExample-Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = Camera;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
