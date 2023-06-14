@@ -1,4 +1,5 @@
 import SwiftUI
+import LiveKit
 
 extension Comparable {
     func clamp(minValue: Self, maxValue: Self) -> Self {
@@ -13,7 +14,9 @@ extension Comparable {
 struct StreamView: View {
 
     @EnvironmentObject var appCtx: AppContext
+    @EnvironmentObject var room: Room
 
+    @State private var showingUsersSheet = false
     @State private var showingOptionsSheet = false
 
     let isPublisher: Bool
@@ -41,7 +44,9 @@ struct StreamView: View {
                             if isPublisher {
                                 TextLabel(text: "LIVE", style: .primary)
                             }
-                            TextLabel(text: "1.2K")
+                            TextLabel(text: "\(room.remoteParticipants.count + 1)").onTapGesture {
+                                showingUsersSheet = true
+                            }
                         }
                         .padding()
 
@@ -76,9 +81,10 @@ struct StreamView: View {
                     }
                 }
                 .padding()
-                //                UsersListView()
-                //                    .padding(.top, 30)
-                // .presentationDetents([.medium])
+            }
+            .sheet(isPresented: $showingUsersSheet) {
+                UsersListView()
+                    .padding()
             }
         }
     }

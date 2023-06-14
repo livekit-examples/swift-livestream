@@ -1,6 +1,9 @@
 import SwiftUI
+import LiveKit
 
 struct UserTileView: View {
+
+    @EnvironmentObject var participant: Participant
 
     var body: some View {
 
@@ -8,7 +11,7 @@ struct UserTileView: View {
             Circle()
                 .frame(width: 30, height: 30)
 
-            Text("SomeUser1987")
+            Text(participant.identity)
                 .font(.system(size: 14))
                 .fontWeight(.bold)
 
