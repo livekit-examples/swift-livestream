@@ -14,7 +14,7 @@ struct StreamView: View {
 
     @EnvironmentObject var appCtx: AppContext
 
-    @State private var showingMoreMenu = false
+    @State private var showingOptionsSheet = false
 
     let isPublisher: Bool
 
@@ -63,11 +63,19 @@ struct StreamView: View {
             }
 
             MessageBarView {
-                showingMoreMenu.toggle()
+                showingOptionsSheet.toggle()
             }
-            .sheet(isPresented: $showingMoreMenu) {
-                UsersListView()
-                    .padding(.top, 30)
+            .sheet(isPresented: $showingOptionsSheet) {
+                VStack {
+                    Text("Options")
+                        .font(.system(size: 25, weight: .bold))
+                    StyledButton(title: isPublisher ? "End stream" : "Leave stream", style: .destructive) {
+                        appCtx.leave()
+                    }
+                }
+                .padding()
+                //                UsersListView()
+                //                    .padding(.top, 30)
                 // .presentationDetents([.medium])
             }
         }

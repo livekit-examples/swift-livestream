@@ -62,4 +62,13 @@ final class AppContext: ObservableObject {
             }
         }
     }
+
+    public func leave() {
+        Task {
+            try await room.disconnect()
+            Task { @MainActor in
+                self.step = .welcome
+            }
+        }
+    }
 }
