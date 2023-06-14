@@ -13,7 +13,10 @@ struct MessageBarView: View {
                 .font(.system(size: 14))
                 .frame(maxWidth: .infinity)
 
-            StyledButton(title: "Send", style: .secondary) {
+            StyledButton(title: "Send",
+                         style: .secondary,
+                         size: .small,
+                         isFullWidth: false) {
 
             }
 

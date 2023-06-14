@@ -9,8 +9,15 @@ struct StyledButton: View {
         case destructive
     }
 
+    enum Size {
+        case normal
+        case small
+    }
+
     let title: any StringProtocol
     var style: Style = .normal
+    var size: Size = .normal
+    var isFullWidth = true
     var isBusy: Bool = false
     var isEnabled: Bool = true
     let action: () -> Void
@@ -24,9 +31,11 @@ struct StyledButton: View {
                     ProgressView()
                 }
                 Text(title)
+                    .font(.system(size: size.toFontSize()))
             }
-            .padding()
-            .frame(maxWidth: .infinity)
+            .padding(.horizontal, size.toHPadding())
+            .padding(.vertical, size.toVPadding())
+            .frame(maxWidth: isFullWidth ? .infinity : nil)
         }
         .disabled(isBusy || !isEnabled)
         .foregroundColor(.white.opacity((isBusy || !isEnabled) ? 0.5 : 1))
@@ -43,6 +52,30 @@ private extension StyledButton.Style {
         case .primary: return Color("Primary")
         case .secondary: return Color("Secondary")
         case .destructive: return Color("Destructive")
+        }
+    }
+}
+
+private extension StyledButton.Size {
+
+    func toFontSize() -> Double {
+        switch self {
+        case .normal: return 17
+        case .small: return 12
+        }
+    }
+
+    func toVPadding() -> Double {
+        switch self {
+        case .normal: return 10
+        case .small: return 5
+        }
+    }
+
+    func toHPadding() -> Double {
+        switch self {
+        case .normal: return 15
+        case .small: return 10
         }
     }
 }
