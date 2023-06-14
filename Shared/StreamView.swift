@@ -38,7 +38,9 @@ struct StreamView: View {
 
                     VStack(alignment: .trailing) {
                         HStack {
-                            TextLabel(text: "LIVE")
+                            if isPublisher {
+                                TextLabel(text: "LIVE", style: .primary)
+                            }
                             TextLabel(text: "1.2K")
                         }
                         .padding()
