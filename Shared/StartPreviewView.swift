@@ -20,7 +20,7 @@ struct StartPreviewView: View {
             Text("Start Livestream")
                 .font(.system(size: 30, weight: .bold))
 
-            PublisherVideoView()
+            PublisherVideoPreview()
                 .padding(.vertical, 10)
 
             Text("After going live you’ll acquire a streaming link for sharing with your viewers.")

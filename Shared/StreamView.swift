@@ -16,6 +16,12 @@ struct StreamView: View {
 
     @State private var showingMoreMenu = false
 
+    let isPublisher: Bool
+
+    init(isPublisher: Bool = false) {
+        self.isPublisher = isPublisher
+    }
+
     var body: some View {
 
         VStack {
@@ -23,7 +29,12 @@ struct StreamView: View {
             GeometryReader { proxy in
 
                 ZStack {
-                    PublisherVideoView()
+
+                    if isPublisher {
+                        PublisherVideoView()
+                    } else {
+                        SubscriberVideoView()
+                    }
 
                     VStack(alignment: .trailing) {
                         HStack {

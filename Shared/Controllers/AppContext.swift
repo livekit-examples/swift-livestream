@@ -14,7 +14,8 @@ final class AppContext: ObservableObject {
         case streamerPrepare
         case streamerPreview
         case viewerPrepare
-        case stream
+        case publisherStream
+        case subscriberStream
     }
 
     @Published public private(set) var step: Step = .welcome
@@ -41,7 +42,7 @@ final class AppContext: ObservableObject {
                 try await room.connect(url, token)
                 try await room.localParticipant?.setCamera(enabled: true)
                 Task { @MainActor in
-                    self.step = .stream
+                    self.step = .publisherStream
                 }
             } catch {
                 try await room.disconnect()
@@ -54,7 +55,7 @@ final class AppContext: ObservableObject {
             do {
                 try await room.connect(url, token)
                 Task { @MainActor in
-                    self.step = .stream
+                    self.step = .subscriberStream
                 }
             } catch {
                 try await room.disconnect()

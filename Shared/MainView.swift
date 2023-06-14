@@ -12,7 +12,8 @@ struct MainView: View {
         case .streamerPrepare: return AnyView(StartPrepareView())
         case .streamerPreview: return AnyView(StartPreviewView())
         case .viewerPrepare: return AnyView(JoinView())
-        case .stream: return AnyView(StreamView())
+        case .publisherStream: return AnyView(StreamView(isPublisher: true))
+        case .subscriberStream: return AnyView(StreamView(isPublisher: false))
         }
     }
 
