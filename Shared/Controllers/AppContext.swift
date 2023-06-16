@@ -2,6 +2,18 @@ import SwiftUI
 import LiveKit
 import WebRTC
 
+struct StreamEvent: Identifiable, Codable {
+
+    enum `Type`: Codable {
+        case info
+        case message
+    }
+
+    let id: String
+    var type: `Type` = .info
+    let message: String
+}
+
 final class AppContext: ObservableObject {
 
     let room = Room()
@@ -19,6 +31,8 @@ final class AppContext: ObservableObject {
     }
 
     @Published public private(set) var step: Step = .welcome
+    @Published public var events = [StreamEvent]()
+    @Published public var message: String = ""
 
     public func set(step: Step) {
         self.step = step
@@ -70,5 +84,11 @@ final class AppContext: ObservableObject {
                 self.step = .welcome
             }
         }
+    }
+
+    public func send() {
+        let uuid = UUID().uuidString
+        events.append(StreamEvent(id: uuid, message: message))
+        message = ""
     }
 }

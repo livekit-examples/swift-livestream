@@ -2,8 +2,9 @@ import SwiftUI
 
 struct MessageBarView: View {
 
-    @State var text: String = ""
+    @Binding var text: String
 
+    let sendAction: () -> Void
     let moreAction: () -> Void
 
     var body: some View {
@@ -17,7 +18,7 @@ struct MessageBarView: View {
                          style: .secondary,
                          size: .small,
                          isFullWidth: false) {
-
+                sendAction()
             }
 
             Button {

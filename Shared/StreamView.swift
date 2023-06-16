@@ -69,23 +69,27 @@ struct StreamView: View {
                 }
             }
 
-            MessageBarView {
-                showingOptionsSheet.toggle()
-            }
-            .sheet(isPresented: $showingOptionsSheet) {
-                VStack {
-                    Text("Options")
-                        .font(.system(size: 25, weight: .bold))
-                    StyledButton(title: isPublisher ? "End stream" : "Leave stream", style: .destructive) {
-                        appCtx.leave()
+            MessageBarView(
+                text: $appCtx.message,
+                sendAction: {
+                    appCtx.send()
+                }, moreAction: {
+                    showingOptionsSheet.toggle()
+                })
+                .sheet(isPresented: $showingOptionsSheet) {
+                    VStack {
+                        Text("Options")
+                            .font(.system(size: 25, weight: .bold))
+                        StyledButton(title: isPublisher ? "End stream" : "Leave stream", style: .destructive) {
+                            appCtx.leave()
+                        }
                     }
-                }
-                .padding()
-            }
-            .sheet(isPresented: $showingUsersSheet) {
-                UsersListView()
                     .padding()
-            }
+                }
+                .sheet(isPresented: $showingUsersSheet) {
+                    UsersListView()
+                        .padding()
+                }
         }
     }
 }

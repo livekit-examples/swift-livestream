@@ -2,6 +2,8 @@ import SwiftUI
 
 struct MessageTileView: View {
 
+    let entry: StreamEvent
+
     var body: some View {
 
         HStack(alignment: .top, spacing: 10) {
@@ -13,10 +15,11 @@ struct MessageTileView: View {
                     .font(.system(size: 14))
                     .fontWeight(.bold)
 
-                Text("Hello this is some test string. Hello this is some test string. Hello this is some test string. Hello this is some test string.")
+                Text(entry.message)
                     .font(.system(size: 14))
                     .multilineTextAlignment(.leading)
                     .lineLimit(nil)
+                    .frame(maxWidth: .infinity)
             }
         }
     }
