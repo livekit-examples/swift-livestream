@@ -10,13 +10,32 @@ struct StreamEvent: Identifiable, Codable {
     }
 
     let id: String
+    let created: Date
     var type: `Type` = .info
+
+    let identity: String?
     let message: String
+
+    init(id: String = UUID().uuidString,
+         created: Date = Date(),
+         type: Type,
+         identity: String? = nil,
+         message: String) {
+
+        self.id = id
+        self.created = created
+        self.type = type
+        self.identity = identity
+        self.message = message
+    }
 }
 
 final class AppContext: ObservableObject {
 
     let room = Room()
+
+    let encoder = JSONEncoder()
+    let decoder = JSONDecoder()
 
     @AppStorage("url") var url = ""
     @AppStorage("token") var token = ""
@@ -33,6 +52,10 @@ final class AppContext: ObservableObject {
     @Published public private(set) var step: Step = .welcome
     @Published public var events = [StreamEvent]()
     @Published public var message: String = ""
+
+    init() {
+        room.add(delegate: self)
+    }
 
     public func set(step: Step) {
         self.step = step
@@ -87,8 +110,37 @@ final class AppContext: ObservableObject {
     }
 
     public func send() {
-        let uuid = UUID().uuidString
-        events.append(StreamEvent(id: uuid, message: message))
-        message = ""
+        Task { @MainActor in
+            let event = StreamEvent(type: .message,
+                                    identity: room.localParticipant?.identity,
+                                    message: message)
+            events.append(event)
+            message = ""
+
+            guard let jsonData = try? encoder.encode(event) else { return }
+            room.localParticipant?.publish(data: jsonData)
+        }
+    }
+}
+
+extension AppContext: RoomDelegate {
+
+    func room(_ room: Room, participantDidJoin participant: RemoteParticipant) {
+        Task { @MainActor in
+            events.append(StreamEvent(type: .info, message: "\(participant.identity) did join"))
+        }
+    }
+
+    func room(_ room: Room, participantDidLeave participant: RemoteParticipant) {
+        Task { @MainActor in
+            events.append(StreamEvent(type: .info, message: "\(participant.identity) left"))
+        }
+    }
+
+    func room(_ room: Room, participant: RemoteParticipant?, didReceiveData data: Data, topic: String) {
+        Task { @MainActor in
+            guard let event = try? decoder.decode(StreamEvent.self, from: data) else { return }
+            events.append(event)
+        }
     }
 }

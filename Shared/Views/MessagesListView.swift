@@ -7,11 +7,11 @@ struct MessagesListView: View {
     var body: some View {
         ScrollViewReader { proxy in
             ScrollView {
-                LazyVStack(spacing: 10) {
+                LazyVStack(spacing: 12) {
                     ForEach(appCtx.events) { entry in
                         MessageTileView(entry: entry)
                             .frame(maxWidth: .infinity)
-                            .padding(.horizontal, 5)
+                            .padding(.horizontal, 10)
 
                     }
                     .onChange(of: appCtx.events.count) { _ in
