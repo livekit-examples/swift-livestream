@@ -19,10 +19,11 @@
 		687E31282A2E39CE00032AE6 /* TextLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E31272A2E39CE00032AE6 /* TextLabel.swift */; };
 		687E312A2A2E3AF800032AE6 /* MessageBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E31292A2E3AF800032AE6 /* MessageBarView.swift */; };
 		687E312C2A2E3B9E00032AE6 /* PublisherVideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E312B2A2E3B9E00032AE6 /* PublisherVideoView.swift */; };
-		687E312E2A2EF39400032AE6 /* MessageTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E312D2A2EF39400032AE6 /* MessageTileView.swift */; };
+		687E312E2A2EF39400032AE6 /* StreamEventTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E312D2A2EF39400032AE6 /* StreamEventTileView.swift */; };
 		687E31302A2EF6D100032AE6 /* UserTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E312F2A2EF6D100032AE6 /* UserTileView.swift */; };
-		687E31322A2EF8C600032AE6 /* MessagesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E31312A2EF8C600032AE6 /* MessagesListView.swift */; };
+		687E31322A2EF8C600032AE6 /* StreamEventsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E31312A2EF8C600032AE6 /* StreamEventsListView.swift */; };
 		687E31342A2EF8F200032AE6 /* UsersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E31332A2EF8F200032AE6 /* UsersListView.swift */; };
+		68928F8F2A40CB9C005F084A /* StreamEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68928F8E2A40CB9C005F084A /* StreamEvent.swift */; };
 		6895EA442A38B7FA00519535 /* LiveKitComponents in Frameworks */ = {isa = PBXBuildFile; productRef = 6895EA432A38B7FA00519535 /* LiveKitComponents */; };
 		68FBA36F2A381A530015853E /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBA36E2A381A530015853E /* WelcomeView.swift */; };
 		68FBA3712A381F650015853E /* StyledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBA3702A381F650015853E /* StyledButton.swift */; };
@@ -45,10 +46,11 @@
 		687E31272A2E39CE00032AE6 /* TextLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLabel.swift; sourceTree = "<group>"; };
 		687E31292A2E3AF800032AE6 /* MessageBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBarView.swift; sourceTree = "<group>"; };
 		687E312B2A2E3B9E00032AE6 /* PublisherVideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherVideoView.swift; sourceTree = "<group>"; };
-		687E312D2A2EF39400032AE6 /* MessageTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTileView.swift; sourceTree = "<group>"; };
+		687E312D2A2EF39400032AE6 /* StreamEventTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamEventTileView.swift; sourceTree = "<group>"; };
 		687E312F2A2EF6D100032AE6 /* UserTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTileView.swift; sourceTree = "<group>"; };
-		687E31312A2EF8C600032AE6 /* MessagesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesListView.swift; sourceTree = "<group>"; };
+		687E31312A2EF8C600032AE6 /* StreamEventsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamEventsListView.swift; sourceTree = "<group>"; };
 		687E31332A2EF8F200032AE6 /* UsersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListView.swift; sourceTree = "<group>"; };
+		68928F8E2A40CB9C005F084A /* StreamEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamEvent.swift; sourceTree = "<group>"; };
 		6895EA462A38B85000519535 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		68FBA36E2A381A530015853E /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		68FBA3702A381F650015853E /* StyledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledButton.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 		683865A32A29F9A3005D0947 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				68928F902A40CBA2005F084A /* Types */,
 				687E31242A2E391F00032AE6 /* Views */,
 				687E311C2A2DCA0B00032AE6 /* Controllers */,
 				683865A42A29F9A3005D0947 /* App.swift */,
@@ -135,14 +138,22 @@
 				687E31272A2E39CE00032AE6 /* TextLabel.swift */,
 				687E31292A2E3AF800032AE6 /* MessageBarView.swift */,
 				687E312B2A2E3B9E00032AE6 /* PublisherVideoView.swift */,
-				687E312D2A2EF39400032AE6 /* MessageTileView.swift */,
+				687E312D2A2EF39400032AE6 /* StreamEventTileView.swift */,
 				687E312F2A2EF6D100032AE6 /* UserTileView.swift */,
-				687E31312A2EF8C600032AE6 /* MessagesListView.swift */,
+				687E31312A2EF8C600032AE6 /* StreamEventsListView.swift */,
 				687E31332A2EF8F200032AE6 /* UsersListView.swift */,
 				68FBA3702A381F650015853E /* StyledButton.swift */,
 				68FBA3742A3824D80015853E /* StyledTextField.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		68928F902A40CBA2005F084A /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				68928F8E2A40CB9C005F084A /* StreamEvent.swift */,
+			);
+			path = Types;
 			sourceTree = "<group>";
 		};
 		6895EA452A38B82100519535 /* macOS */ = {
@@ -235,16 +246,17 @@
 				68FBA36F2A381A530015853E /* WelcomeView.swift in Sources */,
 				68FBA3752A3824D80015853E /* StyledTextField.swift in Sources */,
 				687E311B2A2DC9B200032AE6 /* StartPreviewView.swift in Sources */,
-				687E31322A2EF8C600032AE6 /* MessagesListView.swift in Sources */,
+				687E31322A2EF8C600032AE6 /* StreamEventsListView.swift in Sources */,
 				687E311E2A2DCA1600032AE6 /* AppContext.swift in Sources */,
 				683865A72A29F9A3005D0947 /* MainView.swift in Sources */,
 				6801A7662A3900CD009FC4DA /* JoinView.swift in Sources */,
+				68928F8F2A40CB9C005F084A /* StreamEvent.swift in Sources */,
 				68FBA3732A3824020015853E /* StartPrepareView.swift in Sources */,
 				687E312A2A2E3AF800032AE6 /* MessageBarView.swift in Sources */,
 				687E31232A2E2AE700032AE6 /* StreamView.swift in Sources */,
 				687E31262A2E396900032AE6 /* SwitchCameraButton.swift in Sources */,
 				68FBA3712A381F650015853E /* StyledButton.swift in Sources */,
-				687E312E2A2EF39400032AE6 /* MessageTileView.swift in Sources */,
+				687E312E2A2EF39400032AE6 /* StreamEventTileView.swift in Sources */,
 				683865A52A29F9A3005D0947 /* App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

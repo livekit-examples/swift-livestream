@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct MessageTileView: View {
+struct StreamEventTileView: View {
 
     let entry: StreamEvent
 
@@ -17,13 +17,14 @@ struct MessageTileView: View {
                     Text(identity)
                         .font(.system(size: 14))
                         .fontWeight(.bold)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 }
 
                 Text(entry.message)
                     .font(.system(size: 14))
                     .multilineTextAlignment(.leading)
                     .lineLimit(nil)
-                    .frame(maxWidth: .infinity)
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
     }

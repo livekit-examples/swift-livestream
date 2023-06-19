@@ -58,7 +58,7 @@ struct StreamView: View {
                                            startPoint: .top,
                                            endPoint: .bottom)
 
-                            MessagesListView()
+                            StreamEventsListView()
                                 .mask(LinearGradient(gradient: Gradient(colors: [.black, .black, .black, .clear]),
                                                      startPoint: .bottom,
                                                      endPoint: .top))

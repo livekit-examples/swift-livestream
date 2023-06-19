@@ -1,15 +1,17 @@
 import SwiftUI
 
-struct MessagesListView: View {
+struct StreamEventsListView: View {
 
     @EnvironmentObject var appCtx: AppContext
 
     var body: some View {
         ScrollViewReader { proxy in
             ScrollView {
+                Spacer()
+                    .frame(height: 50)
                 LazyVStack(spacing: 12) {
                     ForEach(appCtx.events) { entry in
-                        MessageTileView(entry: entry)
+                        StreamEventTileView(entry: entry)
                             .frame(maxWidth: .infinity)
                             .padding(.horizontal, 10)
 
