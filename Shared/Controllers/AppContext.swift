@@ -23,7 +23,12 @@ final class AppContext: ObservableObject {
 
     @Published public private(set) var step: Step = .welcome
     @Published public var events = [StreamEvent]()
-    @Published public var message: String = ""
+    @Published public var canSendMessage: Bool = false
+    @Published public var message: String = "" {
+        didSet {
+            canSendMessage = !message.isEmpty
+        }
+    }
 
     init() {
         room.add(delegate: self)

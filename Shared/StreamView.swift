@@ -71,6 +71,7 @@ struct StreamView: View {
 
             MessageBarView(
                 text: $appCtx.message,
+                sendIsEnabled: $appCtx.canSendMessage,
                 sendAction: {
                     appCtx.send()
                 }, moreAction: {

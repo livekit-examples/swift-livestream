@@ -3,6 +3,7 @@ import SwiftUI
 struct MessageBarView: View {
 
     @Binding var text: String
+    @Binding var sendIsEnabled: Bool
 
     let sendAction: () -> Void
     let moreAction: () -> Void
@@ -17,7 +18,8 @@ struct MessageBarView: View {
             StyledButton(title: "Send",
                          style: .secondary,
                          size: .small,
-                         isFullWidth: false) {
+                         isFullWidth: false,
+                         isEnabled: sendIsEnabled) {
                 sendAction()
             }
 
