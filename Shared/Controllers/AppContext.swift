@@ -2,7 +2,7 @@ import SwiftUI
 import LiveKit
 import WebRTC
 
-final class AppContext: ObservableObject {
+final class AppContext: NSObject, ObservableObject {
 
     let room = Room()
 
@@ -30,7 +30,8 @@ final class AppContext: ObservableObject {
         }
     }
 
-    init() {
+    override init() {
+        super.init()
         room.add(delegate: self)
     }
 
