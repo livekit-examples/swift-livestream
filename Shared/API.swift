@@ -46,7 +46,7 @@ class API {
         return try decoder.decode(U.self, from: data)
     }
 
-    public func createStream(_ r: CreateStream) async throws -> CreateStreamResponse {
+    public func createStream(_ r: CreateStreamRequest) async throws -> CreateStreamResponse {
         try await post(apiPath: "/api/create_stream", data: r)
     }
 }
