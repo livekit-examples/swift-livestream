@@ -15,11 +15,12 @@ final class AppContext: NSObject, ObservableObject {
         case streamerPrepare
         case streamerPreview
         case viewerPrepare
-        case publisherStream
-        case subscriberStream
+        case stream
     }
 
     @Published public var connectBusy = false
+
+    @Published public var isHost = false
     @Published public var isPublisher = false
 
     @Published public private(set) var step: Step = .welcome
@@ -77,7 +78,7 @@ final class AppContext: NSObject, ObservableObject {
                 try await room.connect(res.connectionDetails.wsURL, res.connectionDetails.token)
                 try await room.localParticipant?.setCamera(enabled: true)
                 Task { @MainActor in
-                    self.step = .publisherStream
+                    self.step = .stream
                     self.isPublisher = true
                 }
             } catch {
@@ -104,7 +105,8 @@ final class AppContext: NSObject, ObservableObject {
 
                 try await room.connect(res.connectionDetails.wsURL, res.connectionDetails.token)
                 Task { @MainActor in
-                    self.step = .subscriberStream
+                    self.step = .stream
+                    self.isPublisher = true
                 }
             } catch {
                 try await room.disconnect()
@@ -161,6 +163,10 @@ extension AppContext: RoomDelegate {
             guard let event = try? decoder.decode(StreamEvent.self, from: data) else { return }
             events.append(event)
         }
+    }
+
+    func room(_ room: Room, didUpdate metadata: String?) {
+        print("metadata: \(metadata)")
     }
 
     func room(_ room: Room, didUpdate connectionState: ConnectionState, oldValue: ConnectionState) {

@@ -19,12 +19,6 @@ struct StreamView: View {
     @State private var showingUsersSheet = false
     @State private var showingOptionsSheet = false
 
-    let isPublisher: Bool
-
-    init(isPublisher: Bool = false) {
-        self.isPublisher = isPublisher
-    }
-
     var body: some View {
 
         VStack {
@@ -33,7 +27,7 @@ struct StreamView: View {
 
                 ZStack {
 
-                    if isPublisher {
+                    if appCtx.isPublisher {
                         PublisherVideoView()
                     } else {
                         SubscriberVideoView()
@@ -41,7 +35,7 @@ struct StreamView: View {
 
                     VStack(alignment: .trailing) {
                         HStack {
-                            if isPublisher {
+                            if appCtx.isPublisher {
                                 TextLabel(text: "LIVE", style: .primary)
                             }
                             TextLabel(text: "\(room.remoteParticipants.count + 1)").onTapGesture {
@@ -82,7 +76,7 @@ struct StreamView: View {
                         Text("Options")
                             .font(.system(size: 25, weight: .bold))
 
-                        StyledButton(title: isPublisher ? "End stream" : "Leave stream",
+                        StyledButton(title: appCtx.isPublisher ? "End stream" : "Leave stream",
                                      style: .destructive) {
 
                             appCtx.leave()
