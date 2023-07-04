@@ -1,4 +1,3 @@
-
 struct CreateStreamRequest: Codable {
 
     struct Metadata: Codable {

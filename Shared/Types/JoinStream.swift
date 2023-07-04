@@ -1,4 +1,3 @@
-
 struct JoinStreamRequest: Codable {
 
     let roomName: String

@@ -4,13 +4,11 @@ import WebRTC
 
 final class AppContext: NSObject, ObservableObject {
 
+    let api = API(apiBaseURLString: "https://livestream-mobile-backend.vercel.app/")
     let room = Room()
 
     let encoder = JSONEncoder()
     let decoder = JSONDecoder()
-
-    @AppStorage("url") var url = ""
-    @AppStorage("token") var token = ""
 
     enum Step {
         case welcome
@@ -21,6 +19,8 @@ final class AppContext: NSObject, ObservableObject {
         case subscriberStream
     }
 
+    @Published public var connectBusy = false
+
     @Published public private(set) var step: Step = .welcome
     @Published public var events = [StreamEvent]()
     @Published public var canSendMessage: Bool = false
@@ -29,6 +29,12 @@ final class AppContext: NSObject, ObservableObject {
             canSendMessage = !message.isEmpty
         }
     }
+
+    @Published public var identity: String = ""
+    @Published public var roomName: String = ""
+
+    @Published public var enableChat: Bool = true
+    @Published public var viewersCanRequestToJoin: Bool = true
 
     override init() {
         super.init()
@@ -53,8 +59,21 @@ final class AppContext: NSObject, ObservableObject {
 
     public func startPublisher() {
         Task {
+            Task { @MainActor in connectBusy = true }
+            defer { Task { @MainActor in connectBusy = false } }
+
             do {
-                try await room.connect(url, token)
+                print("Requesting create room...")
+                let meta = CreateStreamRequest.Metadata(creatorIdentity: identity,
+                                                        enableChat: enableChat,
+                                                        allowParticipant: viewersCanRequestToJoin)
+
+                let req = CreateStreamRequest(roomName: roomName, metadata: meta)
+                let res = try await api.createStream(req)
+
+                print("Connecting to room... \(res.connectionDetails)")
+
+                try await room.connect(res.connectionDetails.wsURL, res.connectionDetails.token)
                 try await room.localParticipant?.setCamera(enabled: true)
                 Task { @MainActor in
                     self.step = .publisherStream
@@ -67,8 +86,21 @@ final class AppContext: NSObject, ObservableObject {
 
     public func join() {
         Task {
+            Task { @MainActor in connectBusy = true }
+            defer { Task { @MainActor in connectBusy = false } }
+
             do {
-                try await room.connect(url, token)
+                print("Requesting create room...")
+                let meta = CreateStreamRequest.Metadata(creatorIdentity: identity,
+                                                        enableChat: enableChat,
+                                                        allowParticipant: viewersCanRequestToJoin)
+
+                let req = CreateStreamRequest(roomName: roomName, metadata: meta)
+                let res = try await api.createStream(req)
+
+                print("Connecting to room... \(res.connectionDetails)")
+
+                try await room.connect(res.connectionDetails.wsURL, res.connectionDetails.token)
                 Task { @MainActor in
                     self.step = .subscriberStream
                 }

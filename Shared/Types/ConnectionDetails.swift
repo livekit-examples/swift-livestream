@@ -1,4 +1,3 @@
-
 struct ConnectionDetails: Codable {
 
     let wsURL: String

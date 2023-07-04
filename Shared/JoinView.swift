@@ -16,17 +16,17 @@ struct JoinView: View {
             Text("Join Livestream")
                 .font(.system(size: 30, weight: .bold))
 
-            StyledTextField(title: "URL", text: appCtx.$url)
+            StyledTextField(title: "Your name", text: $appCtx.identity)
 
-            StyledTextField(title: "Token", text: appCtx.$token)
+            StyledTextField(title: "Livestream name", text: $appCtx.roomName)
 
             Spacer()
 
-            StyledButton(title: "Join", style: .primary, isBusy: room.connectionState == .connecting) {
+            StyledButton(title: "Join", style: .primary, isBusy: appCtx.connectBusy) {
                 appCtx.join()
             }
 
-            StyledButton(title: "Back", isEnabled: !(room.connectionState == .connecting)) {
+            StyledButton(title: "Back", isEnabled: !appCtx.connectBusy) {
                 appCtx.backToWelcome()
             }
         }

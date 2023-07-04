@@ -27,11 +27,11 @@ struct StartPreviewView: View {
                 .font(.system(size: 14))
                 .foregroundColor(.gray)
 
-            StyledButton(title: "Go live", style: .primary, isBusy: room.connectionState == .connecting) {
+            StyledButton(title: "Go live", style: .primary, isBusy: appCtx.connectBusy) {
                 appCtx.startPublisher()
             }
 
-            StyledButton(title: "Back", isEnabled: !(room.connectionState == .connecting)) {
+            StyledButton(title: "Back", isEnabled: !appCtx.connectBusy) {
                 appCtx.backToPrepare()
             }
         }
