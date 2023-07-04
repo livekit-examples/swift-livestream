@@ -12,6 +12,7 @@ class API {
     let decoder = JSONDecoder()
 
     let apiBaseURL: URL
+    var authToken: String?
 
     init(apiBaseURLString: String) {
         guard let url = URL(string: apiBaseURLString) else {
@@ -20,7 +21,12 @@ class API {
         self.apiBaseURL = url
     }
 
-    private func prepareRequest(apiPath: String, data: Encodable? = nil, method: String = "POST") async throws -> URLRequest {
+    public func reset() {
+        self.authToken = nil
+    }
+
+    private func prepareRequest(apiPath: String, data: Encodable? = nil) async throws -> URLRequest {
+
         guard var components = URLComponents(url: apiBaseURL, resolvingAgainstBaseURL: false) else {
             throw APIError.url
         }
@@ -32,12 +38,16 @@ class API {
         }
 
         var request = URLRequest(url: url)
-        request.httpMethod = method
+        request.httpMethod = "POST"
 
         if let data = data {
             let jsonData = try encoder.encode(data)
             request.httpBody = jsonData
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        }
+
+        if let authToken = authToken {
+            request.setValue("Token \(authToken)", forHTTPHeaderField: "Authorization")
         }
 
         return request
@@ -66,28 +76,36 @@ class API {
     }
 
     public func createStream(_ r: CreateStreamRequest) async throws -> CreateStreamResponse {
-        try await post(apiPath: "/api/create_stream", data: r)
+        let res: CreateStreamResponse = try await post(apiPath: "/api/create_stream", data: r)
+        self.authToken = res.authToken
+        return res
     }
 
     public func joinStream(_ r: JoinStreamRequest) async throws -> JoinStreamResponse {
-        try await post(apiPath: "/api/join_stream", data: r)
+        let res: JoinStreamResponse = try await post(apiPath: "/api/join_stream", data: r)
+        self.authToken = res.authToken
+        return res
     }
 
     public func stopStream() async throws {
+        assert(authToken != nil)
         try await post(apiPath: "/api/stop_stream")
     }
 
     public func inviteToStage(identity: String) async throws {
+        assert(authToken != nil)
         let p = InviteToStageRequest(identity: identity)
         try await post(apiPath: "/api/invited_to_stage", data: p)
     }
 
     public func removeFromStage(identity: String) async throws {
+        assert(authToken != nil)
         let p = InviteToStageRequest(identity: identity)
         try await post(apiPath: "/api/remove_from_stage", data: p)
     }
 
     public func raiseHand() async throws {
+        assert(authToken != nil)
         try await post(apiPath: "/api/raise_hand")
     }
 }

@@ -81,7 +81,10 @@ struct StreamView: View {
                     VStack {
                         Text("Options")
                             .font(.system(size: 25, weight: .bold))
-                        StyledButton(title: isPublisher ? "End stream" : "Leave stream", style: .destructive) {
+
+                        StyledButton(title: isPublisher ? "End stream" : "Leave stream",
+                                     style: .destructive) {
+
                             appCtx.leave()
                         }
                     }

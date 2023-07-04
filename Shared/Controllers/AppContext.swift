@@ -20,6 +20,7 @@ final class AppContext: NSObject, ObservableObject {
     }
 
     @Published public var connectBusy = false
+    @Published public var isPublisher = false
 
     @Published public private(set) var step: Step = .welcome
     @Published public var events = [StreamEvent]()
@@ -77,6 +78,7 @@ final class AppContext: NSObject, ObservableObject {
                 try await room.localParticipant?.setCamera(enabled: true)
                 Task { @MainActor in
                     self.step = .publisherStream
+                    self.isPublisher = true
                 }
             } catch {
                 try await room.disconnect()
@@ -112,9 +114,16 @@ final class AppContext: NSObject, ObservableObject {
 
     public func leave() {
         Task {
-            try await room.disconnect()
-            Task { @MainActor in
-                self.step = .welcome
+            do {
+                print("Leaving...")
+                if isPublisher {
+                    try await api.stopStream()
+                } else {
+                    print("Disconnecting...")
+                    try await room.disconnect()
+                }
+            } catch let error {
+                print("Failed to leave \(error)")
             }
         }
     }
@@ -151,6 +160,25 @@ extension AppContext: RoomDelegate {
         Task { @MainActor in
             guard let event = try? decoder.decode(StreamEvent.self, from: data) else { return }
             events.append(event)
+        }
+    }
+
+    func room(_ room: Room, didUpdate connectionState: ConnectionState, oldValue: ConnectionState) {
+
+        if case .disconnected(let reason) = connectionState,
+           case .connected = oldValue {
+            Task { @MainActor in
+                self.step = .welcome
+            }
+
+            print("Did disconnect")
+        }
+
+        if case .disconnected(let reason) = connectionState {
+            Task { @MainActor in
+                self.isPublisher = false
+            }
+            api.reset()
         }
     }
 }
