@@ -76,6 +76,7 @@ struct StreamView: View {
                     VStack {
                         Text("Options")
                             .font(.system(size: 25, weight: .bold))
+                            .padding()
 
                         StyledButton(title: roomCtx.isStreamPublisher ? "End stream" : "Leave stream",
                                      style: .destructive) {
@@ -90,12 +91,20 @@ struct StreamView: View {
                         }
 
                     }
-                    .backport.presentationDetents([.medium, .large])
+                    .backport.presentationDetents([.medium])
                     .backport.presentationDragIndicator(.visible)
+                    .presentationBackground(.thinMaterial)
                     .padding()
                 }
                 .sheet(isPresented: $showingUsersSheet) {
+                    Text("Viewers")
+                        .font(.system(size: 25, weight: .bold))
+                        .padding()
+
                     UsersListView()
+                        .backport.presentationDetents([.medium, .large])
+                        .backport.presentationDragIndicator(.visible)
+                        .presentationBackground(.black)
                         .padding()
                 }
         }
