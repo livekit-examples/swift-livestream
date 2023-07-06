@@ -10,6 +10,7 @@
 		6801A7662A3900CD009FC4DA /* JoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6801A7652A3900CD009FC4DA /* JoinView.swift */; };
 		68177E062A56F71500821136 /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 68177E052A56F71500821136 /* Logging */; };
 		68177E082A57055200821136 /* AppContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68177E072A57055200821136 /* AppContext.swift */; };
+		68177E0B2A5708C600821136 /* SwiftUIBackports in Frameworks */ = {isa = PBXBuildFile; productRef = 68177E0A2A5708C600821136 /* SwiftUIBackports */; };
 		683865A52A29F9A3005D0947 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683865A42A29F9A3005D0947 /* App.swift */; };
 		683865A72A29F9A3005D0947 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683865A62A29F9A3005D0947 /* MainView.swift */; };
 		683865A92A29F9A4005D0947 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 683865A82A29F9A4005D0947 /* Assets.xcassets */; };
@@ -77,6 +78,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				68177E062A56F71500821136 /* Logging in Frameworks */,
+				68177E0B2A5708C600821136 /* SwiftUIBackports in Frameworks */,
 				6895EA442A38B7FA00519535 /* LiveKitComponents in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -203,6 +205,7 @@
 			packageProductDependencies = (
 				6895EA432A38B7FA00519535 /* LiveKitComponents */,
 				68177E052A56F71500821136 /* Logging */,
+				68177E0A2A5708C600821136 /* SwiftUIBackports */,
 			);
 			productName = "swift-livestream";
 			productReference = 683865A12A29F9A3005D0947 /* LiveKitLivestreamExample.app */;
@@ -234,6 +237,7 @@
 			mainGroup = 683865982A29F9A3005D0947;
 			packageReferences = (
 				68177E042A56F71500821136 /* XCRemoteSwiftPackageReference "swift-log" */,
+				68177E092A5708C600821136 /* XCRemoteSwiftPackageReference "SwiftUIBackports" */,
 			);
 			productRefGroup = 683865A22A29F9A3005D0947 /* Products */;
 			projectDirPath = "";
@@ -513,6 +517,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		68177E092A5708C600821136 /* XCRemoteSwiftPackageReference "SwiftUIBackports" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/shaps80/SwiftUIBackports";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -520,6 +532,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 68177E042A56F71500821136 /* XCRemoteSwiftPackageReference "swift-log" */;
 			productName = Logging;
+		};
+		68177E0A2A5708C600821136 /* SwiftUIBackports */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 68177E092A5708C600821136 /* XCRemoteSwiftPackageReference "SwiftUIBackports" */;
+			productName = SwiftUIBackports;
 		};
 		6895EA432A38B7FA00519535 /* LiveKitComponents */ = {
 			isa = XCSwiftPackageProductDependency;

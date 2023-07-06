@@ -22,6 +22,9 @@ struct StyledTextField: View {
             TextField("Type your message...", text: $text)
                 .textFieldStyle(PlainTextFieldStyle())
                 .disableAutocorrection(true)
+                #if os(iOS)
+                .textInputAutocapitalization(.never)
+                #endif
                 // TODO: add iOS unique view modifiers
                 // #if os(iOS)
                 // .autocapitalization(.none)

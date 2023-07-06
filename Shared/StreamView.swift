@@ -1,5 +1,6 @@
 import SwiftUI
 import LiveKit
+import SwiftUIBackports
 
 extension Comparable {
     func clamp(minValue: Self, maxValue: Self) -> Self {
@@ -89,6 +90,8 @@ struct StreamView: View {
                         }
 
                     }
+                    .backport.presentationDetents([.medium, .large])
+                    .backport.presentationDragIndicator(.visible)
                     .padding()
                 }
                 .sheet(isPresented: $showingUsersSheet) {
