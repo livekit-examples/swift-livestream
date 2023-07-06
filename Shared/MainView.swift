@@ -4,10 +4,10 @@ import LiveKitComponents
 
 struct MainView: View {
 
-    @StateObject var appCtx = AppContext()
+    @StateObject var roomCtx = RoomContext()
 
     func viewForStep() -> AnyView {
-        switch appCtx.step {
+        switch roomCtx.step {
         case .welcome: return AnyView(WelcomeView())
         case .streamerPrepare: return AnyView(StartPrepareView())
         case .streamerPreview: return AnyView(StartPreviewView())
@@ -17,9 +17,9 @@ struct MainView: View {
     }
 
     var body: some View {
-        RoomScope(room: appCtx.room) {
+        RoomScope(room: roomCtx.room) {
             viewForStep()
-                .environmentObject(appCtx)
+                .environmentObject(roomCtx)
                 .background(Color.black)
                 .foregroundColor(Color.white)
         }

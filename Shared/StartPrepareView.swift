@@ -2,7 +2,7 @@ import SwiftUI
 
 struct StartPrepareView: View {
 
-    @EnvironmentObject var appCtx: AppContext
+    @EnvironmentObject var roomCtx: RoomContext
 
     var body: some View {
 
@@ -11,25 +11,25 @@ struct StartPrepareView: View {
             Text("Start Livestream")
                 .font(.system(size: 30, weight: .bold))
 
-            StyledTextField(title: "Your name", text: $appCtx.identity)
+            StyledTextField(title: "Your name", text: $roomCtx.identity)
 
-            StyledTextField(title: "Livestream name", text: $appCtx.roomName)
+            StyledTextField(title: "Livestream name", text: $roomCtx.roomName)
 
             Text("OPTIONS")
                 .font(.system(size: 14, weight: .bold))
                 .foregroundColor(.gray)
 
-            Toggle("Enable chat", isOn: $appCtx.enableChat)
-            Toggle("Viewers can request to join", isOn: $appCtx.viewersCanRequestToJoin)
+            Toggle("Enable chat", isOn: $roomCtx.enableChat)
+            Toggle("Viewers can request to join", isOn: $roomCtx.viewersCanRequestToJoin)
 
             Spacer()
 
             StyledButton(title: "Continue", style: .primary) {
-                appCtx.set(step: .streamerPreview)
+                roomCtx.set(step: .streamerPreview)
             }
 
             StyledButton(title: "Back") {
-                appCtx.backToWelcome()
+                roomCtx.backToWelcome()
             }
         }
         .padding()

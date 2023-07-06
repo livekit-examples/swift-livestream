@@ -2,7 +2,7 @@ import SwiftUI
 
 struct WelcomeView: View {
 
-    @EnvironmentObject var appCtx: AppContext
+    @EnvironmentObject var roomCtx: RoomContext
 
     var body: some View {
 
@@ -28,11 +28,11 @@ struct WelcomeView: View {
             Spacer()
 
             StyledButton(title: "Start a livestream", style: .primary) {
-                appCtx.set(step: .streamerPrepare)
+                roomCtx.set(step: .streamerPrepare)
             }
 
             StyledButton(title: "Join a livestream") {
-                appCtx.set(step: .viewerPrepare)
+                roomCtx.set(step: .viewerPrepare)
             }
         }
         .padding()

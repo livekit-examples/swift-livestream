@@ -4,7 +4,7 @@ import LiveKitComponents
 
 struct StartPreviewView: View {
 
-    @EnvironmentObject var appCtx: AppContext
+    @EnvironmentObject var roomCtx: RoomContext
     @EnvironmentObject var room: Room
 
     @State private var flag1 = true
@@ -27,12 +27,12 @@ struct StartPreviewView: View {
                 .font(.system(size: 14))
                 .foregroundColor(.gray)
 
-            StyledButton(title: "Go live", style: .primary, isBusy: appCtx.connectBusy) {
-                appCtx.startPublisher()
+            StyledButton(title: "Go live", style: .primary, isBusy: roomCtx.connectBusy) {
+                roomCtx.startPublisher()
             }
 
-            StyledButton(title: "Back", isEnabled: !appCtx.connectBusy) {
-                appCtx.backToPrepare()
+            StyledButton(title: "Back", isEnabled: !roomCtx.connectBusy) {
+                roomCtx.backToPrepare()
             }
         }
         .padding()

@@ -13,7 +13,7 @@ extension Comparable {
 
 struct StreamView: View {
 
-    @EnvironmentObject var appCtx: AppContext
+    @EnvironmentObject var roomCtx: RoomContext
     @EnvironmentObject var room: Room
 
     @State private var showingUsersSheet = false
@@ -27,7 +27,7 @@ struct StreamView: View {
 
                 ZStack {
 
-                    if appCtx.isPublisher {
+                    if roomCtx.isStreamPublisher {
                         PublisherVideoView()
                     } else {
                         SubscriberVideoView()
@@ -35,7 +35,7 @@ struct StreamView: View {
 
                     VStack(alignment: .trailing) {
                         HStack {
-                            if appCtx.isPublisher {
+                            if roomCtx.isStreamPublisher {
                                 TextLabel(text: "LIVE", style: .primary)
                             }
                             TextLabel(text: "\(room.remoteParticipants.count + 1)").onTapGesture {
@@ -64,10 +64,10 @@ struct StreamView: View {
             }
 
             MessageBarView(
-                text: $appCtx.message,
-                sendIsEnabled: $appCtx.canSendMessage,
+                text: $roomCtx.message,
+                sendIsEnabled: $roomCtx.canSendMessage,
                 sendAction: {
-                    appCtx.send()
+                    roomCtx.send()
                 }, moreAction: {
                     showingOptionsSheet.toggle()
                 })
@@ -76,16 +76,16 @@ struct StreamView: View {
                         Text("Options")
                             .font(.system(size: 25, weight: .bold))
 
-                        StyledButton(title: appCtx.isPublisher ? "End stream" : "Leave stream",
+                        StyledButton(title: roomCtx.isStreamPublisher ? "End stream" : "Leave stream",
                                      style: .destructive) {
 
-                            appCtx.leave()
+                            roomCtx.leave()
                         }
 
                         StyledButton(title: "Raise hand",
                                      style: .normal) {
 
-                            appCtx.raiseHand()
+                            roomCtx.raiseHand()
                         }
 
                     }

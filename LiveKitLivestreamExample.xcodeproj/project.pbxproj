@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		6801A7662A3900CD009FC4DA /* JoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6801A7652A3900CD009FC4DA /* JoinView.swift */; };
 		68177E062A56F71500821136 /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 68177E052A56F71500821136 /* Logging */; };
+		68177E082A57055200821136 /* AppContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68177E072A57055200821136 /* AppContext.swift */; };
 		683865A52A29F9A3005D0947 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683865A42A29F9A3005D0947 /* App.swift */; };
 		683865A72A29F9A3005D0947 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683865A62A29F9A3005D0947 /* MainView.swift */; };
 		683865A92A29F9A4005D0947 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 683865A82A29F9A4005D0947 /* Assets.xcassets */; };
 		683865AD2A29F9A4005D0947 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 683865AC2A29F9A4005D0947 /* Preview Assets.xcassets */; };
 		687E311B2A2DC9B200032AE6 /* StartPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E311A2A2DC9B200032AE6 /* StartPreviewView.swift */; };
-		687E311E2A2DCA1600032AE6 /* AppContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E311D2A2DCA1600032AE6 /* AppContext.swift */; };
+		687E311E2A2DCA1600032AE6 /* RoomContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E311D2A2DCA1600032AE6 /* RoomContext.swift */; };
 		687E31232A2E2AE700032AE6 /* StreamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E31222A2E2AE700032AE6 /* StreamView.swift */; };
 		687E31262A2E396900032AE6 /* SwitchCameraButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E31252A2E396900032AE6 /* SwitchCameraButton.swift */; };
 		687E31282A2E39CE00032AE6 /* TextLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E31272A2E39CE00032AE6 /* TextLabel.swift */; };
@@ -40,13 +41,14 @@
 /* Begin PBXFileReference section */
 		6801A7652A3900CD009FC4DA /* JoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinView.swift; sourceTree = "<group>"; };
 		6801A7672A3903E2009FC4DA /* LiveKitLivestreamExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "LiveKitLivestreamExample-Info.plist"; sourceTree = "<group>"; };
+		68177E072A57055200821136 /* AppContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContext.swift; sourceTree = "<group>"; };
 		683865A12A29F9A3005D0947 /* LiveKitLivestreamExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveKitLivestreamExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		683865A42A29F9A3005D0947 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		683865A62A29F9A3005D0947 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		683865A82A29F9A4005D0947 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		683865AC2A29F9A4005D0947 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		687E311A2A2DC9B200032AE6 /* StartPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPreviewView.swift; sourceTree = "<group>"; };
-		687E311D2A2DCA1600032AE6 /* AppContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContext.swift; sourceTree = "<group>"; };
+		687E311D2A2DCA1600032AE6 /* RoomContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomContext.swift; sourceTree = "<group>"; };
 		687E31222A2E2AE700032AE6 /* StreamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamView.swift; sourceTree = "<group>"; };
 		687E31252A2E396900032AE6 /* SwitchCameraButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCameraButton.swift; sourceTree = "<group>"; };
 		687E31272A2E39CE00032AE6 /* TextLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLabel.swift; sourceTree = "<group>"; };
@@ -106,7 +108,7 @@
 			children = (
 				68928F902A40CBA2005F084A /* Types */,
 				687E31242A2E391F00032AE6 /* Views */,
-				687E311C2A2DCA0B00032AE6 /* Controllers */,
+				687E311C2A2DCA0B00032AE6 /* Contexts */,
 				683865A42A29F9A3005D0947 /* App.swift */,
 				6889F0CE2A52A81B004D54FB /* API.swift */,
 				683865A62A29F9A3005D0947 /* MainView.swift */,
@@ -129,12 +131,13 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		687E311C2A2DCA0B00032AE6 /* Controllers */ = {
+		687E311C2A2DCA0B00032AE6 /* Contexts */ = {
 			isa = PBXGroup;
 			children = (
-				687E311D2A2DCA1600032AE6 /* AppContext.swift */,
+				687E311D2A2DCA1600032AE6 /* RoomContext.swift */,
+				68177E072A57055200821136 /* AppContext.swift */,
 			);
-			path = Controllers;
+			path = Contexts;
 			sourceTree = "<group>";
 		};
 		687E311F2A2DCAC500032AE6 /* Frameworks */ = {
@@ -259,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				687E31282A2E39CE00032AE6 /* TextLabel.swift in Sources */,
+				68177E082A57055200821136 /* AppContext.swift in Sources */,
 				687E31342A2EF8F200032AE6 /* UsersListView.swift in Sources */,
 				687E31302A2EF6D100032AE6 /* UserTileView.swift in Sources */,
 				687E312C2A2E3B9E00032AE6 /* PublisherVideoView.swift in Sources */,
@@ -267,7 +271,7 @@
 				68FBA3752A3824D80015853E /* StyledTextField.swift in Sources */,
 				687E311B2A2DC9B200032AE6 /* StartPreviewView.swift in Sources */,
 				687E31322A2EF8C600032AE6 /* StreamEventsListView.swift in Sources */,
-				687E311E2A2DCA1600032AE6 /* AppContext.swift in Sources */,
+				687E311E2A2DCA1600032AE6 /* RoomContext.swift in Sources */,
 				683865A72A29F9A3005D0947 /* MainView.swift in Sources */,
 				6801A7662A3900CD009FC4DA /* JoinView.swift in Sources */,
 				6889F0D12A52AF5A004D54FB /* JoinStream.swift in Sources */,

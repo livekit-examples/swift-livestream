@@ -5,9 +5,9 @@ import Logging
 
 let logger = Logger(label: "LivestreamExample")
 
-final class AppContext: NSObject, ObservableObject {
+final class RoomContext: NSObject, ObservableObject {
 
-    let api = API(apiBaseURLString: "https://livestream-mobile-backend.vercel.app/")
+    let api = API(apiBaseURLString: "http://localhost:3000/" /* "https://livestream-mobile-backend.vercel.app/" */)
     let room = Room()
 
     let encoder = JSONEncoder()
@@ -23,8 +23,8 @@ final class AppContext: NSObject, ObservableObject {
 
     @Published public var connectBusy = false
 
-    @Published public var isHost = false
-    @Published public var isPublisher = false
+    @Published public var isStreamOwner = false
+    @Published public var isStreamPublisher = false
 
     @Published public private(set) var step: Step = .welcome
     @Published public var events = [StreamEvent]()
@@ -44,7 +44,7 @@ final class AppContext: NSObject, ObservableObject {
     override init() {
         super.init()
         room.add(delegate: self)
-        logger.debug("AppContext created")
+        logger.info("RoomContext created")
     }
 
     public func set(step: Step) {
@@ -84,7 +84,8 @@ final class AppContext: NSObject, ObservableObject {
                 try await room.localParticipant?.setCamera(enabled: true)
                 Task { @MainActor in
                     self.step = .stream
-                    self.isPublisher = true
+                    self.isStreamOwner = true
+                    self.isStreamPublisher = true
                 }
                 logger.info("Connected")
             } catch {
@@ -110,7 +111,8 @@ final class AppContext: NSObject, ObservableObject {
                 try await room.connect(res.connectionDetails.wsURL, res.connectionDetails.token)
                 Task { @MainActor in
                     self.step = .stream
-                    self.isPublisher = true
+                    self.isStreamOwner = false
+                    self.isStreamPublisher = false
                 }
                 logger.info("Connected")
             } catch let error {
@@ -124,7 +126,7 @@ final class AppContext: NSObject, ObservableObject {
         Task {
             do {
                 logger.info("Leaving...")
-                if isPublisher {
+                if isStreamPublisher {
                     try await api.stopStream()
                 } else {
                     logger.info("Disconnecting...")
@@ -161,7 +163,7 @@ final class AppContext: NSObject, ObservableObject {
     }
 }
 
-extension AppContext: RoomDelegate {
+extension RoomContext: RoomDelegate {
 
     func room(_ room: Room, participantDidJoin participant: RemoteParticipant) {
         Task { @MainActor in
@@ -183,7 +185,11 @@ extension AppContext: RoomDelegate {
     }
 
     func room(_ room: Room, didUpdate metadata: String?) {
-        logger.debug("metadata: \(metadata)")
+        logger.info("room metadata: \(metadata)")
+    }
+
+    func room(_ room: Room, participant: Participant, didUpdate metadata: String?) {
+        logger.info("participant metadata: \(metadata)")
     }
 
     func room(_ room: Room, didUpdate connectionState: ConnectionState, oldValue: ConnectionState) {
@@ -199,7 +205,7 @@ extension AppContext: RoomDelegate {
 
         if case .disconnected(let reason) = connectionState {
             Task { @MainActor in
-                self.isPublisher = false
+                self.isStreamPublisher = false
             }
             api.reset()
         }

@@ -3,7 +3,7 @@ import LiveKit
 
 struct JoinView: View {
 
-    @EnvironmentObject var appCtx: AppContext
+    @EnvironmentObject var roomCtx: RoomContext
     @EnvironmentObject var room: Room
 
     @State private var showDialog = false
@@ -16,18 +16,18 @@ struct JoinView: View {
             Text("Join Livestream")
                 .font(.system(size: 30, weight: .bold))
 
-            StyledTextField(title: "Your name", text: $appCtx.identity)
+            StyledTextField(title: "Your name", text: $roomCtx.identity)
 
-            StyledTextField(title: "Livestream name", text: $appCtx.roomName)
+            StyledTextField(title: "Livestream name", text: $roomCtx.roomName)
 
             Spacer()
 
-            StyledButton(title: "Join", style: .primary, isBusy: appCtx.connectBusy) {
-                appCtx.join()
+            StyledButton(title: "Join", style: .primary, isBusy: roomCtx.connectBusy) {
+                roomCtx.join()
             }
 
-            StyledButton(title: "Back", isEnabled: !appCtx.connectBusy) {
-                appCtx.backToWelcome()
+            StyledButton(title: "Back", isEnabled: !roomCtx.connectBusy) {
+                roomCtx.backToWelcome()
             }
         }
         .padding()
