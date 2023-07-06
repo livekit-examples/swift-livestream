@@ -5,8 +5,11 @@ struct MessageBarView: View {
     @Binding var text: String
     @Binding var sendIsEnabled: Bool
 
+    //    let showJoinButton: Bool
+
     let sendAction: () -> Void
     let moreAction: () -> Void
+    //    let joinAction: () -> Void
 
     var body: some View {
         HStack {
@@ -29,6 +32,17 @@ struct MessageBarView: View {
                 Image(systemName: "ellipsis")
                     .rotationEffect(.degrees(90))
             }
+
+            //            if showJoinButton {
+            //
+            //                Button {
+            //                    moreAction()
+            //                } label: {
+            //                    Image(systemName: "ellipsis")
+            //                        .rotationEffect(.degrees(90))
+            //                }
+            //
+            //            }
         }
         .padding()
     }

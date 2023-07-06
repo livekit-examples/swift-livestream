@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6801A7662A3900CD009FC4DA /* JoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6801A7652A3900CD009FC4DA /* JoinView.swift */; };
+		68177E062A56F71500821136 /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 68177E052A56F71500821136 /* Logging */; };
 		683865A52A29F9A3005D0947 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683865A42A29F9A3005D0947 /* App.swift */; };
 		683865A72A29F9A3005D0947 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683865A62A29F9A3005D0947 /* MainView.swift */; };
 		683865A92A29F9A4005D0947 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 683865A82A29F9A4005D0947 /* Assets.xcassets */; };
@@ -73,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68177E062A56F71500821136 /* Logging in Frameworks */,
 				6895EA442A38B7FA00519535 /* LiveKitComponents in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -197,6 +199,7 @@
 			name = LiveKitLivestreamExample;
 			packageProductDependencies = (
 				6895EA432A38B7FA00519535 /* LiveKitComponents */,
+				68177E052A56F71500821136 /* Logging */,
 			);
 			productName = "swift-livestream";
 			productReference = 683865A12A29F9A3005D0947 /* LiveKitLivestreamExample.app */;
@@ -227,6 +230,7 @@
 			);
 			mainGroup = 683865982A29F9A3005D0947;
 			packageReferences = (
+				68177E042A56F71500821136 /* XCRemoteSwiftPackageReference "swift-log" */,
 			);
 			productRefGroup = 683865A22A29F9A3005D0947 /* Products */;
 			projectDirPath = "";
@@ -496,7 +500,23 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		68177E042A56F71500821136 /* XCRemoteSwiftPackageReference "swift-log" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-log";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		68177E052A56F71500821136 /* Logging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 68177E042A56F71500821136 /* XCRemoteSwiftPackageReference "swift-log" */;
+			productName = Logging;
+		};
 		6895EA432A38B7FA00519535 /* LiveKitComponents */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LiveKitComponents;

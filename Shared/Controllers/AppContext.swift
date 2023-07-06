@@ -1,6 +1,9 @@
 import SwiftUI
 import LiveKit
 import WebRTC
+import Logging
+
+let logger = Logger(label: "LivestreamExample")
 
 final class AppContext: NSObject, ObservableObject {
 
@@ -41,6 +44,7 @@ final class AppContext: NSObject, ObservableObject {
     override init() {
         super.init()
         room.add(delegate: self)
+        logger.debug("AppContext created")
     }
 
     public func set(step: Step) {
@@ -65,7 +69,8 @@ final class AppContext: NSObject, ObservableObject {
             defer { Task { @MainActor in connectBusy = false } }
 
             do {
-                print("Requesting create room...")
+                logger.debug("Requesting create room...")
+
                 let meta = CreateStreamRequest.Metadata(creatorIdentity: identity,
                                                         enableChat: enableChat,
                                                         allowParticipant: viewersCanRequestToJoin)
@@ -73,7 +78,7 @@ final class AppContext: NSObject, ObservableObject {
                 let req = CreateStreamRequest(roomName: roomName, metadata: meta)
                 let res = try await api.createStream(req)
 
-                print("Connecting to room... \(res.connectionDetails)")
+                logger.debug("Connecting to room... \(res.connectionDetails)")
 
                 try await room.connect(res.connectionDetails.wsURL, res.connectionDetails.token)
                 try await room.localParticipant?.setCamera(enabled: true)
@@ -81,8 +86,10 @@ final class AppContext: NSObject, ObservableObject {
                     self.step = .stream
                     self.isPublisher = true
                 }
+                logger.info("Connected")
             } catch {
                 try await room.disconnect()
+                logger.error("Failed to create room")
             }
         }
     }
@@ -93,23 +100,22 @@ final class AppContext: NSObject, ObservableObject {
             defer { Task { @MainActor in connectBusy = false } }
 
             do {
-                print("Requesting create room...")
-                let meta = CreateStreamRequest.Metadata(creatorIdentity: identity,
-                                                        enableChat: enableChat,
-                                                        allowParticipant: viewersCanRequestToJoin)
+                logger.debug("Requesting create room...")
 
-                let req = CreateStreamRequest(roomName: roomName, metadata: meta)
-                let res = try await api.createStream(req)
+                let req = JoinStreamRequest(roomName: roomName, identity: identity)
+                let res = try await api.joinStream(req)
 
-                print("Connecting to room... \(res.connectionDetails)")
+                logger.debug("Connecting to room... \(res.connectionDetails)")
 
                 try await room.connect(res.connectionDetails.wsURL, res.connectionDetails.token)
                 Task { @MainActor in
                     self.step = .stream
                     self.isPublisher = true
                 }
-            } catch {
+                logger.info("Connected")
+            } catch let error {
                 try await room.disconnect()
+                logger.error("Failed to join room \(error)")
             }
         }
     }
@@ -117,15 +123,26 @@ final class AppContext: NSObject, ObservableObject {
     public func leave() {
         Task {
             do {
-                print("Leaving...")
+                logger.info("Leaving...")
                 if isPublisher {
                     try await api.stopStream()
                 } else {
-                    print("Disconnecting...")
+                    logger.info("Disconnecting...")
                     try await room.disconnect()
                 }
             } catch let error {
-                print("Failed to leave \(error)")
+                logger.error("Failed to leave \(error)")
+            }
+        }
+    }
+
+    public func raiseHand() {
+        Task {
+            do {
+                logger.info("Raising hand...")
+                try await api.raiseHand()
+            } catch let error {
+                logger.error("Failed to raise hand \(error)")
             }
         }
     }
@@ -166,7 +183,7 @@ extension AppContext: RoomDelegate {
     }
 
     func room(_ room: Room, didUpdate metadata: String?) {
-        print("metadata: \(metadata)")
+        logger.debug("metadata: \(metadata)")
     }
 
     func room(_ room: Room, didUpdate connectionState: ConnectionState, oldValue: ConnectionState) {
@@ -177,7 +194,7 @@ extension AppContext: RoomDelegate {
                 self.step = .welcome
             }
 
-            print("Did disconnect")
+            logger.debug("Did disconnect")
         }
 
         if case .disconnected(let reason) = connectionState {

@@ -81,6 +81,13 @@ struct StreamView: View {
 
                             appCtx.leave()
                         }
+
+                        StyledButton(title: "Raise hand",
+                                     style: .normal) {
+
+                            appCtx.raiseHand()
+                        }
+
                     }
                     .padding()
                 }
