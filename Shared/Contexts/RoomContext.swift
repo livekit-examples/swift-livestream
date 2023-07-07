@@ -5,13 +5,28 @@ import Logging
 
 let logger = Logger(label: "LivestreamExample")
 
+let encoder = JSONEncoder()
+let decoder = JSONDecoder()
+
+extension Participant {
+
+    var typedMetadata: ParticipantMetadata {
+
+        guard let string = metadata,
+              let data = string.data(using: .utf8),
+              let obj = try? decoder.decode(ParticipantMetadata.self, from: data) else {
+
+            return ParticipantMetadata()
+        }
+
+        return obj
+    }
+}
+
 final class RoomContext: NSObject, ObservableObject {
 
     let api = API(apiBaseURLString: "http://localhost:3000/" /* "https://livestream-mobile-backend.vercel.app/" */)
     let room = Room()
-
-    let encoder = JSONEncoder()
-    let decoder = JSONDecoder()
 
     enum Step {
         case welcome
@@ -185,11 +200,11 @@ extension RoomContext: RoomDelegate {
     }
 
     func room(_ room: Room, didUpdate metadata: String?) {
-        logger.info("room metadata: \(metadata)")
+        // logger.info("room metadata: \()")
     }
 
     func room(_ room: Room, participant: Participant, didUpdate metadata: String?) {
-        logger.info("participant metadata: \(metadata)")
+        logger.info("participant metadata: \(participant.typedMetadata)")
     }
 
     func room(_ room: Room, didUpdate connectionState: ConnectionState, oldValue: ConnectionState) {

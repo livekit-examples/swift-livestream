@@ -11,6 +11,7 @@
 		68177E062A56F71500821136 /* Logging in Frameworks */ = {isa = PBXBuildFile; productRef = 68177E052A56F71500821136 /* Logging */; };
 		68177E082A57055200821136 /* AppContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68177E072A57055200821136 /* AppContext.swift */; };
 		68177E0B2A5708C600821136 /* SwiftUIBackports in Frameworks */ = {isa = PBXBuildFile; productRef = 68177E0A2A5708C600821136 /* SwiftUIBackports */; };
+		68177E0D2A570F5F00821136 /* ParticipantMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68177E0C2A570F5F00821136 /* ParticipantMetadata.swift */; };
 		683865A52A29F9A3005D0947 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683865A42A29F9A3005D0947 /* App.swift */; };
 		683865A72A29F9A3005D0947 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683865A62A29F9A3005D0947 /* MainView.swift */; };
 		683865A92A29F9A4005D0947 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 683865A82A29F9A4005D0947 /* Assets.xcassets */; };
@@ -43,6 +44,7 @@
 		6801A7652A3900CD009FC4DA /* JoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinView.swift; sourceTree = "<group>"; };
 		6801A7672A3903E2009FC4DA /* LiveKitLivestreamExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "LiveKitLivestreamExample-Info.plist"; sourceTree = "<group>"; };
 		68177E072A57055200821136 /* AppContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContext.swift; sourceTree = "<group>"; };
+		68177E0C2A570F5F00821136 /* ParticipantMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantMetadata.swift; sourceTree = "<group>"; };
 		683865A12A29F9A3005D0947 /* LiveKitLivestreamExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveKitLivestreamExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		683865A42A29F9A3005D0947 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		683865A62A29F9A3005D0947 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				6889F0D02A52AF5A004D54FB /* JoinStream.swift */,
 				6889F0D22A52AF96004D54FB /* ConnectionDetails.swift */,
 				6889F0D42A52DF61004D54FB /* InviteToStage.swift */,
+				68177E0C2A570F5F00821136 /* ParticipantMetadata.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				687E31302A2EF6D100032AE6 /* UserTileView.swift in Sources */,
 				687E312C2A2E3B9E00032AE6 /* PublisherVideoView.swift in Sources */,
 				68FBA36F2A381A530015853E /* WelcomeView.swift in Sources */,
+				68177E0D2A570F5F00821136 /* ParticipantMetadata.swift in Sources */,
 				6889F0D32A52AF96004D54FB /* ConnectionDetails.swift in Sources */,
 				68FBA3752A3824D80015853E /* StyledTextField.swift in Sources */,
 				687E311B2A2DC9B200032AE6 /* StartPreviewView.swift in Sources */,
@@ -433,7 +437,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = io.livekit.example.livestream;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -473,7 +477,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = io.livekit.example.livestream;
 				PRODUCT_NAME = "$(TARGET_NAME)";
