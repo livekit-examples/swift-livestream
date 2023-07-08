@@ -1,7 +1,7 @@
 struct RoomMetadata: Codable {
 
     let enableChat: Bool
-    let creatorIdentity: Bool
+    let creatorIdentity: String
     let allowParticipant: Bool
 
     private enum CodingKeys: String, CodingKey {
@@ -11,7 +11,7 @@ struct RoomMetadata: Codable {
     }
 
     init(enableChat: Bool = false,
-         creatorIdentity: Bool = false,
+         creatorIdentity: String = "",
          allowParticipant: Bool = false) {
 
         self.enableChat = enableChat

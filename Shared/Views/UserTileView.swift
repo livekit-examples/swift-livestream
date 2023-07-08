@@ -4,7 +4,16 @@ import LiveKit
 struct UserTileView: View {
 
     @EnvironmentObject var roomCtx: RoomContext
+    @EnvironmentObject var room: Room
     @EnvironmentObject var participant: Participant
+
+    var isCreator: Bool {
+        room.typedMetadata.creatorIdentity == participant.identity
+    }
+
+    var isCoHost: Bool {
+        !isCreator && participant.canPublish
+    }
 
     var body: some View {
 
@@ -14,8 +23,21 @@ struct UserTileView: View {
                 .frame(width: 30, height: 30)
 
             Text(participant.identity)
-                .font(.system(size: 14))
-                .fontWeight(.bold)
+                .font(.system(size: 14, weight: .bold))
+
+            if isCreator {
+                Text("Host")
+                    .textCase(.uppercase)
+                    .font(.system(size: 10, weight: .bold))
+                    .foregroundColor(Color.gray)
+            }
+
+            if isCoHost {
+                Text("Co-Host")
+                    .textCase(.uppercase)
+                    .font(.system(size: 10, weight: .bold))
+                    .foregroundColor(Color.gray)
+            }
 
             Spacer()
 
