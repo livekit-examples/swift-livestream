@@ -1,4 +1,5 @@
 import SwiftUI
+import SFSafeSymbols
 
 struct TextLabel: View {
 
@@ -8,15 +9,21 @@ struct TextLabel: View {
     }
 
     let text: String
+    var symbol: SFSymbol?
     var style: Style = .normal
 
     var body: some View {
-        Text(text)
-            .font(.system(size: 14))
-            .padding(.horizontal, 7)
-            .padding(.vertical, 5)
-            .background(style.toColor())
-            .cornerRadius(7)
+        HStack(spacing: 5) {
+            if let symbol = symbol {
+                Image(systemSymbol: symbol)
+            }
+            Text(text)
+        }
+        .font(.system(size: 14, weight: .bold))
+        .padding(.horizontal, 7)
+        .padding(.vertical, 5)
+        .background(style.toColor())
+        .cornerRadius(7)
     }
 }
 
@@ -24,8 +31,8 @@ extension TextLabel.Style {
 
     func toColor() -> Color {
         switch self {
-        case .normal: return Color.black.opacity(0.4)
-        case .primary: return Color("Primary")
+        case .normal: return Color.black.opacity(0.6)
+        case .primary: return Color("Primary").opacity(0.8)
         }
     }
 }

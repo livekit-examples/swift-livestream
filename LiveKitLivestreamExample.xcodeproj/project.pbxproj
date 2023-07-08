@@ -12,6 +12,7 @@
 		68177E082A57055200821136 /* AppContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68177E072A57055200821136 /* AppContext.swift */; };
 		68177E0B2A5708C600821136 /* SwiftUIBackports in Frameworks */ = {isa = PBXBuildFile; productRef = 68177E0A2A5708C600821136 /* SwiftUIBackports */; };
 		68177E0D2A570F5F00821136 /* ParticipantMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68177E0C2A570F5F00821136 /* ParticipantMetadata.swift */; };
+		682937682A59498800BC8CD7 /* SFSafeSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = 682937672A59498800BC8CD7 /* SFSafeSymbols */; };
 		683865A52A29F9A3005D0947 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683865A42A29F9A3005D0947 /* App.swift */; };
 		683865A72A29F9A3005D0947 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683865A62A29F9A3005D0947 /* MainView.swift */; };
 		683865A92A29F9A4005D0947 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 683865A82A29F9A4005D0947 /* Assets.xcassets */; };
@@ -81,6 +82,7 @@
 			files = (
 				68177E062A56F71500821136 /* Logging in Frameworks */,
 				68177E0B2A5708C600821136 /* SwiftUIBackports in Frameworks */,
+				682937682A59498800BC8CD7 /* SFSafeSymbols in Frameworks */,
 				6895EA442A38B7FA00519535 /* LiveKitComponents in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -209,6 +211,7 @@
 				6895EA432A38B7FA00519535 /* LiveKitComponents */,
 				68177E052A56F71500821136 /* Logging */,
 				68177E0A2A5708C600821136 /* SwiftUIBackports */,
+				682937672A59498800BC8CD7 /* SFSafeSymbols */,
 			);
 			productName = "swift-livestream";
 			productReference = 683865A12A29F9A3005D0947 /* LiveKitLivestreamExample.app */;
@@ -241,6 +244,7 @@
 			packageReferences = (
 				68177E042A56F71500821136 /* XCRemoteSwiftPackageReference "swift-log" */,
 				68177E092A5708C600821136 /* XCRemoteSwiftPackageReference "SwiftUIBackports" */,
+				682937662A59498800BC8CD7 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
 			);
 			productRefGroup = 683865A22A29F9A3005D0947 /* Products */;
 			projectDirPath = "";
@@ -529,6 +533,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		682937662A59498800BC8CD7 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SFSafeSymbols/SFSafeSymbols.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -541,6 +553,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 68177E092A5708C600821136 /* XCRemoteSwiftPackageReference "SwiftUIBackports" */;
 			productName = SwiftUIBackports;
+		};
+		682937672A59498800BC8CD7 /* SFSafeSymbols */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 682937662A59498800BC8CD7 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
+			productName = SFSafeSymbols;
 		};
 		6895EA432A38B7FA00519535 /* LiveKitComponents */ = {
 			isa = XCSwiftPackageProductDependency;

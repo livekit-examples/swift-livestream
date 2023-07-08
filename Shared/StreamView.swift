@@ -22,7 +22,7 @@ struct StreamView: View {
 
     var body: some View {
 
-        VStack {
+        VStack(spacing: 0) {
 
             GeometryReader { proxy in
 
@@ -35,11 +35,9 @@ struct StreamView: View {
                     }
 
                     VStack(alignment: .trailing) {
-                        HStack {
-                            if roomCtx.isStreamPublisher {
-                                TextLabel(text: "LIVE", style: .primary)
-                            }
-                            TextLabel(text: "\(room.remoteParticipants.count + 1)").onTapGesture {
+                        HStack(spacing: 10) {
+                            TextLabel(text: "LIVE", style: .primary)
+                            TextLabel(text: "\(room.remoteParticipants.count + 1)", symbol: .eye).onTapGesture {
                                 showingUsersSheet = true
                             }
                         }

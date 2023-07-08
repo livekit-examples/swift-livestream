@@ -25,7 +25,8 @@ extension Participant {
 
 final class RoomContext: NSObject, ObservableObject {
 
-    let api = API(apiBaseURLString: "http://localhost:3000/" /* "https://livestream-mobile-backend.vercel.app/" */)
+    // "http://localhost:3000/"
+    let api = API(apiBaseURLString: "https://livestream-mobile-backend.vercel.app/")
     let room = Room()
 
     enum Step {
