@@ -21,7 +21,7 @@ struct UserTileView: View {
 
             if roomCtx.isStreamOwner {
 
-                if !participant.isHost && participant.isHandRaised {
+                if !participant.canPublish && participant.handRaised {
 
                     StyledButton(title: "Accept",
                                  style: .secondary,
@@ -31,7 +31,7 @@ struct UserTileView: View {
                     }
                 }
 
-                if participant.isHost || participant.isHandRaised {
+                if participant.canPublish || participant.handRaised {
 
                     StyledButton(title: "Reject",
                                  style: .secondary,

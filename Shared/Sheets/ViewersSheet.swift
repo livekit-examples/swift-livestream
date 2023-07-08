@@ -31,11 +31,11 @@ extension Participant {
         return obj
     }
 
-    var isHandRaised: Bool {
+    var handRaised: Bool {
         typedMetadata.handRaised
     }
 
-    var isHost: Bool {
+    var canPublish: Bool {
         // Considered a host if has publish perms
         permissions.canPublish
     }
@@ -58,15 +58,15 @@ struct ViewersSheet: View {
     @EnvironmentObject var room: Room
 
     private func filteredByJoinRequests() -> [Participant] {
-        room.allParticipants.values.filter { !$0.isHost && $0.isHandRaised }
+        room.allParticipants.values.filter { !$0.canPublish && $0.handRaised }
     }
 
     private func filteredByHosts() -> [Participant] {
-        room.allParticipants.values.filter { $0.isHost }
+        room.allParticipants.values.filter { $0.canPublish }
     }
 
     private func filteredByViewers() -> [Participant] {
-        room.allParticipants.values.filter { !$0.isHost && !$0.isHandRaised }
+        room.allParticipants.values.filter { !$0.canPublish && !$0.handRaised }
     }
 
     var body: some View {
@@ -129,7 +129,7 @@ struct ViewersSheet: View {
                     }
                 }
 
-                if let lp = room.localParticipant, !lp.isHost && !lp.isHandRaised {
+                if let lp = room.localParticipant, !lp.canPublish && !lp.handRaised {
 
                     Button {
                         roomCtx.raiseHand()
