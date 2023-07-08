@@ -13,6 +13,7 @@
 		68177E0B2A5708C600821136 /* SwiftUIBackports in Frameworks */ = {isa = PBXBuildFile; productRef = 68177E0A2A5708C600821136 /* SwiftUIBackports */; };
 		68177E0D2A570F5F00821136 /* ParticipantMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68177E0C2A570F5F00821136 /* ParticipantMetadata.swift */; };
 		682937682A59498800BC8CD7 /* SFSafeSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = 682937672A59498800BC8CD7 /* SFSafeSymbols */; };
+		6829376B2A594EA900BC8CD7 /* OptionsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6829376A2A594EA900BC8CD7 /* OptionsSheet.swift */; };
 		683865A52A29F9A3005D0947 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683865A42A29F9A3005D0947 /* App.swift */; };
 		683865A72A29F9A3005D0947 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683865A62A29F9A3005D0947 /* MainView.swift */; };
 		683865A92A29F9A4005D0947 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 683865A82A29F9A4005D0947 /* Assets.xcassets */; };
@@ -27,7 +28,7 @@
 		687E312E2A2EF39400032AE6 /* StreamEventTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E312D2A2EF39400032AE6 /* StreamEventTileView.swift */; };
 		687E31302A2EF6D100032AE6 /* UserTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E312F2A2EF6D100032AE6 /* UserTileView.swift */; };
 		687E31322A2EF8C600032AE6 /* StreamEventsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E31312A2EF8C600032AE6 /* StreamEventsListView.swift */; };
-		687E31342A2EF8F200032AE6 /* UsersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E31332A2EF8F200032AE6 /* UsersListView.swift */; };
+		687E31342A2EF8F200032AE6 /* ViewersSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E31332A2EF8F200032AE6 /* ViewersSheet.swift */; };
 		6889F0CD2A52A5DF004D54FB /* CreateStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889F0CC2A52A5DF004D54FB /* CreateStream.swift */; };
 		6889F0CF2A52A81B004D54FB /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889F0CE2A52A81B004D54FB /* API.swift */; };
 		6889F0D12A52AF5A004D54FB /* JoinStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889F0D02A52AF5A004D54FB /* JoinStream.swift */; };
@@ -46,6 +47,7 @@
 		6801A7672A3903E2009FC4DA /* LiveKitLivestreamExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "LiveKitLivestreamExample-Info.plist"; sourceTree = "<group>"; };
 		68177E072A57055200821136 /* AppContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContext.swift; sourceTree = "<group>"; };
 		68177E0C2A570F5F00821136 /* ParticipantMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantMetadata.swift; sourceTree = "<group>"; };
+		6829376A2A594EA900BC8CD7 /* OptionsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsSheet.swift; sourceTree = "<group>"; };
 		683865A12A29F9A3005D0947 /* LiveKitLivestreamExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveKitLivestreamExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		683865A42A29F9A3005D0947 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		683865A62A29F9A3005D0947 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -61,7 +63,7 @@
 		687E312D2A2EF39400032AE6 /* StreamEventTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamEventTileView.swift; sourceTree = "<group>"; };
 		687E312F2A2EF6D100032AE6 /* UserTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTileView.swift; sourceTree = "<group>"; };
 		687E31312A2EF8C600032AE6 /* StreamEventsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamEventsListView.swift; sourceTree = "<group>"; };
-		687E31332A2EF8F200032AE6 /* UsersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersListView.swift; sourceTree = "<group>"; };
+		687E31332A2EF8F200032AE6 /* ViewersSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewersSheet.swift; sourceTree = "<group>"; };
 		6889F0CC2A52A5DF004D54FB /* CreateStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateStream.swift; sourceTree = "<group>"; };
 		6889F0CE2A52A81B004D54FB /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		6889F0D02A52AF5A004D54FB /* JoinStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinStream.swift; sourceTree = "<group>"; };
@@ -90,6 +92,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		682937692A594E8C00BC8CD7 /* Sheets */ = {
+			isa = PBXGroup;
+			children = (
+				687E31332A2EF8F200032AE6 /* ViewersSheet.swift */,
+				6829376A2A594EA900BC8CD7 /* OptionsSheet.swift */,
+			);
+			path = Sheets;
+			sourceTree = "<group>";
+		};
 		683865982A29F9A3005D0947 = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +123,7 @@
 		683865A32A29F9A3005D0947 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				682937692A594E8C00BC8CD7 /* Sheets */,
 				68928F902A40CBA2005F084A /* Types */,
 				687E31242A2E391F00032AE6 /* Views */,
 				687E311C2A2DCA0B00032AE6 /* Contexts */,
@@ -163,7 +175,6 @@
 				687E312D2A2EF39400032AE6 /* StreamEventTileView.swift */,
 				687E312F2A2EF6D100032AE6 /* UserTileView.swift */,
 				687E31312A2EF8C600032AE6 /* StreamEventsListView.swift */,
-				687E31332A2EF8F200032AE6 /* UsersListView.swift */,
 				68FBA3702A381F650015853E /* StyledButton.swift */,
 				68FBA3742A3824D80015853E /* StyledTextField.swift */,
 			);
@@ -274,7 +285,8 @@
 			files = (
 				687E31282A2E39CE00032AE6 /* TextLabel.swift in Sources */,
 				68177E082A57055200821136 /* AppContext.swift in Sources */,
-				687E31342A2EF8F200032AE6 /* UsersListView.swift in Sources */,
+				687E31342A2EF8F200032AE6 /* ViewersSheet.swift in Sources */,
+				6829376B2A594EA900BC8CD7 /* OptionsSheet.swift in Sources */,
 				687E31302A2EF6D100032AE6 /* UserTileView.swift in Sources */,
 				687E312C2A2E3B9E00032AE6 /* PublisherVideoView.swift in Sources */,
 				68FBA36F2A381A530015853E /* WelcomeView.swift in Sources */,

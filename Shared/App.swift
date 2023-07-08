@@ -1,5 +1,10 @@
 import SwiftUI
 import LiveKitComponents
+import Logging
+
+let logger = Logger(label: "LivestreamExample")
+let encoder = JSONEncoder()
+let decoder = JSONDecoder()
 
 @main
 struct swift_livestreamApp: App {

@@ -3,30 +3,11 @@ import LiveKit
 import WebRTC
 import Logging
 
-let logger = Logger(label: "LivestreamExample")
-
-let encoder = JSONEncoder()
-let decoder = JSONDecoder()
-
-extension Participant {
-
-    var typedMetadata: ParticipantMetadata {
-
-        guard let string = metadata,
-              let data = string.data(using: .utf8),
-              let obj = try? decoder.decode(ParticipantMetadata.self, from: data) else {
-
-            return ParticipantMetadata()
-        }
-
-        return obj
-    }
-}
-
 final class RoomContext: NSObject, ObservableObject {
 
     // "http://localhost:3000/"
-    let api = API(apiBaseURLString: "https://livestream-mobile-backend.vercel.app/")
+    let api = API(apiBaseURLString: "http://localhost:3000/")
+    // "https://livestream-mobile-backend.vercel.app/")
     let room = Room()
 
     enum Step {
@@ -150,6 +131,39 @@ final class RoomContext: NSObject, ObservableObject {
                 }
             } catch let error {
                 logger.error("Failed to leave \(error)")
+            }
+        }
+    }
+
+    public func inviteToStage(identity: String) {
+        Task {
+            do {
+                logger.info("Invite to stage \(identity)...")
+                try await api.inviteToStage(identity: identity)
+            } catch let error {
+                logger.error("Failed to invite to stage \(error)")
+            }
+        }
+    }
+
+    public func removeFromStage(identity: String) {
+        Task {
+            do {
+                logger.info("Removing from stage \(identity)...")
+                try await api.removeFromStage(identity: identity)
+            } catch let error {
+                logger.error("Failed to remove from stage \(error)")
+            }
+        }
+    }
+
+    public func reject(userId: String) {
+        Task {
+            do {
+                logger.info("Raising hand...")
+                try await api.raiseHand()
+            } catch let error {
+                logger.error("Failed to raise hand \(error)")
             }
         }
     }

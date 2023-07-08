@@ -35,7 +35,13 @@ struct StreamView: View {
                     }
 
                     VStack(alignment: .trailing) {
+
                         HStack(spacing: 10) {
+
+                            if let lp = room.localParticipant {
+                                TextLabel(text: "CanPublish: \(lp.permissions.canPublish ? "YES" : "NO")")
+                            }
+
                             TextLabel(text: "LIVE", style: .primary)
                             TextLabel(text: "\(room.remoteParticipants.count + 1)", symbol: .eye).onTapGesture {
                                 showingUsersSheet = true
@@ -71,39 +77,10 @@ struct StreamView: View {
                     showingOptionsSheet.toggle()
                 })
                 .sheet(isPresented: $showingOptionsSheet) {
-                    VStack {
-                        Text("Options")
-                            .font(.system(size: 25, weight: .bold))
-                            .padding()
-
-                        StyledButton(title: roomCtx.isStreamPublisher ? "End stream" : "Leave stream",
-                                     style: .destructive) {
-
-                            roomCtx.leave()
-                        }
-
-                        StyledButton(title: "Raise hand",
-                                     style: .normal) {
-
-                            roomCtx.raiseHand()
-                        }
-
-                    }
-                    .backport.presentationDetents([.medium])
-                    .backport.presentationDragIndicator(.visible)
-                    .presentationBackground(.thinMaterial)
-                    .padding()
+                    OptionsSheet()
                 }
                 .sheet(isPresented: $showingUsersSheet) {
-                    Text("Viewers")
-                        .font(.system(size: 25, weight: .bold))
-                        .padding()
-
-                    UsersListView()
-                        .backport.presentationDetents([.medium, .large])
-                        .backport.presentationDragIndicator(.visible)
-                        .presentationBackground(.black)
-                        .padding()
+                    ViewersSheet()
                 }
         }
     }
