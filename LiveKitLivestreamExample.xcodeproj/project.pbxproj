@@ -14,6 +14,7 @@
 		68177E0D2A570F5F00821136 /* ParticipantMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68177E0C2A570F5F00821136 /* ParticipantMetadata.swift */; };
 		682937682A59498800BC8CD7 /* SFSafeSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = 682937672A59498800BC8CD7 /* SFSafeSymbols */; };
 		6829376B2A594EA900BC8CD7 /* OptionsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6829376A2A594EA900BC8CD7 /* OptionsSheet.swift */; };
+		6829376D2A599EDD00BC8CD7 /* RoomMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6829376C2A599EDD00BC8CD7 /* RoomMetadata.swift */; };
 		683865A52A29F9A3005D0947 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683865A42A29F9A3005D0947 /* App.swift */; };
 		683865A72A29F9A3005D0947 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683865A62A29F9A3005D0947 /* MainView.swift */; };
 		683865A92A29F9A4005D0947 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 683865A82A29F9A4005D0947 /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 		68177E072A57055200821136 /* AppContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContext.swift; sourceTree = "<group>"; };
 		68177E0C2A570F5F00821136 /* ParticipantMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantMetadata.swift; sourceTree = "<group>"; };
 		6829376A2A594EA900BC8CD7 /* OptionsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsSheet.swift; sourceTree = "<group>"; };
+		6829376C2A599EDD00BC8CD7 /* RoomMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomMetadata.swift; sourceTree = "<group>"; };
 		683865A12A29F9A3005D0947 /* LiveKitLivestreamExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveKitLivestreamExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		683865A42A29F9A3005D0947 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		683865A62A29F9A3005D0947 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				6889F0D22A52AF96004D54FB /* ConnectionDetails.swift */,
 				6889F0D42A52DF61004D54FB /* InviteToStage.swift */,
 				68177E0C2A570F5F00821136 /* ParticipantMetadata.swift */,
+				6829376C2A599EDD00BC8CD7 /* RoomMetadata.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				687E312A2A2E3AF800032AE6 /* MessageBarView.swift in Sources */,
 				687E31232A2E2AE700032AE6 /* StreamView.swift in Sources */,
 				687E31262A2E396900032AE6 /* SwitchCameraButton.swift in Sources */,
+				6829376D2A599EDD00BC8CD7 /* RoomMetadata.swift in Sources */,
 				6889F0D52A52DF62004D54FB /* InviteToStage.swift in Sources */,
 				68FBA3712A381F650015853E /* StyledButton.swift in Sources */,
 				687E312E2A2EF39400032AE6 /* StreamEventTileView.swift in Sources */,

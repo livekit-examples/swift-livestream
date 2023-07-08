@@ -8,7 +8,9 @@ struct ParticipantMetadata: Codable {
              invitedToStage = "invited_to_stage"
     }
 
-    init(hand_raised: Bool = false, invited_to_stage: Bool = false) {
+    init(hand_raised: Bool = false,
+         invited_to_stage: Bool = false) {
+
         self.handRaised = hand_raised
         self.invitedToStage = invited_to_stage
     }

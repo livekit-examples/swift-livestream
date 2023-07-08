@@ -2,6 +2,21 @@ import SwiftUI
 import LiveKit
 import LiveKitComponents
 
+extension Room {
+
+    var typedMetadata: RoomMetadata {
+
+        guard let string = metadata,
+              let data = string.data(using: .utf8),
+              let obj = try? decoder.decode(RoomMetadata.self, from: data) else {
+
+            return RoomMetadata()
+        }
+
+        return obj
+    }
+}
+
 extension Participant {
 
     var typedMetadata: ParticipantMetadata {
