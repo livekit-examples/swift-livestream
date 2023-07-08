@@ -31,6 +31,10 @@ extension Participant {
         return obj
     }
 
+    var invited: Bool {
+        typedMetadata.invitedToStage
+    }
+
     var handRaised: Bool {
         typedMetadata.handRaised
     }
@@ -57,6 +61,10 @@ struct ViewersSheet: View {
     @EnvironmentObject var roomCtx: RoomContext
     @EnvironmentObject var room: Room
 
+    private func filteredByInvited() -> [Participant] {
+        room.allParticipants.values.filter { !$0.canPublish && $0.invited }
+    }
+
     private func filteredByJoinRequests() -> [Participant] {
         room.allParticipants.values.filter { !$0.canPublish && $0.handRaised }
     }
@@ -66,14 +74,15 @@ struct ViewersSheet: View {
     }
 
     private func filteredByViewers() -> [Participant] {
-        room.allParticipants.values.filter { !$0.canPublish && !$0.handRaised }
+        room.allParticipants.values.filter { !$0.canPublish && !$0.handRaised && !$0.invited }
     }
 
     var body: some View {
 
-        let joinRequests = filteredByJoinRequests()
-        let hosts = filteredByHosts()
-        let viewers = filteredByViewers()
+        let invited = filteredByInvited().sortedByJoinedDate
+        let joinRequests = filteredByJoinRequests().sortedByJoinedDate
+        let hosts = filteredByHosts().sortedByJoinedDate
+        let viewers = filteredByViewers().sortedByJoinedDate
 
         ScrollView {
             LazyVStack(spacing: 20) {
@@ -81,6 +90,23 @@ struct ViewersSheet: View {
                 Text("Viewers")
                     .font(.system(size: 25, weight: .bold))
                     .padding()
+
+                /* Invited users */
+
+                if invited.count > 0 {
+
+                    Text("Invited to be a co-host")
+                        .textCase(.uppercase)
+                        .foregroundColor(Color.gray)
+                        .font(.system(size: 14, weight: .bold))
+
+                    ForEach(invited) { participant in
+                        UserTileView()
+                            .environmentObject(participant)
+                            .frame(maxWidth: .infinity)
+                            .padding(.horizontal, 10)
+                    }
+                }
 
                 /* Join request users */
 

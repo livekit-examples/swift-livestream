@@ -19,12 +19,6 @@ struct OptionsSheet: View {
 
                     roomCtx.leave()
                 }
-
-                StyledButton(title: "Raise hand",
-                             style: .normal) {
-
-                    roomCtx.raiseHand()
-                }
             }
         }
         .backport.presentationDetents([.medium])

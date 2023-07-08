@@ -7,6 +7,10 @@ struct UserTileView: View {
     @EnvironmentObject var room: Room
     @EnvironmentObject var participant: Participant
 
+    var isMe: Bool {
+        room.localParticipant?.identity == participant.identity
+    }
+
     var isCreator: Bool {
         room.typedMetadata.creatorIdentity == participant.identity
     }
@@ -43,12 +47,13 @@ struct UserTileView: View {
 
             if roomCtx.isStreamOwner && !isCreator {
 
-                if !participant.canPublish && participant.handRaised {
+                if !participant.canPublish {
 
-                    StyledButton(title: "Accept",
+                    StyledButton(title: participant.handRaised ? "Accept" : "Invite",
                                  style: .secondary,
                                  size: .small,
                                  isFullWidth: false) {
+
                         roomCtx.inviteToStage(identity: participant.identity)
                     }
                 }
@@ -59,7 +64,21 @@ struct UserTileView: View {
                                  style: .secondary,
                                  size: .small,
                                  isFullWidth: false) {
+
                         roomCtx.removeFromStage(identity: participant.identity)
+                    }
+                }
+
+            } else {
+
+                if isMe && !participant.canPublish && participant.invited {
+
+                    StyledButton(title: "Join",
+                                 style: .secondary,
+                                 size: .small,
+                                 isFullWidth: false) {
+
+                        roomCtx.raiseHand()
                     }
                 }
             }
