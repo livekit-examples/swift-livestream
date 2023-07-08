@@ -2,15 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "LiveKit",
-        "repositoryURL": "https://github.com/livekit/client-sdk-swift.git",
-        "state": {
-          "branch": null,
-          "revision": "6c70b18fc0f3819e0f5186de95e7ca8a759f30ee",
-          "version": "1.0.13"
-        }
-      },
-      {
         "package": "Promises",
         "repositoryURL": "https://github.com/google/promises.git",
         "state": {

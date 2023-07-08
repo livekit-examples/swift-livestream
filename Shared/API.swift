@@ -98,7 +98,7 @@ class API {
         try await post(apiPath: "/api/invite_to_stage", data: p)
     }
 
-    public func removeFromStage(identity: String) async throws {
+    public func removeFromStage(identity: String? = nil) async throws {
         assert(authToken != nil)
         let p = InviteToStageRequest(identity: identity)
         try await post(apiPath: "/api/remove_from_stage", data: p)

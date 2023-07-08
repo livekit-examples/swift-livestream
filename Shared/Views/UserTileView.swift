@@ -19,6 +19,37 @@ struct UserTileView: View {
         !isCreator && participant.canPublish
     }
 
+    var canInvite: Bool {
+        roomCtx.isStreamOwner && !isCreator && !participant.canPublish && !participant.invited
+    }
+
+    var canReject: Bool {
+        roomCtx.isStreamOwner && !isCreator && (participant.canPublish || participant.handRaised || participant.invited)
+    }
+
+    var canJoin: Bool {
+        isMe && !participant.canPublish && participant.invited
+    }
+
+    var canCancel: Bool {
+        !isCreator && isMe && (participant.canPublish || participant.handRaised || participant.invited)
+    }
+
+    var roleLabel: some View {
+        Text(isCreator ? "Host" : "Co-Host")
+            .textCase(.uppercase)
+            .font(.system(size: 10, weight: .bold))
+            .foregroundColor(Color.gray)
+    }
+
+    func actionButton(title: String, style: StyledButton.Style, action: @escaping () -> Void) -> some View {
+        StyledButton(title: title,
+                     style: style,
+                     size: .small,
+                     isFullWidth: false,
+                     action: action)
+    }
+
     var body: some View {
 
         HStack(alignment: .center, spacing: 10) {
@@ -29,57 +60,41 @@ struct UserTileView: View {
             Text(participant.identity)
                 .font(.system(size: 14, weight: .bold))
 
-            if isCreator {
-                Text("Host")
-                    .textCase(.uppercase)
-                    .font(.system(size: 10, weight: .bold))
-                    .foregroundColor(Color.gray)
-            }
-
-            if isCoHost {
-                Text("Co-Host")
-                    .textCase(.uppercase)
-                    .font(.system(size: 10, weight: .bold))
-                    .foregroundColor(Color.gray)
+            if isCreator || isCoHost {
+                roleLabel
             }
 
             Spacer()
 
-            if roomCtx.isStreamOwner && !isCreator {
+            if canInvite {
+                actionButton(title: participant.handRaised ? "Accept" : "Invite",
+                             style: .secondary) {
 
-                if !participant.canPublish {
-
-                    StyledButton(title: participant.handRaised ? "Accept" : "Invite",
-                                 style: .secondary,
-                                 size: .small,
-                                 isFullWidth: false) {
-
-                        roomCtx.inviteToStage(identity: participant.identity)
-                    }
+                    roomCtx.inviteToStage(identity: participant.identity)
                 }
+            }
 
-                if participant.canPublish || participant.handRaised {
+            if canReject {
+                actionButton(title: participant.invited ? "Cancel" : "Reject",
+                             style: .destructive) {
 
-                    StyledButton(title: "Reject",
-                                 style: .secondary,
-                                 size: .small,
-                                 isFullWidth: false) {
-
-                        roomCtx.removeFromStage(identity: participant.identity)
-                    }
+                    roomCtx.removeFromStage(identity: participant.identity)
                 }
+            }
 
-            } else {
+            if canJoin {
+                actionButton(title: "Join",
+                             style: .secondary) {
 
-                if isMe && !participant.canPublish && participant.invited {
+                    roomCtx.raiseHand()
+                }
+            }
 
-                    StyledButton(title: "Join",
-                                 style: .secondary,
-                                 size: .small,
-                                 isFullWidth: false) {
+            if canCancel {
+                actionButton(title: "Cancel",
+                             style: .destructive) {
 
-                        roomCtx.raiseHand()
-                    }
+                    roomCtx.removeFromStage()
                 }
             }
         }

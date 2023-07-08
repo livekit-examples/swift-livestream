@@ -155,7 +155,7 @@ struct ViewersSheet: View {
                     }
                 }
 
-                if let lp = room.localParticipant, !lp.canPublish && !lp.handRaised {
+                if let lp = room.localParticipant, !lp.canPublish && !lp.handRaised && !lp.invited {
 
                     Button {
                         roomCtx.raiseHand()

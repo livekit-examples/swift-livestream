@@ -1,5 +1,5 @@
 struct InviteToStageRequest: Codable {
-    let identity: String
+    let identity: String?
 }
 
 struct RemoveFromStageRequest: Codable {

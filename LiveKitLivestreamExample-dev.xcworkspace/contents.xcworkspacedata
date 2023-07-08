@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:../client-sdk-swift">
+   </FileRef>
+   <FileRef
       location = "group:../client-components-swift">
    </FileRef>
    <FileRef

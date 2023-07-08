@@ -148,10 +148,10 @@ final class RoomContext: NSObject, ObservableObject {
         }
     }
 
-    public func removeFromStage(identity: String) {
+    public func removeFromStage(identity: String? = nil) {
         Task {
             do {
-                logger.info("Removing from stage \(identity)...")
+                logger.info("Removing from stage \(String(describing: identity))...")
                 try await api.removeFromStage(identity: identity)
             } catch let error {
                 logger.error("Failed to remove from stage \(error)")
