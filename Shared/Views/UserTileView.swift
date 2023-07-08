@@ -41,7 +41,7 @@ struct UserTileView: View {
 
             Spacer()
 
-            if roomCtx.isStreamOwner {
+            if roomCtx.isStreamOwner && !isCreator {
 
                 if !participant.canPublish && participant.handRaised {
 
