@@ -21,6 +21,7 @@ final class RoomContext: NSObject, ObservableObject {
     }
 
     @Published public var connectBusy = false
+    @Published public var endStreamBusy = false
 
     @Published public var isStreamOwner = false
     @Published public var isStreamPublisher = false
@@ -123,6 +124,9 @@ final class RoomContext: NSObject, ObservableObject {
 
     public func leave() {
         Task {
+            Task { @MainActor in endStreamBusy = true }
+            defer { Task { @MainActor in endStreamBusy = false } }
+
             do {
                 logger.info("Leaving...")
                 if isStreamPublisher {
