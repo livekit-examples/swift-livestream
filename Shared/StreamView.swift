@@ -28,7 +28,7 @@ struct StreamView: View {
 
                 ZStack {
 
-                    if roomCtx.isStreamPublisher {
+                    if roomCtx.isStreamHost {
                         PublisherVideoView()
                     } else {
                         SubscriberVideoView()
@@ -68,20 +68,15 @@ struct StreamView: View {
                 }
             }
 
-            MessageBarView(
-                text: $roomCtx.message,
-                sendIsEnabled: $roomCtx.canSendMessage,
-                sendAction: {
-                    roomCtx.send()
-                }, moreAction: {
-                    showingOptionsSheet.toggle()
-                })
-                .sheet(isPresented: $showingOptionsSheet) {
-                    OptionsSheet()
-                }
-                .sheet(isPresented: $showingUsersSheet) {
-                    ViewersSheet()
-                }
+            MessageBarView(moreAction: {
+                showingOptionsSheet.toggle()
+            })
+            .sheet(isPresented: $showingOptionsSheet) {
+                OptionsSheet()
+            }
+            .sheet(isPresented: $showingUsersSheet) {
+                ViewersSheet()
+            }
         }
     }
 }

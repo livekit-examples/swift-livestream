@@ -45,7 +45,7 @@ final class RoomContext: NSObject, ObservableObject {
         room.typedMetadata.creatorIdentity == room.localParticipant?.identity
     }
 
-    public var isStreamPublisher: Bool {
+    public var isStreamHost: Bool {
         room.localParticipant?.canPublish ?? false
     }
 
@@ -133,7 +133,7 @@ final class RoomContext: NSObject, ObservableObject {
 
             do {
                 logger.info("Leaving...")
-                if isStreamPublisher {
+                if isStreamHost {
                     try await api.stopStream()
                 } else {
                     logger.info("Disconnecting...")

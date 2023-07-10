@@ -14,7 +14,7 @@ struct OptionsSheet: View {
                     .font(.system(size: 25, weight: .bold))
                     .padding()
 
-                StyledButton(title: roomCtx.isStreamPublisher ? "End stream" : "Leave stream",
+                StyledButton(title: roomCtx.isStreamHost ? "End stream" : "Leave stream",
                              style: .destructive,
                              isBusy: roomCtx.endStreamBusy) {
 
