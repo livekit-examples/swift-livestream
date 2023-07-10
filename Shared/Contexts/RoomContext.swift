@@ -20,12 +20,10 @@ final class RoomContext: NSObject, ObservableObject {
         case stream
     }
 
+    // Network busy states
     @Published public var connectBusy = false
     @Published public var endStreamBusy = false
     @Published public var inviteBusy: Set<String> = []
-
-    @Published public var isStreamOwner = false
-    @Published public var isStreamPublisher = false
 
     @Published public private(set) var step: Step = .welcome
     @Published public var events = [StreamEvent]()
@@ -41,6 +39,15 @@ final class RoomContext: NSObject, ObservableObject {
 
     @Published public var enableChat: Bool = true
     @Published public var viewersCanRequestToJoin: Bool = true
+
+    // Computed helpers
+    public var isStreamOwner: Bool {
+        room.typedMetadata.creatorIdentity == room.localParticipant?.identity
+    }
+
+    public var isStreamPublisher: Bool {
+        room.localParticipant?.canPublish ?? false
+    }
 
     override init() {
         super.init()
@@ -85,8 +92,6 @@ final class RoomContext: NSObject, ObservableObject {
                 try await room.localParticipant?.setCamera(enabled: true)
                 Task { @MainActor in
                     self.step = .stream
-                    self.isStreamOwner = true
-                    self.isStreamPublisher = true
                 }
                 logger.info("Connected")
             } catch {
@@ -112,8 +117,6 @@ final class RoomContext: NSObject, ObservableObject {
                 try await room.connect(res.connectionDetails.wsURL, res.connectionDetails.token)
                 Task { @MainActor in
                     self.step = .stream
-                    self.isStreamOwner = false
-                    self.isStreamPublisher = false
                 }
                 logger.info("Connected")
             } catch let error {
@@ -244,9 +247,6 @@ extension RoomContext: RoomDelegate {
         }
 
         if case .disconnected(let reason) = connectionState {
-            Task { @MainActor in
-                self.isStreamPublisher = false
-            }
             api.reset()
         }
     }
