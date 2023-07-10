@@ -22,6 +22,7 @@ final class RoomContext: NSObject, ObservableObject {
 
     @Published public var connectBusy = false
     @Published public var endStreamBusy = false
+    @Published public var inviteBusy: Set<String> = []
 
     @Published public var isStreamOwner = false
     @Published public var isStreamPublisher = false
@@ -143,6 +144,9 @@ final class RoomContext: NSObject, ObservableObject {
 
     public func inviteToStage(identity: String) {
         Task {
+            Task { @MainActor in inviteBusy.insert(identity) }
+            defer { Task { @MainActor in inviteBusy.remove(identity) } }
+
             do {
                 logger.info("Invite to stage \(identity)...")
                 try await api.inviteToStage(identity: identity)

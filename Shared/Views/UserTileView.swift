@@ -42,11 +42,16 @@ struct UserTileView: View {
             .foregroundColor(Color.gray)
     }
 
-    func actionButton(title: String, style: StyledButton.Style, action: @escaping () -> Void) -> some View {
+    func actionButton(title: String,
+                      style: StyledButton.Style,
+                      isBusy: Bool = false,
+                      action: @escaping () -> Void) -> some View {
+
         StyledButton(title: title,
                      style: style,
                      size: .small,
                      isFullWidth: false,
+                     isBusy: isBusy,
                      action: action)
     }
 
@@ -68,7 +73,8 @@ struct UserTileView: View {
 
             if canInvite {
                 actionButton(title: participant.handRaised ? "Accept" : "Invite",
-                             style: .secondary) {
+                             style: .secondary,
+                             isBusy: roomCtx.inviteBusy.contains(participant.identity)) {
 
                     roomCtx.inviteToStage(identity: participant.identity)
                 }
