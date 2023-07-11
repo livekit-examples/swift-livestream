@@ -89,14 +89,23 @@ final class RoomContext: NSObject, ObservableObject {
                 logger.debug("Connecting to room... \(res.connectionDetails)")
 
                 try await room.connect(res.connectionDetails.wsURL, res.connectionDetails.token)
-                try await room.localParticipant?.setCamera(enabled: true)
                 Task { @MainActor in
                     self.step = .stream
+
+                    // Separate attempt to publish
+                    Task {
+                        do {
+                            try await room.localParticipant?.setCamera(enabled: true)
+                            try await room.localParticipant?.setMicrophone(enabled: true)
+                        } catch let error {
+                            logger.error("Failed to publish, error: \(error)")
+                        }
+                    }
                 }
                 logger.info("Connected")
-            } catch {
+            } catch let publishError {
                 try await room.disconnect()
-                logger.error("Failed to create room")
+                logger.error("Failed to create room, error: \(publishError)")
             }
         }
     }
