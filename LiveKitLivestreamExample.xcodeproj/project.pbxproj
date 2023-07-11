@@ -37,6 +37,7 @@
 		6889F0D52A52DF62004D54FB /* InviteToStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889F0D42A52DF61004D54FB /* InviteToStage.swift */; };
 		68928F8F2A40CB9C005F084A /* StreamEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68928F8E2A40CB9C005F084A /* StreamEvent.swift */; };
 		6895EA442A38B7FA00519535 /* LiveKitComponents in Frameworks */ = {isa = PBXBuildFile; productRef = 6895EA432A38B7FA00519535 /* LiveKitComponents */; };
+		68A108C72A5CFC2E00200FAE /* HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A108C62A5CFC2E00200FAE /* HideKeyboard.swift */; };
 		68FBA36F2A381A530015853E /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBA36E2A381A530015853E /* WelcomeView.swift */; };
 		68FBA3712A381F650015853E /* StyledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBA3702A381F650015853E /* StyledButton.swift */; };
 		68FBA3732A3824020015853E /* StartPrepareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBA3722A3824020015853E /* StartPrepareView.swift */; };
@@ -73,6 +74,7 @@
 		6889F0D42A52DF61004D54FB /* InviteToStage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteToStage.swift; sourceTree = "<group>"; };
 		68928F8E2A40CB9C005F084A /* StreamEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamEvent.swift; sourceTree = "<group>"; };
 		6895EA462A38B85000519535 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		68A108C62A5CFC2E00200FAE /* HideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboard.swift; sourceTree = "<group>"; };
 		68FBA36E2A381A530015853E /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		68FBA3702A381F650015853E /* StyledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledButton.swift; sourceTree = "<group>"; };
 		68FBA3722A3824020015853E /* StartPrepareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPrepareView.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 		683865A32A29F9A3005D0947 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				68A108C52A5CFC2200200FAE /* Extensions */,
 				682937692A594E8C00BC8CD7 /* Sheets */,
 				68928F902A40CBA2005F084A /* Types */,
 				687E31242A2E391F00032AE6 /* Views */,
@@ -203,6 +206,14 @@
 				6895EA462A38B85000519535 /* macOS.entitlements */,
 			);
 			path = macOS;
+			sourceTree = "<group>";
+		};
+		68A108C52A5CFC2200200FAE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				68A108C62A5CFC2E00200FAE /* HideKeyboard.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,6 +309,7 @@
 				68FBA3752A3824D80015853E /* StyledTextField.swift in Sources */,
 				687E311B2A2DC9B200032AE6 /* StartPreviewView.swift in Sources */,
 				687E31322A2EF8C600032AE6 /* StreamEventsListView.swift in Sources */,
+				68A108C72A5CFC2E00200FAE /* HideKeyboard.swift in Sources */,
 				687E311E2A2DCA1600032AE6 /* RoomContext.swift in Sources */,
 				683865A72A29F9A3005D0947 /* MainView.swift in Sources */,
 				6801A7662A3900CD009FC4DA /* JoinView.swift in Sources */,

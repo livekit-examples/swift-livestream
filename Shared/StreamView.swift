@@ -66,6 +66,9 @@ struct StreamView: View {
                         .frame(height: proxy.size.height * 0.4)
                     }
                 }
+                .onTapGesture {
+                    self.hideKeyboard()
+                }
             }
 
             MessageBarView(moreAction: {
