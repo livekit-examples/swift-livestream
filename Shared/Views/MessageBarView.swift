@@ -53,6 +53,20 @@ struct MessageBarView: View {
                         .foregroundColor(isMicEnabled ? Color.orange : Color.gray)
                 }
 
+            } else {
+
+                let handRaised = room.localParticipant?.typedMetadata.handRaised ?? false
+
+                Button {
+                    if handRaised {
+                        roomCtx.leave()
+                    } else {
+                        roomCtx.raiseHand()
+                    }
+                } label: {
+                    Image(systemName: handRaised ? "hand.wave.fill" : "hand.wave")
+                        .foregroundColor(handRaised ? Color.red : Color.gray)
+                }
             }
 
             Button {
@@ -62,17 +76,6 @@ struct MessageBarView: View {
                     .rotationEffect(.degrees(90))
                     .foregroundColor(Color("Secondary"))
             }
-
-            // if showJoinButton {
-            //
-            //     Button {
-            //         moreAction()
-            //     } label: {
-            //         Image(systemName: "ellipsis")
-            //             .rotationEffect(.degrees(90))
-            //     }
-            //
-            // }
         }
         .padding(.vertical, 10)
         .padding(.horizontal, 10)

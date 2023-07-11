@@ -1,5 +1,6 @@
 import SwiftUI
 import LiveKit
+import LiveKitComponents
 import SwiftUIBackports
 
 extension Comparable {
@@ -28,19 +29,18 @@ struct StreamView: View {
 
                 ZStack {
 
-                    if roomCtx.isStreamHost {
-                        PublisherVideoView()
-                    } else {
-                        SubscriberVideoView()
+                    HStack {
+                        ForEachParticipant(filter: .canPublishVideoOrAudio) { _ in
+                            ParticipantView()
+                                .background(Color(.darkGray))
+                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .cornerRadius(5)
+                        }
                     }
 
                     VStack(alignment: .trailing) {
 
                         HStack(spacing: 10) {
-
-                            if let lp = room.localParticipant {
-                                TextLabel(text: "CanPublish: \(lp.permissions.canPublish ? "YES" : "NO")")
-                            }
 
                             TextLabel(text: "LIVE", style: .primary)
                             TextLabel(text: "\(room.remoteParticipants.count + 1)", symbol: .eye).onTapGesture {
