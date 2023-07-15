@@ -59,10 +59,13 @@ struct UserTileView: View {
 
         HStack(alignment: .center, spacing: 10) {
 
-            AsyncImage(url: participant.typedMetadata.avatarURL) { image in
-                image.resizable()
+            AsyncImage(url: URL(string: "https://api.multiavatar.com/\(participant.identity).png")) { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
             } placeholder: {
                 ProgressView()
+                    .progressViewStyle(.circular)
             }
             .frame(width: 30, height: 30)
 

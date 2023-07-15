@@ -14,7 +14,7 @@ struct StreamEventTileView: View {
             Group {
                 if let identity = entry.identity,
                    let participant = room.allParticipants.values.first(where: { $0.identity == identity }) {
-                    AsyncImage(url: participant.typedMetadata.avatarURL) { image in
+                    AsyncImage(url: URL(string: "https://api.multiavatar.com/\(participant.identity).png")) { image in
                         image.resizable()
                     } placeholder: {
                         ProgressView()

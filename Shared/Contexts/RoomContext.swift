@@ -219,13 +219,13 @@ extension RoomContext: RoomDelegate {
 
     func room(_ room: Room, participantDidJoin participant: RemoteParticipant) {
         Task { @MainActor in
-            events.append(StreamEvent(type: .info, message: "\(participant.identity) did join"))
+            events.append(StreamEvent(type: .info, identity: participant.identity, message: "\(participant.identity) joined"))
         }
     }
 
     func room(_ room: Room, participantDidLeave participant: RemoteParticipant) {
         Task { @MainActor in
-            events.append(StreamEvent(type: .info, message: "\(participant.identity) left"))
+            events.append(StreamEvent(type: .info, identity: participant.identity, message: "\(participant.identity) left"))
         }
     }
 
