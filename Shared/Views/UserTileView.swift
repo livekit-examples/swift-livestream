@@ -59,8 +59,12 @@ struct UserTileView: View {
 
         HStack(alignment: .center, spacing: 10) {
 
-            Circle()
-                .frame(width: 30, height: 30)
+            AsyncImage(url: participant.typedMetadata.avatarURL) { image in
+                image.resizable()
+            } placeholder: {
+                ProgressView()
+            }
+            .frame(width: 30, height: 30)
 
             Text(participant.identity)
                 .font(.system(size: 14, weight: .bold))

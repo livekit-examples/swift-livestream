@@ -6,7 +6,7 @@ import Logging
 final class RoomContext: NSObject, ObservableObject {
 
     // "http://localhost:3000/"
-    let api = API(apiBaseURLString: "https://d94c9c05a363.ngrok.app/")
+    let api = API(apiBaseURLString: "https://livestream-mobile-backend.vercel.app/")
     // "http://localhost:3000/"
     // "https://livestream-mobile-backend.vercel.app/")
 

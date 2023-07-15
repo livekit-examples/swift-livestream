@@ -29,8 +29,8 @@ struct StreamView: View {
 
                 ZStack {
 
-                    HStack {
-                        ForEachParticipant(filter: .canPublishVideoOrAudio) { _ in
+                    VStack {
+                        ForEachParticipant(filter: .canPublishMedia) { _ in
                             ParticipantView()
                                 .background(Color(.darkGray))
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)

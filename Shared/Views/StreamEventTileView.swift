@@ -1,6 +1,9 @@
 import SwiftUI
+import LiveKit
 
 struct StreamEventTileView: View {
+
+    @EnvironmentObject var room: Room
 
     let entry: StreamEvent
 
@@ -8,8 +11,19 @@ struct StreamEventTileView: View {
 
         HStack(alignment: .top, spacing: 10) {
 
-            Circle()
-                .frame(width: 30, height: 30)
+            Group {
+                if let identity = entry.identity,
+                   let participant = room.allParticipants.values.first(where: { $0.identity == identity }) {
+                    AsyncImage(url: participant.typedMetadata.avatarURL) { image in
+                        image.resizable()
+                    } placeholder: {
+                        ProgressView()
+                    }
+                } else {
+                    Circle()
+                }
+            }
+            .frame(width: 30, height: 30)
 
             VStack(alignment: .leading, spacing: 5) {
 
