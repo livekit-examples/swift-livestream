@@ -21,6 +21,15 @@ struct StreamView: View {
     @State private var showingUsersSheet = false
     @State private var showingOptionsSheet = false
 
+    var hasNotification: Bool {
+        if roomCtx.isStreamOwner {
+            return room.remoteParticipants.values.filter({ $0.handRaised && !$0.canPublish }).count > 0
+        } else {
+            guard let lp = room.localParticipant else { return false }
+            return lp.invited && !lp.canPublish
+        }
+    }
+
     var body: some View {
 
         VStack(spacing: 0) {
@@ -43,8 +52,18 @@ struct StreamView: View {
                         HStack(spacing: 10) {
 
                             TextLabel(text: "LIVE", style: .primary)
-                            TextLabel(text: "\(room.remoteParticipants.count + 1)", symbol: .eye).onTapGesture {
-                                showingUsersSheet = true
+
+                            ZStack(alignment: .topLeading) {
+                                TextLabel(text: "\(room.remoteParticipants.count + 1)", symbol: .eye).onTapGesture {
+                                    showingUsersSheet = true
+                                }
+
+                                if hasNotification {
+                                    Circle()
+                                        .foregroundColor(.red)
+                                        .frame(width: 10, height: 10)
+                                        .offset(x: -3, y: -3)
+                                }
                             }
                         }
                         .padding()
@@ -81,5 +100,10 @@ struct StreamView: View {
                 ViewersSheet()
             }
         }
+        .onChange(of: hasNotification, perform: { newValue in
+            if newValue {
+                showingUsersSheet = true
+            }
+        })
     }
 }
