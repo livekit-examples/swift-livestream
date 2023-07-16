@@ -5,11 +5,7 @@ import Logging
 
 final class RoomContext: NSObject, ObservableObject {
 
-    // "http://localhost:3000/"
     let api = API(apiBaseURLString: "https://livestream-mobile-backend.vercel.app/")
-    // "http://localhost:3000/"
-    // "https://livestream-mobile-backend.vercel.app/")
-
     let room = Room()
 
     enum Step {
