@@ -138,7 +138,7 @@ final class RoomContext: NSObject, ObservableObject {
 
             do {
                 logger.info("Leaving...")
-                if isStreamHost {
+                if isStreamOwner {
                     try await api.stopStream()
                 } else {
                     logger.info("Disconnecting...")
