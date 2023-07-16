@@ -10,7 +10,8 @@ struct WelcomeView: View {
 
             Spacer()
 
-            Image("AppIcon")
+            Image("Logo")
+                .resizable()
                 .frame(width: 100, height: 100)
                 .foregroundColor(.white)
                 .padding()
