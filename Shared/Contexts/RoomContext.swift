@@ -213,18 +213,6 @@ final class RoomContext: NSObject, ObservableObject {
 
 extension RoomContext: RoomDelegate {
 
-    func room(_ room: Room, participantDidJoin participant: RemoteParticipant) {
-        Task { @MainActor in
-            events.append(StreamEvent(type: .info, identity: participant.identity, message: "\(participant.identity) joined"))
-        }
-    }
-
-    func room(_ room: Room, participantDidLeave participant: RemoteParticipant) {
-        Task { @MainActor in
-            events.append(StreamEvent(type: .info, identity: participant.identity, message: "\(participant.identity) left"))
-        }
-    }
-
     func room(_ room: Room, participant: RemoteParticipant?, didReceiveData data: Data, topic: String) {
         Task { @MainActor in
             guard let event = try? decoder.decode(StreamEvent.self, from: data) else { return }
