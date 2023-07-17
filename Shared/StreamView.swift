@@ -54,7 +54,7 @@ struct StreamView: View {
                             TextLabel(text: "LIVE", style: .primary)
 
                             ZStack(alignment: .topLeading) {
-                                TextLabel(text: "\(room.remoteParticipants.count + 1)", symbol: .eye).onTapGesture {
+                                TextLabel(text: "\(room.participantCount)", symbol: .eye).onTapGesture {
                                     showingUsersSheet = true
                                 }
 
