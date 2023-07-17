@@ -40,7 +40,7 @@ struct StreamView: View {
 
                     VStack {
                         ForEachParticipant(filter: .canPublishMedia) { _ in
-                            ParticipantView()
+                            ParticipantView(showInformation: false)
                                 .background(Color(.darkGray))
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                                 .cornerRadius(5)
