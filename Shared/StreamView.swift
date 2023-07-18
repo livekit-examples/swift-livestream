@@ -119,7 +119,7 @@ struct StreamView: View {
                     OptionsSheet()
                 }
                 .sheet(isPresented: $showingUsersSheet) {
-                    ViewersSheet()
+                    UsersSheet()
                 }
         }
         .onChange(of: focusedFields == .message, perform: { _ in

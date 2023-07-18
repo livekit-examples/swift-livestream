@@ -56,7 +56,7 @@ extension Collection where Element == Participant {
     }
 }
 
-struct ViewersSheet: View {
+struct UsersSheet: View {
 
     @EnvironmentObject var roomCtx: RoomContext
     @EnvironmentObject var room: Room
@@ -87,7 +87,7 @@ struct ViewersSheet: View {
         ScrollView {
             LazyVStack(spacing: 20) {
 
-                Text("Viewers")
+                Text("Users")
                     .font(.system(size: 25, weight: .bold))
                     .padding()
 
