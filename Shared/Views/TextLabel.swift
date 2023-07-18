@@ -23,7 +23,7 @@ struct TextLabel: View {
         .padding(.horizontal, 7)
         .padding(.vertical, 5)
         .background(style.toColor())
-        .cornerRadius(7)
+        .cornerRadius(6)
     }
 }
 

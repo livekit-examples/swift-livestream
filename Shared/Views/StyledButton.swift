@@ -40,7 +40,7 @@ struct StyledButton: View {
         .disabled(isBusy || !isEnabled)
         .foregroundColor(.white.opacity((isBusy || !isEnabled) ? 0.5 : 1))
         .background(style.toColor())
-        .cornerRadius(7)
+        .cornerRadius(6)
     }
 }
 
@@ -68,7 +68,7 @@ private extension StyledButton.Size {
     func toVPadding() -> Double {
         switch self {
         case .normal: return 10
-        case .small: return 5
+        case .small: return 8
         }
     }
 

@@ -22,7 +22,7 @@ struct PublisherVideoPreview: View {
 
             LocalCameraPreview()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .cornerRadius(7)
+                .cornerRadius(6)
 
             SwitchCameraButton {
 
@@ -39,7 +39,7 @@ struct PublisherVideoView: View {
 
             LocalCameraVideoView()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .cornerRadius(7)
+                .cornerRadius(6)
 
             SwitchCameraButton {
 
@@ -69,7 +69,7 @@ struct SubscriberVideoView: View {
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .cornerRadius(7)
+            .cornerRadius(6)
 
             SwitchCameraButton {
 

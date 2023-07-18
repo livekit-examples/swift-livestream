@@ -43,7 +43,7 @@ struct StreamView: View {
                             ParticipantView(showInformation: false)
                                 .background(Color(.darkGray))
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                .cornerRadius(5)
+                                .cornerRadius(6)
                         }
                     }
 

@@ -31,7 +31,7 @@ struct StyledTextField: View {
                 // .keyboardType(type.toiOSType())
                 // #endif
                 .padding()
-                .overlay(RoundedRectangle(cornerRadius: 10.0)
+                .overlay(RoundedRectangle(cornerRadius: 6)
                             .strokeBorder(Color.white.opacity(0.3),
                                           style: StrokeStyle(lineWidth: 1.0)))
         }.frame(maxWidth: .infinity)

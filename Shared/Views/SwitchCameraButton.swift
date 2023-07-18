@@ -12,6 +12,6 @@ struct SwitchCameraButton: View {
         }
         // .buttonStyle(.borderedProminent)
         // .tint(Color.black.opacity(0.7))
-        .cornerRadius(7)
+        .cornerRadius(6)
     }
 }

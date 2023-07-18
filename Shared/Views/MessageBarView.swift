@@ -17,11 +17,11 @@ struct MessageBarView: View {
 
             TextField("Type your message...", text: $roomCtx.message, axis: .vertical)
                 .lineLimit(5)
-                .font(.system(size: 14))
-                .padding(.vertical, 5)
+                .font(.system(size: 12))
+                .padding(.vertical, 8)
                 .padding(.horizontal, 10)
                 .background(Color.white.opacity(0.2))
-                .cornerRadius(5)
+                .cornerRadius(6)
                 .frame(maxWidth: .infinity)
 
             StyledButton(title: "Send",
@@ -77,7 +77,7 @@ struct MessageBarView: View {
                     .foregroundColor(Color("Secondary"))
             }
         }
-        .padding(.vertical, 10)
+        .padding(.vertical, 15)
         .padding(.horizontal, 10)
     }
 }
