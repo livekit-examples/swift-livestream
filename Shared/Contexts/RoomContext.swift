@@ -230,7 +230,7 @@ extension RoomContext: RoomDelegate {
 
     func room(_ room: Room, didUpdate connectionState: ConnectionState, oldValue: ConnectionState) {
 
-        if case .disconnected(let reason) = connectionState,
+        if case .disconnected = connectionState,
            case .connected = oldValue {
             Task { @MainActor in
                 self.step = .welcome
@@ -239,8 +239,13 @@ extension RoomContext: RoomDelegate {
             logger.debug("Did disconnect")
         }
 
-        if case .disconnected(let reason) = connectionState {
+        if case .disconnected = connectionState {
+            // Reset state when disconnected
             api.reset()
+            Task { @MainActor in
+                message = ""
+                events = []
+            }
         }
     }
 }
