@@ -5,6 +5,7 @@ import LiveKitComponents
 struct OptionsSheet: View {
 
     @EnvironmentObject var roomCtx: RoomContext
+    @EnvironmentObject var room: Room
 
     var body: some View {
         ScrollView {
@@ -13,6 +14,12 @@ struct OptionsSheet: View {
                 Text("Options")
                     .font(.system(size: 25, weight: .bold))
                     .padding()
+
+                HStack {
+                    Text("Room:")
+                    Spacer()
+                    Text("\(room.name ?? "(Unknown)")")
+                }
 
                 StyledButton(title: roomCtx.isStreamOwner ? "End stream" : "Leave stream",
                              style: .destructive,

@@ -29,8 +29,8 @@ final class RoomContext: NSObject, ObservableObject {
         }
     }
 
-    @Published public var identity: String = ""
     @Published public var roomName: String = ""
+    @Published public var identity: String = ""
 
     @Published public var enableChat: Bool = true
     @Published public var viewersCanRequestToJoin: Bool = true
@@ -78,7 +78,7 @@ final class RoomContext: NSObject, ObservableObject {
                                                         enableChat: enableChat,
                                                         allowParticipant: viewersCanRequestToJoin)
 
-                let req = CreateStreamRequest(roomName: roomName, metadata: meta)
+                let req = CreateStreamRequest(roomName: "", metadata: meta)
                 let res = try await api.createStream(req)
 
                 logger.debug("Connecting to room... \(res.connectionDetails)")
