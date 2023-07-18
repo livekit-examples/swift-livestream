@@ -1,14 +1,10 @@
 import SwiftUI
 import LiveKit
-import LiveKitComponents
 
-struct StartPreviewView: View {
+struct ViewerPrepareView: View {
 
     @EnvironmentObject var roomCtx: RoomContext
     @EnvironmentObject var room: Room
-
-    @State private var flag1 = true
-    @State private var flag2 = true
 
     @State private var showDialog = false
     @State private var disconnectReason: DisconnectReason?
@@ -17,22 +13,21 @@ struct StartPreviewView: View {
 
         VStack(alignment: .leading, spacing: 20) {
 
-            Text("Start Livestream")
+            Text("Join Livestream")
                 .font(.system(size: 30, weight: .bold))
 
-            PublisherVideoPreview()
-                .padding(.vertical, 10)
+            StyledTextField(title: "Your name", text: $roomCtx.identity)
 
-            Text("After going live you’ll acquire a streaming link for sharing with your viewers.")
-                .font(.system(size: 14))
-                .foregroundColor(.gray)
+            StyledTextField(title: "Livestream name", text: $roomCtx.roomName)
 
-            StyledButton(title: "Go live", style: .primary, isBusy: roomCtx.connectBusy) {
-                roomCtx.startPublisher()
+            Spacer()
+
+            StyledButton(title: "Join", style: .primary, isBusy: roomCtx.connectBusy) {
+                roomCtx.join()
             }
 
             StyledButton(title: "Back", isEnabled: !roomCtx.connectBusy) {
-                roomCtx.backToPrepare()
+                roomCtx.backToWelcome()
             }
         }
         .padding()

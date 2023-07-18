@@ -11,7 +11,6 @@ final class RoomContext: NSObject, ObservableObject {
     enum Step {
         case welcome
         case streamerPrepare
-        case streamerPreview
         case viewerPrepare
         case stream
     }

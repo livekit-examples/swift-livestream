@@ -1,7 +1,7 @@
 import SwiftUI
 import LiveKit
 
-struct JoinView: View {
+struct StreamerPrepareView: View {
 
     @EnvironmentObject var roomCtx: RoomContext
     @EnvironmentObject var room: Room
@@ -13,20 +13,30 @@ struct JoinView: View {
 
         VStack(alignment: .leading, spacing: 20) {
 
-            Text("Join Livestream")
+            Text("Start Livestream")
                 .font(.system(size: 30, weight: .bold))
+
+            PublisherVideoPreview()
+                .padding(.vertical, 10)
 
             StyledTextField(title: "Your name", text: $roomCtx.identity)
 
-            StyledTextField(title: "Livestream name", text: $roomCtx.roomName)
+            // StyledTextField(title: "Livestream name", text: $roomCtx.roomName)
+
+            Text("OPTIONS")
+                .font(.system(size: 14, weight: .bold))
+                .foregroundColor(.gray)
+
+            Toggle("Enable chat", isOn: $roomCtx.enableChat)
+            Toggle("Viewers can request to join", isOn: $roomCtx.viewersCanRequestToJoin)
 
             Spacer()
 
-            StyledButton(title: "Join", style: .primary, isBusy: roomCtx.connectBusy) {
-                roomCtx.join()
+            StyledButton(title: "Go live", style: .primary, isBusy: roomCtx.connectBusy) {
+                roomCtx.startPublisher()
             }
 
-            StyledButton(title: "Back", isEnabled: !roomCtx.connectBusy) {
+            StyledButton(title: "Back") {
                 roomCtx.backToWelcome()
             }
         }
