@@ -15,11 +15,18 @@ extension Comparable {
 
 struct StreamView: View {
 
+    enum TextFields: Hashable {
+        case message
+    }
+
     @EnvironmentObject var roomCtx: RoomContext
     @EnvironmentObject var room: Room
 
     @State private var showingUsersSheet = false
     @State private var showingOptionsSheet = false
+    @State private var showingEventsView = true
+
+    @FocusState private var focusedFields: TextFields?
 
     var hasNotification: Bool {
         if roomCtx.isStreamOwner {
@@ -38,6 +45,7 @@ struct StreamView: View {
 
                 ZStack {
 
+                    // Participants layer
                     VStack {
                         ForEachParticipant(filter: .canPublishMedia) { _ in
                             ParticipantView(showInformation: false)
@@ -47,9 +55,12 @@ struct StreamView: View {
                         }
                     }
 
+                    // Overlay
                     VStack(alignment: .trailing) {
 
-                        HStack(spacing: 10) {
+                        HStack(alignment: .bottom, spacing: 10) {
+
+                            Spacer()
 
                             TextLabel(text: "LIVE", style: .primary)
 
@@ -70,36 +81,52 @@ struct StreamView: View {
 
                         Spacer()
 
-                        ZStack {
+                        if showingEventsView {
 
-                            LinearGradient(gradient: Gradient(colors: [.clear, .black.opacity(0.8)]),
-                                           startPoint: .top,
-                                           endPoint: .bottom)
+                            ZStack {
 
-                            StreamEventsListView()
-                                .mask(LinearGradient(gradient: Gradient(colors: [.black, .black, .black, .clear]),
-                                                     startPoint: .bottom,
-                                                     endPoint: .top))
+                                LinearGradient(gradient: Gradient(colors: [.clear, .black.opacity(0.8)]),
+                                               startPoint: .top,
+                                               endPoint: .bottom)
 
+                                StreamEventsListView()
+                                    .mask(LinearGradient(gradient: Gradient(colors: [.black, .black, .black, .clear]),
+                                                         startPoint: .bottom,
+                                                         endPoint: .top))
+
+                            }
+                            .frame(height: proxy.size.height * 0.4)
+                            .transition(.opacity)
                         }
-                        .frame(height: proxy.size.height * 0.4)
                     }
                 }
                 .onTapGesture {
-                    self.hideKeyboard()
+                    if focusedFields == .message {
+                        hideKeyboard()
+                    } else {
+                        withAnimation {
+                            showingEventsView.toggle()
+                        }
+                    }
                 }
             }
 
-            MessageBarView(moreAction: {
-                showingOptionsSheet.toggle()
-            })
-            .sheet(isPresented: $showingOptionsSheet) {
-                OptionsSheet()
-            }
-            .sheet(isPresented: $showingUsersSheet) {
-                ViewersSheet()
-            }
+            MessageBarView(focusFields: _focusedFields,
+                           moreAction: {
+                            showingOptionsSheet.toggle()
+                           })
+                .sheet(isPresented: $showingOptionsSheet) {
+                    OptionsSheet()
+                }
+                .sheet(isPresented: $showingUsersSheet) {
+                    ViewersSheet()
+                }
         }
+        .onChange(of: focusedFields == .message, perform: { _ in
+            withAnimation {
+                showingEventsView = true
+            }
+        })
         .onChange(of: hasNotification, perform: { newValue in
             if newValue {
                 showingUsersSheet = true

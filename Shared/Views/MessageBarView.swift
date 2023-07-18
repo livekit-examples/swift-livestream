@@ -1,10 +1,13 @@
 import SwiftUI
 import LiveKit
+import SwiftUIBackports
 
 struct MessageBarView: View {
 
     @EnvironmentObject var roomCtx: RoomContext
     @EnvironmentObject var room: Room
+
+    @FocusState var focusFields: StreamView.TextFields?
 
     let moreAction: () -> Void
 
@@ -16,6 +19,7 @@ struct MessageBarView: View {
         HStack {
 
             TextField("Type your message...", text: $roomCtx.message, axis: .vertical)
+                .focused($focusFields, equals: .message)
                 .lineLimit(5)
                 .font(.system(size: 12))
                 .padding(.vertical, 8)
