@@ -8,6 +8,6 @@
       location = "group:../client-sdk-swift">
    </FileRef>
    <FileRef
-      location = "group:../client-components-swift">
+      location = "group:../components-swift">
    </FileRef>
 </Workspace>
