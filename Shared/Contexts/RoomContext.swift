@@ -72,6 +72,12 @@ final class RoomContext: NSObject, ObservableObject {
             defer { Task { @MainActor in connectBusy = false } }
 
             do {
+                // Ensure permissions...
+                guard await LiveKit.ensureDeviceAccess(for: [.video, .audio]) else {
+                    // Both .video and .audio device permissions are required...
+                    throw LivestreamError.permissions
+                }
+
                 logger.debug("Requesting create room...")
 
                 let meta = CreateStreamRequest.Metadata(creatorIdentity: identity,

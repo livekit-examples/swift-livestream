@@ -1,11 +1,6 @@
 import SwiftUI
 import LiveKit
 
-enum APIError: Error {
-    case url
-    case fail
-}
-
 class API {
 
     let encoder = JSONEncoder()
@@ -28,13 +23,13 @@ class API {
     private func prepareRequest(apiPath: String, data: Encodable? = nil) async throws -> URLRequest {
 
         guard var components = URLComponents(url: apiBaseURL, resolvingAgainstBaseURL: false) else {
-            throw APIError.url
+            throw LivestreamError.urlFormat
         }
 
         components.path = apiPath
 
         guard let url = components.url else {
-            throw APIError.url
+            throw LivestreamError.urlFormat
         }
 
         var request = URLRequest(url: url)
@@ -63,7 +58,7 @@ class API {
         let request = try await prepareRequest(apiPath: apiPath, data: data)
         let (_, response) = try await URLSession.shared.data(for: request)
         guard let httpUrlResponse = response as? HTTPURLResponse, httpUrlResponse.statusCode == 200 else {
-            throw APIError.fail
+            throw LivestreamError.apiError
         }
     }
 
@@ -71,7 +66,7 @@ class API {
         let request = try await prepareRequest(apiPath: apiPath)
         let (_, response) = try await URLSession.shared.data(for: request)
         guard let httpUrlResponse = response as? HTTPURLResponse, httpUrlResponse.statusCode == 200 else {
-            throw APIError.fail
+            throw LivestreamError.apiError
         }
     }
 
