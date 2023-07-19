@@ -37,27 +37,7 @@ struct MessageBarView: View {
                 roomCtx.send()
             }
 
-            if roomCtx.isStreamHost {
-
-                Button {
-                    Task {
-                        try await room.localParticipant?.setCamera(enabled: !isCameraEnabled)
-                    }
-                } label: {
-                    Image(systemName: isCameraEnabled ? "video.fill" : "video.slash")
-                        .foregroundColor(isCameraEnabled ? Color.green : Color.gray)
-                }
-
-                Button {
-                    Task {
-                        try await room.localParticipant?.setMicrophone(enabled: !isMicEnabled)
-                    }
-                } label: {
-                    Image(systemName: isMicEnabled ? "mic.fill" : "mic.slash")
-                        .foregroundColor(isMicEnabled ? Color.orange : Color.gray)
-                }
-
-            } else {
+            if !roomCtx.isStreamHost {
 
                 let handRaised = room.localParticipant?.typedMetadata.handRaised ?? false
 
