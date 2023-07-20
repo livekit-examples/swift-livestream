@@ -253,4 +253,27 @@ extension RoomContext: RoomDelegate {
             }
         }
     }
+
+    func room(_ room: Room, participant: Participant, didUpdate permissions: ParticipantPermissions) {
+
+        if let participant = participant as? LocalParticipant,
+           participant.canPublish {
+
+            // Separate attempt to publish
+            Task {
+                do {
+                    // Ensure permissions...
+                    guard await LiveKit.ensureDeviceAccess(for: [.video, .audio]) else {
+                        // Both .video and .audio device permissions are required...
+                        throw LivestreamError.permissions
+                    }
+
+                    try await participant.setCamera(enabled: true)
+                    try await participant.setMicrophone(enabled: true)
+                } catch let error {
+                    logger.error("Failed to publish, error: \(error)")
+                }
+            }
+        }
+    }
 }
