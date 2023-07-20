@@ -48,10 +48,17 @@ struct StreamView: View {
                     // Participants layer
                     VStack {
                         ForEachParticipant(filter: .canPublishMedia) { _ in
-                            ParticipantView(showInformation: false)
-                                .background(Color(.darkGray))
-                                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                .cornerRadius(6)
+
+                            ZStack(alignment: .topLeading) {
+
+                                ParticipantView(showInformation: false)
+                                    .background(Color(.darkGray))
+                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                    .cornerRadius(6)
+
+                                SwitchCameraButton()
+                                    .padding()
+                            }
                         }
                     }
 
