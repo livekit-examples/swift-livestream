@@ -28,12 +28,16 @@ struct WelcomeView: View {
 
             Spacer()
 
-            StyledButton(title: "Start a livestream", style: .primary) {
+            StyledButton(style: .primary) {
                 roomCtx.set(step: .streamerPrepare)
+            } label: {
+                Text("Start a livestream")
             }
 
-            StyledButton(title: "Join a livestream") {
+            StyledButton {
                 roomCtx.set(step: .viewerPrepare)
+            } label: {
+                Text("Join a livestream")
             }
         }
         .padding()

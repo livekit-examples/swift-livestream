@@ -6,31 +6,34 @@ struct BlueButtonStyle: ButtonStyle {
         configuration.label
             .foregroundColor(configuration.isPressed ? color : Color.white)
             .background(configuration.isPressed ? Color.white : color)
+            .contentShape(Rectangle())
             .cornerRadius(6.0)
     }
 }
 
-struct StyledButton: View {
+enum StyledButtonStyle {
+    case normal
+    case primary
+    case secondary
+    case destructive
+    case clear
+}
 
-    enum Style {
-        case normal
-        case primary
-        case secondary
-        case destructive
-    }
+enum StyledButtonSize {
+    case normal
+    case small
+}
 
-    enum Size {
-        case normal
-        case small
-    }
+struct StyledButton<Label>: View where Label: View {
 
-    let title: any StringProtocol
-    var style: Style = .normal
-    var size: Size = .normal
+    var style: StyledButtonStyle = .normal
+    var size: StyledButtonSize = .normal
     var isFullWidth = true
     var isBusy: Bool = false
     var isEnabled: Bool = true
+
     let action: () -> Void
+    let label: () -> Label
 
     var body: some View {
         Button {
@@ -41,7 +44,7 @@ struct StyledButton: View {
                     ProgressView()
                         .controlSize(.small)
                 }
-                Text(title)
+                label()
                     .font(.system(size: size.toFontSize()))
             }
             .padding(.horizontal, size.toHPadding())
@@ -55,7 +58,7 @@ struct StyledButton: View {
     }
 }
 
-private extension StyledButton.Style {
+private extension StyledButtonStyle {
 
     func toColor() -> Color {
         switch self {
@@ -63,11 +66,12 @@ private extension StyledButton.Style {
         case .primary: return Color("Primary")
         case .secondary: return Color("Secondary")
         case .destructive: return Color("Destructive")
+        case .clear: return Color.clear
         }
     }
 }
 
-private extension StyledButton.Size {
+private extension StyledButtonSize {
 
     func toFontSize() -> Double {
         switch self {

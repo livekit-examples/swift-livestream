@@ -22,12 +22,16 @@ struct ViewerPrepareView: View {
 
             Spacer()
 
-            StyledButton(title: "Join", style: .primary, isBusy: roomCtx.connectBusy) {
+            StyledButton(style: .primary, isBusy: roomCtx.connectBusy) {
                 roomCtx.join()
+            } label: {
+                Text("Join")
             }
 
-            StyledButton(title: "Back", isEnabled: !roomCtx.connectBusy) {
+            StyledButton(isEnabled: !roomCtx.connectBusy) {
                 roomCtx.backToWelcome()
+            } label: {
+                Text("Back")
             }
         }
         .padding()

@@ -28,20 +28,23 @@ struct MessageBarView: View {
                 .cornerRadius(6)
                 .frame(maxWidth: .infinity)
 
-            StyledButton(title: "Send",
-                         style: .secondary,
+            StyledButton(style: .secondary,
                          size: .small,
                          isFullWidth: false,
                          isEnabled: roomCtx.canSendMessage) {
 
                 roomCtx.send()
+            } label: {
+                Text("Send")
             }
 
             if !roomCtx.isStreamHost {
 
                 let handRaised = room.localParticipant?.typedMetadata.handRaised ?? false
 
-                Button {
+                StyledButton(style: .clear,
+                             size: .small,
+                             isFullWidth: false) {
                     if handRaised {
                         roomCtx.leave()
                     } else {
@@ -49,15 +52,23 @@ struct MessageBarView: View {
                     }
                 } label: {
                     Image(systemName: handRaised ? "hand.wave.fill" : "hand.wave")
-                        .foregroundColor(handRaised ? Color.red : Color.gray)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 12, height: 12)
+                        .foregroundColor(handRaised ? Color("Primary") : Color.gray)
                 }
             }
 
-            Button {
+            StyledButton(style: .clear,
+                         size: .small,
+                         isFullWidth: false) {
                 moreAction()
             } label: {
                 Image(systemName: "ellipsis")
+                    .resizable()
+                    .scaledToFit()
                     .rotationEffect(.degrees(90))
+                    .frame(width: 12, height: 12)
                     .foregroundColor(Color("Secondary"))
             }
         }

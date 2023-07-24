@@ -21,11 +21,12 @@ struct OptionsSheet: View {
                     Text("\(room.name ?? "(Unknown)")")
                 }
 
-                StyledButton(title: roomCtx.isStreamOwner ? "End stream" : "Leave stream",
-                             style: .destructive,
+                StyledButton(style: .destructive,
                              isBusy: roomCtx.endStreamBusy) {
 
                     roomCtx.leave()
+                } label: {
+                    Text(roomCtx.isStreamOwner ? "End stream" : "Leave stream")
                 }
             }
         }

@@ -43,16 +43,18 @@ struct UserTileView: View {
     }
 
     func actionButton(title: String,
-                      style: StyledButton.Style,
+                      style: StyledButtonStyle,
                       isBusy: Bool = false,
                       action: @escaping () -> Void) -> some View {
 
-        StyledButton(title: title,
-                     style: style,
+        StyledButton(style: style,
                      size: .small,
                      isFullWidth: false,
                      isBusy: isBusy,
-                     action: action)
+                     action: action,
+                     label: {
+                        Text(title)
+                     })
     }
 
     var body: some View {

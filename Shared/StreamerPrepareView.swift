@@ -32,12 +32,16 @@ struct StreamerPrepareView: View {
 
             Spacer()
 
-            StyledButton(title: "Go live", style: .primary, isBusy: roomCtx.connectBusy) {
+            StyledButton(style: .primary, isBusy: roomCtx.connectBusy) {
                 roomCtx.startPublisher()
+            } label: {
+                Text("Go live")
             }
 
-            StyledButton(title: "Back") {
+            StyledButton {
                 roomCtx.backToWelcome()
+            } label: {
+                Text("Back")
             }
         }
         .padding()
