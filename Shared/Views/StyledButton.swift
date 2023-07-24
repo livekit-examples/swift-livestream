@@ -1,5 +1,15 @@
 import SwiftUI
 
+struct BlueButtonStyle: ButtonStyle {
+    let color: Color
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .foregroundColor(configuration.isPressed ? color : Color.white)
+            .background(configuration.isPressed ? Color.white : color)
+            .cornerRadius(6.0)
+    }
+}
+
 struct StyledButton: View {
 
     enum Style {
@@ -29,6 +39,7 @@ struct StyledButton: View {
             HStack(spacing: 10) {
                 if isBusy {
                     ProgressView()
+                        .controlSize(.small)
                 }
                 Text(title)
                     .font(.system(size: size.toFontSize()))
@@ -37,9 +48,9 @@ struct StyledButton: View {
             .padding(.vertical, size.toVPadding())
             .frame(maxWidth: isFullWidth ? .infinity : nil)
         }
+        .buttonStyle(BlueButtonStyle(color: style.toColor()))
         .disabled(isBusy || !isEnabled)
-        .foregroundColor(.white.opacity((isBusy || !isEnabled) ? 0.5 : 1))
-        .background(style.toColor())
+        .opacity((isBusy || !isEnabled) ? 0.5 : 1)
         .cornerRadius(6)
     }
 }
