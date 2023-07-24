@@ -19,9 +19,9 @@ struct StreamerPrepareView: View {
             PublisherVideoPreview()
                 .padding(.vertical, 10)
 
-            StyledTextField(title: "Your name", text: $roomCtx.identity)
-
-            // StyledTextField(title: "Livestream name", text: $roomCtx.roomName)
+            StyledTextField(title: "Your name",
+                            placeholder: "Type your name...",
+                            text: $roomCtx.identity)
 
             Text("OPTIONS")
                 .font(.system(size: 14, weight: .bold))

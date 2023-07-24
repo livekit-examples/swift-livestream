@@ -10,6 +10,8 @@ struct StyledTextField: View {
     }
 
     let title: any StringProtocol
+    let placeholder: any StringProtocol
+
     @Binding var text: String
     var style: Style = .normal
 
@@ -19,7 +21,7 @@ struct StyledTextField: View {
             Text(title)
                 .fontWeight(.bold)
 
-            TextField("Type your message...", text: $text)
+            TextField(placeholder, text: $text)
                 .textFieldStyle(PlainTextFieldStyle())
                 .disableAutocorrection(true)
                 #if os(iOS)
