@@ -16,7 +16,7 @@ struct OptionsSheet: View {
                     .padding()
 
                 HStack {
-                    Text("Room:")
+                    Text("Livestream code:")
                     Spacer()
                     Text("\(room.name ?? "(Unknown)")")
                 }

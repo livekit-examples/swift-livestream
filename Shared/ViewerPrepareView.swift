@@ -16,7 +16,7 @@ struct ViewerPrepareView: View {
             Text("Join Livestream")
                 .font(.system(size: 30, weight: .bold))
 
-            StyledTextField(title: "Livestream name", text: $roomCtx.roomName)
+            StyledTextField(title: "Livestream code", text: $roomCtx.roomName)
 
             StyledTextField(title: "Your name", text: $roomCtx.identity)
 
