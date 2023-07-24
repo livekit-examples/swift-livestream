@@ -18,7 +18,7 @@ struct MessageBarView: View {
 
         HStack {
 
-            TextField("Type your message...", text: $roomCtx.message, axis: .vertical)
+            TextField("", text: $roomCtx.message, axis: .vertical)
                 .focused($focusFields, equals: .message)
                 .lineLimit(5)
                 .font(.system(size: 12))
