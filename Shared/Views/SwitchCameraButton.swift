@@ -10,7 +10,8 @@ struct SwitchCameraButton: View {
 
         if participant is LocalParticipant, CameraCapturer.canSwitchPosition() {
 
-            Button {
+            StyledButton(style: .clear,
+                         isFullWidth: false) {
                 Task {
                     if let track = participant.firstCameraVideoTrack as? LocalVideoTrack,
                        let cameraCapturer = track.capturer as? CameraCapturer {
