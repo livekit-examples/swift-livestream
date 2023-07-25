@@ -26,7 +26,9 @@ struct ViewerPrepareView: View {
 
             Spacer()
 
-            StyledButton(style: .primary, isBusy: roomCtx.connectBusy) {
+            StyledButton(style: .primary,
+                         isBusy: roomCtx.connectBusy,
+                         isEnabled: roomCtx.canJoinLive) {
                 roomCtx.join()
             } label: {
                 Text("Join")

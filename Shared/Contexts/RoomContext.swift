@@ -15,6 +15,19 @@ final class RoomContext: NSObject, ObservableObject {
         case stream
     }
 
+    public var canGoLive: Bool {
+        !(identity.trimmingCharacters(in: .whitespacesAndNewlines)).isEmpty
+    }
+
+    public var canJoinLive: Bool {
+        !(identity.trimmingCharacters(in: .whitespacesAndNewlines)).isEmpty
+            && !(roomName.trimmingCharacters(in: .whitespacesAndNewlines)).isEmpty
+    }
+
+    public var canSendMessage: Bool {
+        !(message.trimmingCharacters(in: .whitespacesAndNewlines)).isEmpty
+    }
+
     // Network busy states
     @Published public var connectBusy = false
     @Published public var endStreamBusy = false
@@ -22,12 +35,8 @@ final class RoomContext: NSObject, ObservableObject {
 
     @Published public private(set) var step: Step = .welcome
     @Published public var events = [StreamEvent]()
-    @Published public var canSendMessage: Bool = false
-    @Published public var message: String = "" {
-        didSet {
-            canSendMessage = !message.isEmpty
-        }
-    }
+
+    @Published public var message: String = ""
 
     @Published public var roomName: String = ""
     @Published public var identity: String = ""
@@ -80,7 +89,7 @@ final class RoomContext: NSObject, ObservableObject {
 
                 logger.debug("Requesting create room...")
 
-                let meta = CreateStreamRequest.Metadata(creatorIdentity: identity,
+                let meta = CreateStreamRequest.Metadata(creatorIdentity: identity.trimmingCharacters(in: .whitespacesAndNewlines),
                                                         enableChat: enableChat,
                                                         allowParticipant: viewersCanRequestToJoin)
 
@@ -119,7 +128,8 @@ final class RoomContext: NSObject, ObservableObject {
             do {
                 logger.debug("Requesting create room...")
 
-                let req = JoinStreamRequest(roomName: roomName, identity: identity)
+                let req = JoinStreamRequest(roomName: roomName.trimmingCharacters(in: .whitespacesAndNewlines),
+                                            identity: identity.trimmingCharacters(in: .whitespacesAndNewlines))
                 let res = try await api.joinStream(req)
 
                 logger.debug("Connecting to room... \(res.connectionDetails)")
@@ -206,7 +216,7 @@ final class RoomContext: NSObject, ObservableObject {
         Task { @MainActor in
             let event = StreamEvent(type: .message,
                                     identity: room.localParticipant?.identity,
-                                    message: message)
+                                    message: message.trimmingCharacters(in: .whitespacesAndNewlines))
             events.append(event)
             message = ""
 
