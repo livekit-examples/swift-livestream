@@ -53,7 +53,7 @@
 		68288BC22A6817850025D05E /* LivestreamError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivestreamError.swift; sourceTree = "<group>"; };
 		6829376A2A594EA900BC8CD7 /* OptionsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsSheet.swift; sourceTree = "<group>"; };
 		6829376C2A599EDD00BC8CD7 /* RoomMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomMetadata.swift; sourceTree = "<group>"; };
-		683865A12A29F9A3005D0947 /* LiveKitLivestreamExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LiveKitLivestreamExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		683865A12A29F9A3005D0947 /* LK Live.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LK Live.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		683865A42A29F9A3005D0947 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		683865A62A29F9A3005D0947 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		683865A82A29F9A4005D0947 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -121,7 +121,7 @@
 		683865A22A29F9A3005D0947 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				683865A12A29F9A3005D0947 /* LiveKitLivestreamExample.app */,
+				683865A12A29F9A3005D0947 /* LK Live.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -242,7 +242,7 @@
 				68288BC02A680FD90025D05E /* LiveKit */,
 			);
 			productName = "swift-livestream";
-			productReference = 683865A12A29F9A3005D0947 /* LiveKitLivestreamExample.app */;
+			productReference = 683865A12A29F9A3005D0947 /* LK Live.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -458,7 +458,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "LiveKitLivestreamExample-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "LK Live";
+				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_NAME)";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow camera access";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Please allow microphone access";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -477,7 +477,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = io.livekit.example.livestream;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "LK Live";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
@@ -502,7 +502,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "LiveKitLivestreamExample-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "LK Live";
+				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_NAME)";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow camera access";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Please allow microphone access";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -521,7 +521,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = io.livekit.example.livestream;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "LK Live";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;

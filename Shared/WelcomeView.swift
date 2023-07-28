@@ -12,7 +12,7 @@ struct WelcomeView: View {
 
             Image("Logo")
                 .resizable()
-                .frame(width: 100, height: 100)
+                .frame(width: 200, height: 200)
                 .foregroundColor(.white)
                 .padding()
 
