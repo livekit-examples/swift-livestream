@@ -21,21 +21,24 @@ struct StyledTextField: View {
             Text(title)
                 .fontWeight(.bold)
 
-            TextField(placeholder, text: $text)
-                .textFieldStyle(PlainTextFieldStyle())
-                .disableAutocorrection(true)
-                #if os(iOS)
-                .textInputAutocapitalization(.never)
-                #endif
-                // TODO: add iOS unique view modifiers
-                // #if os(iOS)
-                // .autocapitalization(.none)
-                // .keyboardType(type.toiOSType())
-                // #endif
-                .padding()
-                .overlay(RoundedRectangle(cornerRadius: 6)
-                            .strokeBorder(Color.white.opacity(0.3),
-                                          style: StrokeStyle(lineWidth: 1.0)))
+            TextField(placeholder, text: $text, onCommit: {
+                //
+            })
+            .submitLabel(.done)
+            .textFieldStyle(PlainTextFieldStyle())
+            .disableAutocorrection(true)
+            #if os(iOS)
+            .textInputAutocapitalization(.never)
+            #endif
+            // TODO: add iOS unique view modifiers
+            // #if os(iOS)
+            // .autocapitalization(.none)
+            // .keyboardType(type.toiOSType())
+            // #endif
+            .padding()
+            .overlay(RoundedRectangle(cornerRadius: 6)
+                        .strokeBorder(Color.white.opacity(0.3),
+                                      style: StrokeStyle(lineWidth: 1.0)))
         }.frame(maxWidth: .infinity)
     }
 }
