@@ -21,6 +21,8 @@ struct OptionsSheet: View {
                     Text("\(room.name ?? "(Unknown)")")
                 }
 
+                Spacer()
+
                 StyledButton(style: .destructive,
                              isBusy: roomCtx.endStreamBusy) {
 

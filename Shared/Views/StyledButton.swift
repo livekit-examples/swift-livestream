@@ -46,6 +46,7 @@ struct StyledButton<Label>: View where Label: View {
                 }
                 label()
                     .font(.system(size: size.toFontSize()))
+                    .fontWeight(.bold)
             }
             .padding(.horizontal, size.toHPadding())
             .padding(.vertical, size.toVPadding())
@@ -82,14 +83,14 @@ private extension StyledButtonSize {
 
     func toVPadding() -> Double {
         switch self {
-        case .normal: return 10
+        case .normal: return 13
         case .small: return 8
         }
     }
 
     func toHPadding() -> Double {
         switch self {
-        case .normal: return 15
+        case .normal: return 20
         case .small: return 10
         }
     }
