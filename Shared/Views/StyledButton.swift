@@ -4,10 +4,11 @@ struct BlueButtonStyle: ButtonStyle {
     let color: Color
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-            .foregroundColor(configuration.isPressed ? color : Color.white)
-            .background(configuration.isPressed ? Color.white : color)
+            .foregroundColor(Color.white)
+            .background(color)
             .contentShape(Rectangle())
             .cornerRadius(6.0)
+            .opacity(configuration.isPressed ? 0.5 : 1)
     }
 }
 

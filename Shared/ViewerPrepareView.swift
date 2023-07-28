@@ -11,7 +11,7 @@ struct ViewerPrepareView: View {
 
     var body: some View {
 
-        VStack(alignment: .leading, spacing: 20) {
+        VStack(alignment: .leading, spacing: 12) {
 
             Text("Join Livestream")
                 .font(.system(size: 30, weight: .bold))
