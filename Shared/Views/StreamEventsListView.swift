@@ -18,7 +18,7 @@ struct StreamEventsListView: View {
                     }
                     .onChange(of: roomCtx.events.count) { _ in
                         withAnimation {
-                            if let lastId = roomCtx.events.last {
+                            if let lastId = roomCtx.events.last?.id {
                                 proxy.scrollTo(lastId)
                             }
                         }

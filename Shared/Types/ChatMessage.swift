@@ -1,17 +1,25 @@
 import SwiftUI
 import LiveKit
 
-struct ChatMessage: Codable, Hashable, Identifiable {
+struct ChatMessage: Codable, Identifiable {
 
-    var id: String?
+    let id: String
+    var participant: Participant?
 
+    // Codable
     let timestamp: Int
     let message: String
-    var participant: Participant?
 
     private enum CodingKeys: String, CodingKey {
         case timestamp = "timestamp",
              message = "message"
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = UUID().uuidString
+        self.timestamp = try container.decode(Int.self, forKey: .timestamp)
+        self.message = try container.decode(String.self, forKey: .message)
     }
 
     init(timestamp: Int = 0,
@@ -22,11 +30,5 @@ struct ChatMessage: Codable, Hashable, Identifiable {
         self.timestamp = timestamp
         self.message = message
         self.participant = participant
-    }
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-        hasher.combine(timestamp)
-        hasher.combine(message)
     }
 }
