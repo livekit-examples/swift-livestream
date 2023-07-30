@@ -5,7 +5,7 @@ struct StreamEventTileView: View {
 
     @EnvironmentObject var room: Room
 
-    let entry: ReceivedChatMessage
+    let entry: ChatMessage
 
     var body: some View {
 

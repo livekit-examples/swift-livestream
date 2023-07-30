@@ -10,7 +10,7 @@ struct StreamEventsListView: View {
                 Spacer()
                     .frame(height: 50)
                 LazyVStack(spacing: 12) {
-                    ForEach(roomCtx.events, id: \.self) { entry in
+                    ForEach(roomCtx.events) { entry in
                         StreamEventTileView(entry: entry)
                             .frame(maxWidth: .infinity)
                             .padding(.horizontal, 10)
