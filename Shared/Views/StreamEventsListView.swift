@@ -10,7 +10,7 @@ struct StreamEventsListView: View {
                 Spacer()
                     .frame(height: 50)
                 LazyVStack(spacing: 12) {
-                    ForEach(roomCtx.events) { entry in
+                    ForEach(roomCtx.events, id: \.self) { entry in
                         StreamEventTileView(entry: entry)
                             .frame(maxWidth: .infinity)
                             .padding(.horizontal, 10)
@@ -18,7 +18,7 @@ struct StreamEventsListView: View {
                     }
                     .onChange(of: roomCtx.events.count) { _ in
                         withAnimation {
-                            if let lastId = roomCtx.events.last?.id {
+                            if let lastId = roomCtx.events.last {
                                 proxy.scrollTo(lastId)
                             }
                         }

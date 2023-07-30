@@ -34,7 +34,7 @@ final class RoomContext: NSObject, ObservableObject {
     @Published public var inviteBusy: Set<String> = []
 
     @Published public private(set) var step: Step = .welcome
-    @Published public var events = [StreamEvent]()
+    @Published public var events = [ChatMessage]()
 
     @Published public var message: String = ""
 
@@ -214,13 +214,15 @@ final class RoomContext: NSObject, ObservableObject {
 
     public func send() {
         Task { @MainActor in
-            let event = StreamEvent(type: .message,
-                                    identity: room.localParticipant?.identity,
-                                    message: message.trimmingCharacters(in: .whitespacesAndNewlines))
-            events.append(event)
+            let trimmedMessage = self.message.trimmingCharacters(in: .whitespacesAndNewlines)
+            let chatMessage = ChatMessage(timestamp: 0,
+                                          message: trimmedMessage,
+                                          participant: self.room.localParticipant)
+
+            events.append(chatMessage)
             message = ""
 
-            guard let jsonData = try? encoder.encode(event) else { return }
+            guard let jsonData = try? encoder.encode(chatMessage) else { return }
             room.localParticipant?.publish(data: jsonData)
         }
     }
@@ -230,8 +232,9 @@ extension RoomContext: RoomDelegate {
 
     func room(_ room: Room, participant: RemoteParticipant?, didReceiveData data: Data, topic: String) {
         Task { @MainActor in
-            guard let event = try? decoder.decode(StreamEvent.self, from: data) else { return }
-            events.append(event)
+            guard var chatMessage = try? decoder.decode(ChatMessage.self, from: data) else { return }
+            chatMessage.participant = participant
+            events.append(chatMessage)
         }
     }
 
