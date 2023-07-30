@@ -5,6 +5,8 @@ import Logging
 
 final class RoomContext: NSObject, ObservableObject {
 
+    static let chatTopic = "lk-chat-topic"
+
     let api = API(apiBaseURLString: "https://livestream-mobile-backend.vercel.app/")
     let room = Room()
 
@@ -223,7 +225,7 @@ final class RoomContext: NSObject, ObservableObject {
             message = ""
 
             guard let jsonData = try? encoder.encode(chatMessage) else { return }
-            room.localParticipant?.publish(data: jsonData)
+            room.localParticipant?.publish(data: jsonData, topic: RoomContext.chatTopic)
         }
     }
 }
@@ -231,6 +233,9 @@ final class RoomContext: NSObject, ObservableObject {
 extension RoomContext: RoomDelegate {
 
     func room(_ room: Room, participant: RemoteParticipant?, didReceiveData data: Data, topic: String) {
+        // Check if chat topic
+        guard topic == RoomContext.chatTopic else { return }
+
         Task { @MainActor in
             guard var chatMessage = try? decoder.decode(ChatMessage.self, from: data) else { return }
             chatMessage.participant = participant
