@@ -1,5 +1,29 @@
 import SwiftUI
 import LiveKit
+import NukeUI
+
+@MainActor
+func image(for participant: Participant?) -> some View {
+    Group {
+        if let participant = participant {
+            LazyImage(url: URL(string: "https://api.multiavatar.com/\(participant.identity).png")) { state in
+                if let image = state.image {
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                } else {
+                    Rectangle()
+                        .foregroundColor(Color.white.opacity(0.1))
+                }
+            }
+        } else {
+            Rectangle()
+                .foregroundColor(Color.white.opacity(0.1))
+        }
+    }
+    .background(Color.clear)
+    .clipShape(Circle())
+}
 
 struct StreamEventTileView: View {
 
@@ -11,18 +35,8 @@ struct StreamEventTileView: View {
 
         HStack(alignment: .top, spacing: 10) {
 
-            Group {
-                if let participant = entry.participant {
-                    AsyncImage(url: URL(string: "https://api.multiavatar.com/\(participant.identity).png")) { image in
-                        image.resizable()
-                    } placeholder: {
-                        ProgressView()
-                    }
-                } else {
-                    Circle()
-                }
-            }
-            .frame(width: 30, height: 30)
+            image(for: entry.participant)
+                .frame(width: 30, height: 30)
 
             VStack(alignment: .leading, spacing: 5) {
 

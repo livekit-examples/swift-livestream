@@ -40,6 +40,7 @@
 		6895EA442A38B7FA00519535 /* LiveKitComponents in Frameworks */ = {isa = PBXBuildFile; productRef = 6895EA432A38B7FA00519535 /* LiveKitComponents */; };
 		68A108C72A5CFC2E00200FAE /* HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A108C62A5CFC2E00200FAE /* HideKeyboard.swift */; };
 		68D594E42A78B1C500ABBD2C /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 68D594E32A78B1C500ABBD2C /* AlertToast */; };
+		68D594E82A78C67500ABBD2C /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 68D594E72A78C67500ABBD2C /* NukeUI */; };
 		68F4BE9A2A76903500E847F9 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F4BE992A76903500E847F9 /* ChatMessage.swift */; };
 		68FBA36F2A381A530015853E /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBA36E2A381A530015853E /* WelcomeView.swift */; };
 		68FBA3712A381F650015853E /* StyledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBA3702A381F650015853E /* StyledButton.swift */; };
@@ -91,6 +92,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				68177E062A56F71500821136 /* Logging in Frameworks */,
+				68D594E82A78C67500ABBD2C /* NukeUI in Frameworks */,
 				68177E0B2A5708C600821136 /* SwiftUIBackports in Frameworks */,
 				682937682A59498800BC8CD7 /* SFSafeSymbols in Frameworks */,
 				68D594E42A78B1C500ABBD2C /* AlertToast in Frameworks */,
@@ -246,6 +248,7 @@
 				682937672A59498800BC8CD7 /* SFSafeSymbols */,
 				68288BC02A680FD90025D05E /* LiveKit */,
 				68D594E32A78B1C500ABBD2C /* AlertToast */,
+				68D594E72A78C67500ABBD2C /* NukeUI */,
 			);
 			productName = "swift-livestream";
 			productReference = 683865A12A29F9A3005D0947 /* LK Live.app */;
@@ -280,6 +283,7 @@
 				68177E092A5708C600821136 /* XCRemoteSwiftPackageReference "SwiftUIBackports" */,
 				682937662A59498800BC8CD7 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
 				68D594E22A78B1C400ABBD2C /* XCRemoteSwiftPackageReference "AlertToast" */,
+				68D594E62A78C67500ABBD2C /* XCRemoteSwiftPackageReference "Nuke" */,
 			);
 			productRefGroup = 683865A22A29F9A3005D0947 /* Products */;
 			projectDirPath = "";
@@ -596,6 +600,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		68D594E62A78C67500ABBD2C /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -626,6 +638,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 68D594E22A78B1C400ABBD2C /* XCRemoteSwiftPackageReference "AlertToast" */;
 			productName = AlertToast;
+		};
+		68D594E72A78C67500ABBD2C /* NukeUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 68D594E62A78C67500ABBD2C /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = NukeUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
