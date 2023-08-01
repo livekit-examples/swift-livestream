@@ -65,7 +65,7 @@ struct StreamView: View {
                     // Overlay
                     VStack(alignment: .trailing) {
 
-                        HStack(alignment: .bottom, spacing: 10) {
+                        HStack(alignment: .bottom, spacing: 8) {
 
                             Spacer()
 
