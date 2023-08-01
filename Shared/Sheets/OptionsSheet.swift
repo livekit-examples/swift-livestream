@@ -1,11 +1,14 @@
 import SwiftUI
 import LiveKit
 import LiveKitComponents
+import AlertToast
 
 struct OptionsSheet: View {
 
     @EnvironmentObject var roomCtx: RoomContext
     @EnvironmentObject var room: Room
+
+    @State var showCopiedToast: Bool = false
 
     var body: some View {
         ScrollView {
@@ -18,7 +21,22 @@ struct OptionsSheet: View {
                 HStack {
                     Text("Livestream code:")
                     Spacer()
-                    Text("\(room.name ?? "(Unknown)")")
+                    if let roomName = room.name {
+                        StyledButton(style: .secondary,
+                                     size: .small,
+                                     isFullWidth: false) {
+                            #if os(iOS)
+                            UIPasteboard.general.string = roomName
+                            #elseif os(macOS)
+                            let pasteboard = NSPasteboard.general
+                            pasteboard.declareTypes([.string], owner: nil)
+                            pasteboard.setString(roomName, forType: .string)
+                            #endif
+                            showCopiedToast = true
+                        } label: {
+                            Text(roomName)
+                        }
+                    }
                 }
 
                 Spacer()
@@ -37,5 +55,8 @@ struct OptionsSheet: View {
         .presentationBackground(.black)
         .padding()
         .frame(minWidth: 300)
+        .toast(isPresenting: $showCopiedToast) {
+            AlertToast(type: .regular, title: "Copied!")
+        }
     }
 }

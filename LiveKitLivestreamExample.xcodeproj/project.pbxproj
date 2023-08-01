@@ -39,6 +39,7 @@
 		68928F8F2A40CB9C005F084A /* StreamEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68928F8E2A40CB9C005F084A /* StreamEvent.swift */; };
 		6895EA442A38B7FA00519535 /* LiveKitComponents in Frameworks */ = {isa = PBXBuildFile; productRef = 6895EA432A38B7FA00519535 /* LiveKitComponents */; };
 		68A108C72A5CFC2E00200FAE /* HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A108C62A5CFC2E00200FAE /* HideKeyboard.swift */; };
+		68D594E42A78B1C500ABBD2C /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 68D594E32A78B1C500ABBD2C /* AlertToast */; };
 		68F4BE9A2A76903500E847F9 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F4BE992A76903500E847F9 /* ChatMessage.swift */; };
 		68FBA36F2A381A530015853E /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBA36E2A381A530015853E /* WelcomeView.swift */; };
 		68FBA3712A381F650015853E /* StyledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBA3702A381F650015853E /* StyledButton.swift */; };
@@ -92,6 +93,7 @@
 				68177E062A56F71500821136 /* Logging in Frameworks */,
 				68177E0B2A5708C600821136 /* SwiftUIBackports in Frameworks */,
 				682937682A59498800BC8CD7 /* SFSafeSymbols in Frameworks */,
+				68D594E42A78B1C500ABBD2C /* AlertToast in Frameworks */,
 				6895EA442A38B7FA00519535 /* LiveKitComponents in Frameworks */,
 				68288BC12A680FD90025D05E /* LiveKit in Frameworks */,
 			);
@@ -243,6 +245,7 @@
 				68177E0A2A5708C600821136 /* SwiftUIBackports */,
 				682937672A59498800BC8CD7 /* SFSafeSymbols */,
 				68288BC02A680FD90025D05E /* LiveKit */,
+				68D594E32A78B1C500ABBD2C /* AlertToast */,
 			);
 			productName = "swift-livestream";
 			productReference = 683865A12A29F9A3005D0947 /* LK Live.app */;
@@ -276,6 +279,7 @@
 				68177E042A56F71500821136 /* XCRemoteSwiftPackageReference "swift-log" */,
 				68177E092A5708C600821136 /* XCRemoteSwiftPackageReference "SwiftUIBackports" */,
 				682937662A59498800BC8CD7 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
+				68D594E22A78B1C400ABBD2C /* XCRemoteSwiftPackageReference "AlertToast" */,
 			);
 			productRefGroup = 683865A22A29F9A3005D0947 /* Products */;
 			projectDirPath = "";
@@ -584,6 +588,14 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		68D594E22A78B1C400ABBD2C /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -609,6 +621,11 @@
 		6895EA432A38B7FA00519535 /* LiveKitComponents */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LiveKitComponents;
+		};
+		68D594E32A78B1C500ABBD2C /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 68D594E22A78B1C400ABBD2C /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
