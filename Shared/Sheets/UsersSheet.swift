@@ -1,15 +1,29 @@
-import SwiftUI
+/*
+ * Copyright 2023 LiveKit
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import LiveKit
 import LiveKitComponents
+import SwiftUI
 
 extension Room {
-
     var typedMetadata: RoomMetadata {
-
         guard let string = metadata,
               let data = string.data(using: .utf8),
-              let obj = try? decoder.decode(RoomMetadata.self, from: data) else {
-
+              let obj = try? decoder.decode(RoomMetadata.self, from: data)
+        else {
             return RoomMetadata()
         }
 
@@ -18,13 +32,11 @@ extension Room {
 }
 
 extension Participant {
-
     var typedMetadata: ParticipantMetadata {
-
         guard let string = metadata,
               let data = string.data(using: .utf8),
-              let obj = try? decoder.decode(ParticipantMetadata.self, from: data) else {
-
+              let obj = try? decoder.decode(ParticipantMetadata.self, from: data)
+        else {
             return ParticipantMetadata()
         }
 
@@ -45,8 +57,7 @@ extension Participant {
     }
 }
 
-extension Collection where Element == Participant {
-
+extension Collection<Participant> {
     var sortedByJoinedDate: [Participant] {
         sorted { p1, p2 in
             if p1 is LocalParticipant { return true }
@@ -57,7 +68,6 @@ extension Collection where Element == Participant {
 }
 
 struct UsersSheet: View {
-
     @EnvironmentObject var roomCtx: RoomContext
     @EnvironmentObject var room: Room
 
@@ -70,7 +80,7 @@ struct UsersSheet: View {
     }
 
     private func filteredByHosts() -> [Participant] {
-        room.allParticipants.values.filter { $0.canPublish }
+        room.allParticipants.values.filter(\.canPublish)
     }
 
     private func filteredByViewers() -> [Participant] {
@@ -78,7 +88,6 @@ struct UsersSheet: View {
     }
 
     var body: some View {
-
         let invited = filteredByInvited().sortedByJoinedDate
         let joinRequests = filteredByJoinRequests().sortedByJoinedDate
         let hosts = filteredByHosts().sortedByJoinedDate
@@ -86,7 +95,6 @@ struct UsersSheet: View {
 
         ScrollView {
             LazyVStack(spacing: 20) {
-
                 Text("Users")
                     .font(.system(size: 25, weight: .bold))
                     .padding()
@@ -94,7 +102,6 @@ struct UsersSheet: View {
                 /* Invited users */
 
                 if invited.count > 0 {
-
                     Text("Invited to be a co-host")
                         .textCase(.uppercase)
                         .foregroundColor(Color.gray)
@@ -111,7 +118,6 @@ struct UsersSheet: View {
                 /* Join request users */
 
                 if joinRequests.count > 0 {
-
                     Text("Requests to join")
                         .textCase(.uppercase)
                         .foregroundColor(Color.gray)
@@ -126,7 +132,6 @@ struct UsersSheet: View {
                 }
 
                 if hosts.count > 0 {
-
                     Text("Hosts")
                         .textCase(.uppercase)
                         .foregroundColor(Color.gray)
@@ -141,7 +146,6 @@ struct UsersSheet: View {
                 }
 
                 if viewers.count > 0 {
-
                     Text("Viewers")
                         .textCase(.uppercase)
                         .foregroundColor(Color.gray)
@@ -155,8 +159,7 @@ struct UsersSheet: View {
                     }
                 }
 
-                if let lp = room.localParticipant, !lp.canPublish && !lp.handRaised && !lp.invited {
-
+                if !room.localParticipant.canPublish, !room.localParticipant.handRaised, !room.localParticipant.invited {
                     Button {
                         roomCtx.raiseHand()
                     } label: {

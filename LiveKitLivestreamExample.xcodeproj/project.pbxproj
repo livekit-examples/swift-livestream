@@ -12,7 +12,6 @@
 		68177E082A57055200821136 /* AppContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68177E072A57055200821136 /* AppContext.swift */; };
 		68177E0B2A5708C600821136 /* SwiftUIBackports in Frameworks */ = {isa = PBXBuildFile; productRef = 68177E0A2A5708C600821136 /* SwiftUIBackports */; };
 		68177E0D2A570F5F00821136 /* ParticipantMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68177E0C2A570F5F00821136 /* ParticipantMetadata.swift */; };
-		68288BC12A680FD90025D05E /* LiveKit in Frameworks */ = {isa = PBXBuildFile; productRef = 68288BC02A680FD90025D05E /* LiveKit */; };
 		68288BC32A6817850025D05E /* LivestreamError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68288BC22A6817850025D05E /* LivestreamError.swift */; };
 		682937682A59498800BC8CD7 /* SFSafeSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = 682937672A59498800BC8CD7 /* SFSafeSymbols */; };
 		6829376B2A594EA900BC8CD7 /* OptionsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6829376A2A594EA900BC8CD7 /* OptionsSheet.swift */; };
@@ -21,6 +20,8 @@
 		683865A72A29F9A3005D0947 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683865A62A29F9A3005D0947 /* MainView.swift */; };
 		683865A92A29F9A4005D0947 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 683865A82A29F9A4005D0947 /* Assets.xcassets */; };
 		683865AD2A29F9A4005D0947 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 683865AC2A29F9A4005D0947 /* Preview Assets.xcassets */; };
+		687805892AF9F38000215259 /* LiveKit in Frameworks */ = {isa = PBXBuildFile; productRef = 687805882AF9F38000215259 /* LiveKit */; };
+		6878058B2AF9F38000215259 /* LiveKitComponents in Frameworks */ = {isa = PBXBuildFile; productRef = 6878058A2AF9F38000215259 /* LiveKitComponents */; };
 		687E311E2A2DCA1600032AE6 /* RoomContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E311D2A2DCA1600032AE6 /* RoomContext.swift */; };
 		687E31232A2E2AE700032AE6 /* StreamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E31222A2E2AE700032AE6 /* StreamView.swift */; };
 		687E31262A2E396900032AE6 /* SwitchCameraButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E31252A2E396900032AE6 /* SwitchCameraButton.swift */; };
@@ -37,7 +38,6 @@
 		6889F0D32A52AF96004D54FB /* ConnectionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889F0D22A52AF96004D54FB /* ConnectionDetails.swift */; };
 		6889F0D52A52DF62004D54FB /* InviteToStage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889F0D42A52DF61004D54FB /* InviteToStage.swift */; };
 		68928F8F2A40CB9C005F084A /* StreamEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68928F8E2A40CB9C005F084A /* StreamEvent.swift */; };
-		6895EA442A38B7FA00519535 /* LiveKitComponents in Frameworks */ = {isa = PBXBuildFile; productRef = 6895EA432A38B7FA00519535 /* LiveKitComponents */; };
 		68A108C72A5CFC2E00200FAE /* HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A108C62A5CFC2E00200FAE /* HideKeyboard.swift */; };
 		68D594E42A78B1C500ABBD2C /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 68D594E32A78B1C500ABBD2C /* AlertToast */; };
 		68D594E82A78C67500ABBD2C /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 68D594E72A78C67500ABBD2C /* NukeUI */; };
@@ -94,10 +94,10 @@
 				68177E062A56F71500821136 /* Logging in Frameworks */,
 				68D594E82A78C67500ABBD2C /* NukeUI in Frameworks */,
 				68177E0B2A5708C600821136 /* SwiftUIBackports in Frameworks */,
+				687805892AF9F38000215259 /* LiveKit in Frameworks */,
 				682937682A59498800BC8CD7 /* SFSafeSymbols in Frameworks */,
 				68D594E42A78B1C500ABBD2C /* AlertToast in Frameworks */,
-				6895EA442A38B7FA00519535 /* LiveKitComponents in Frameworks */,
-				68288BC12A680FD90025D05E /* LiveKit in Frameworks */,
+				6878058B2AF9F38000215259 /* LiveKitComponents in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,13 +242,13 @@
 			);
 			name = LiveKitLivestreamExample;
 			packageProductDependencies = (
-				6895EA432A38B7FA00519535 /* LiveKitComponents */,
 				68177E052A56F71500821136 /* Logging */,
 				68177E0A2A5708C600821136 /* SwiftUIBackports */,
 				682937672A59498800BC8CD7 /* SFSafeSymbols */,
-				68288BC02A680FD90025D05E /* LiveKit */,
 				68D594E32A78B1C500ABBD2C /* AlertToast */,
 				68D594E72A78C67500ABBD2C /* NukeUI */,
+				687805882AF9F38000215259 /* LiveKit */,
+				6878058A2AF9F38000215259 /* LiveKitComponents */,
 			);
 			productName = "swift-livestream";
 			productReference = 683865A12A29F9A3005D0947 /* LK Live.app */;
@@ -400,6 +400,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -451,6 +452,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
@@ -470,7 +472,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "LiveKitLivestreamExample-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_NAME)";
+				INFOPLIST_KEY_CFBundleDisplayName = "LK Live";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow camera access";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Please allow microphone access";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -514,7 +516,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "LiveKitLivestreamExample-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_NAME)";
+				INFOPLIST_KEY_CFBundleDisplayName = "LK Live";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow camera access";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Please allow microphone access";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -621,16 +623,16 @@
 			package = 68177E092A5708C600821136 /* XCRemoteSwiftPackageReference "SwiftUIBackports" */;
 			productName = SwiftUIBackports;
 		};
-		68288BC02A680FD90025D05E /* LiveKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = LiveKit;
-		};
 		682937672A59498800BC8CD7 /* SFSafeSymbols */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 682937662A59498800BC8CD7 /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
 			productName = SFSafeSymbols;
 		};
-		6895EA432A38B7FA00519535 /* LiveKitComponents */ = {
+		687805882AF9F38000215259 /* LiveKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LiveKit;
+		};
+		6878058A2AF9F38000215259 /* LiveKitComponents */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LiveKitComponents;
 		};

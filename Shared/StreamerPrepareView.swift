@@ -1,8 +1,23 @@
-import SwiftUI
+/*
+ * Copyright 2023 LiveKit
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import LiveKit
+import SwiftUI
 
 struct StreamerPrepareView: View {
-
     @EnvironmentObject var roomCtx: RoomContext
     @EnvironmentObject var room: Room
 
@@ -10,9 +25,7 @@ struct StreamerPrepareView: View {
     @State private var disconnectReason: DisconnectReason?
 
     var body: some View {
-
         VStack(alignment: .leading, spacing: 12) {
-
             Text("Start Livestream")
                 .font(.system(size: 30, weight: .bold))
 
@@ -34,7 +47,8 @@ struct StreamerPrepareView: View {
 
             StyledButton(style: .primary,
                          isBusy: roomCtx.connectBusy,
-                         isEnabled: roomCtx.canGoLive) {
+                         isEnabled: roomCtx.canGoLive)
+            {
                 roomCtx.startPublisher()
             } label: {
                 Text("Go live")
@@ -48,16 +62,16 @@ struct StreamerPrepareView: View {
         }
         .padding()
         .onChange(of: room.connectionState) { _ in
-            if case .disconnected(let reason) = room.connectionState {
-                self.disconnectReason = reason
-                self.showDialog = true
+            if case let .disconnected(reason) = room.connectionState {
+                disconnectReason = reason
+                showDialog = true
             }
         }
         .alert(isPresented: $showDialog) {
             Alert(title: Text("Disconnected"),
                   message: Text("Reason: " + (disconnectReason != nil
-                                                ? String(describing: disconnectReason!)
-                                                : "Unknown")))
+                          ? String(describing: disconnectReason!)
+                          : "Unknown")))
         }
     }
 }

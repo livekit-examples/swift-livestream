@@ -1,10 +1,24 @@
-import SwiftUI
+/*
+ * Copyright 2023 LiveKit
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import LiveKit
-import WebRTC
 import Logging
+import SwiftUI
 
 final class RoomContext: NSObject, ObservableObject {
-
     static let chatTopic = "lk-chat-topic"
 
     let api = API(apiBaseURLString: "https://livestream-mobile-backend.vercel.app/")
@@ -48,11 +62,11 @@ final class RoomContext: NSObject, ObservableObject {
 
     // Computed helpers
     public var isStreamOwner: Bool {
-        room.typedMetadata.creatorIdentity == room.localParticipant?.identity
+        room.typedMetadata.creatorIdentity == room.localParticipant.identity
     }
 
     public var isStreamHost: Bool {
-        room.localParticipant?.canPublish ?? false
+        room.localParticipant.canPublish
     }
 
     override init() {
@@ -100,23 +114,23 @@ final class RoomContext: NSObject, ObservableObject {
 
                 logger.debug("Connecting to room... \(res.connectionDetails)")
 
-                try await room.connect(res.connectionDetails.wsURL, res.connectionDetails.token)
+                try await room.connect(url: res.connectionDetails.wsURL, token: res.connectionDetails.token)
                 Task { @MainActor in
                     self.step = .stream
 
                     // Separate attempt to publish
                     Task {
                         do {
-                            try await room.localParticipant?.setCamera(enabled: true)
-                            try await room.localParticipant?.setMicrophone(enabled: true)
-                        } catch let error {
+                            try await room.localParticipant.setCamera(enabled: true)
+                            try await room.localParticipant.setMicrophone(enabled: true)
+                        } catch {
                             logger.error("Failed to publish, error: \(error)")
                         }
                     }
                 }
                 logger.info("Connected")
             } catch let publishError {
-                try await room.disconnect()
+                await room.disconnect()
                 logger.error("Failed to create room, error: \(publishError)")
             }
         }
@@ -136,13 +150,13 @@ final class RoomContext: NSObject, ObservableObject {
 
                 logger.debug("Connecting to room... \(res.connectionDetails)")
 
-                try await room.connect(res.connectionDetails.wsURL, res.connectionDetails.token)
+                try await room.connect(url: res.connectionDetails.wsURL, token: res.connectionDetails.token)
                 Task { @MainActor in
                     self.step = .stream
                 }
                 logger.info("Connected")
-            } catch let error {
-                try await room.disconnect()
+            } catch {
+                await room.disconnect()
                 logger.error("Failed to join room \(error)")
             }
         }
@@ -159,9 +173,9 @@ final class RoomContext: NSObject, ObservableObject {
                     try await api.stopStream()
                 } else {
                     logger.info("Disconnecting...")
-                    try await room.disconnect()
+                    await room.disconnect()
                 }
-            } catch let error {
+            } catch {
                 logger.error("Failed to leave \(error)")
             }
         }
@@ -175,7 +189,7 @@ final class RoomContext: NSObject, ObservableObject {
             do {
                 logger.info("Invite to stage \(identity)...")
                 try await api.inviteToStage(identity: identity)
-            } catch let error {
+            } catch {
                 logger.error("Failed to invite to stage \(error)")
             }
         }
@@ -186,18 +200,18 @@ final class RoomContext: NSObject, ObservableObject {
             do {
                 logger.info("Removing from stage \(String(describing: identity))...")
                 try await api.removeFromStage(identity: identity)
-            } catch let error {
+            } catch {
                 logger.error("Failed to remove from stage \(error)")
             }
         }
     }
 
-    public func reject(userId: String) {
+    public func reject(userId _: String) {
         Task {
             do {
                 logger.info("Raising hand...")
                 try await api.raiseHand()
-            } catch let error {
+            } catch {
                 logger.error("Failed to raise hand \(error)")
             }
         }
@@ -208,7 +222,7 @@ final class RoomContext: NSObject, ObservableObject {
             do {
                 logger.info("Raising hand...")
                 try await api.raiseHand()
-            } catch let error {
+            } catch {
                 logger.error("Failed to raise hand \(error)")
             }
         }
@@ -225,14 +239,13 @@ final class RoomContext: NSObject, ObservableObject {
             message = ""
 
             guard let jsonData = try? encoder.encode(chatMessage) else { return }
-            room.localParticipant?.publish(data: jsonData, topic: RoomContext.chatTopic)
+            try await room.localParticipant.publish(data: jsonData, topic: RoomContext.chatTopic)
         }
     }
 }
 
 extension RoomContext: RoomDelegate {
-
-    func room(_ room: Room, participant: RemoteParticipant?, didReceiveData data: Data, topic: String) {
+    func room(_: Room, participant: RemoteParticipant?, didReceiveData data: Data, topic: String) {
         // Check if chat topic
         guard topic == RoomContext.chatTopic else { return }
 
@@ -243,18 +256,18 @@ extension RoomContext: RoomDelegate {
         }
     }
 
-    func room(_ room: Room, didUpdate metadata: String?) {
+    func room(_: Room, didUpdate _: String?) {
         // logger.info("room metadata: \()")
     }
 
-    func room(_ room: Room, participant: Participant, didUpdate metadata: String?) {
+    func room(_: Room, participant: Participant, didUpdate _: String?) {
         logger.info("participant metadata: \(participant.typedMetadata)")
     }
 
-    func room(_ room: Room, didUpdate connectionState: ConnectionState, oldValue: ConnectionState) {
-
+    func room(_: Room, didUpdate connectionState: ConnectionState, oldValue: ConnectionState) {
         if case .disconnected = connectionState,
-           case .connected = oldValue {
+           case .connected = oldValue
+        {
             Task { @MainActor in
                 self.step = .welcome
             }
@@ -272,11 +285,10 @@ extension RoomContext: RoomDelegate {
         }
     }
 
-    func room(_ room: Room, participant: Participant, didUpdate permissions: ParticipantPermissions) {
-
+    func room(_: Room, participant: Participant, didUpdate _: ParticipantPermissions) {
         if let participant = participant as? LocalParticipant,
-           participant.canPublish {
-
+           participant.canPublish
+        {
             // Separate attempt to publish
             Task {
                 do {
@@ -288,7 +300,7 @@ extension RoomContext: RoomDelegate {
 
                     try await participant.setCamera(enabled: true)
                     try await participant.setMicrophone(enabled: true)
-                } catch let error {
+                } catch {
                     logger.error("Failed to publish, error: \(error)")
                 }
             }

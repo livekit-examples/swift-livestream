@@ -2,12 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:LiveKitLivestreamExample.xcodeproj">
+      location = "group:../components-swift">
    </FileRef>
    <FileRef
       location = "group:../client-sdk-swift">
    </FileRef>
    <FileRef
-      location = "group:../components-swift">
+      location = "group:LiveKitLivestreamExample.xcodeproj">
    </FileRef>
 </Workspace>

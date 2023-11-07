@@ -1,6 +1,22 @@
-import SwiftUI
+/*
+ * Copyright 2023 LiveKit
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import LiveKit
 import LiveKitComponents
+import SwiftUI
 import SwiftUIBackports
 
 extension Comparable {
@@ -9,12 +25,11 @@ extension Comparable {
     }
 
     func clamp(to range: ClosedRange<Self>) -> Self {
-        self.clamp(minValue: range.lowerBound, maxValue: range.upperBound)
+        clamp(minValue: range.lowerBound, maxValue: range.upperBound)
     }
 }
 
 struct StreamView: View {
-
     enum TextFields: Hashable {
         case message
     }
@@ -30,43 +45,37 @@ struct StreamView: View {
 
     var hasNotification: Bool {
         if roomCtx.isStreamOwner {
-            return room.remoteParticipants.values.filter({ $0.handRaised && !$0.canPublish }).count > 0
+            return room.remoteParticipants.values.filter { $0.handRaised && !$0.canPublish }.count > 0
         } else {
-            guard let lp = room.localParticipant else { return false }
-            return lp.invited && !lp.canPublish
+            return room.localParticipant.invited && !room.localParticipant.canPublish
         }
     }
 
     var body: some View {
-
         VStack(spacing: 0) {
-
             GeometryReader { proxy in
 
                 ZStack {
-
                     // Participants layer
                     VStack {
-                        ForEachParticipant(filter: .canPublishMedia) { _ in
-
-                            ZStack(alignment: .topLeading) {
-
-                                ParticipantView(showInformation: false)
-                                    .background(Color(.darkGray))
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                                    .cornerRadius(6)
-
-                                SwitchCameraButton()
-                                    .padding()
-                            }
-                        }
+//                        ForEachParticipant(filter: .canPublishMedia) { _ in
+//
+//                            ZStack(alignment: .topLeading) {
+//
+//                                ParticipantView(showInformation: false)
+//                                    .background(Color(.darkGray))
+//                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+//                                    .cornerRadius(6)
+//
+//                                SwitchCameraButton()
+//                                    .padding()
+//                            }
+//                        }
                     }
 
                     // Overlay
                     VStack(alignment: .trailing) {
-
                         HStack(alignment: .bottom, spacing: 8) {
-
                             Spacer()
 
                             TextLabel(text: "LIVE", style: .primary)
@@ -89,9 +98,7 @@ struct StreamView: View {
                         Spacer()
 
                         if showingEventsView {
-
                             ZStack {
-
                                 LinearGradient(gradient: Gradient(colors: [.clear, .black.opacity(0.8)]),
                                                startPoint: .top,
                                                endPoint: .bottom)
@@ -100,7 +107,6 @@ struct StreamView: View {
                                     .mask(LinearGradient(gradient: Gradient(colors: [.black, .black, .black, .clear]),
                                                          startPoint: .bottom,
                                                          endPoint: .top))
-
                             }
                             .frame(height: proxy.size.height * 0.4)
                             .transition(.opacity)
@@ -120,14 +126,14 @@ struct StreamView: View {
 
             MessageBarView(focusFields: _focusedFields,
                            moreAction: {
-                            showingOptionsSheet.toggle()
+                               showingOptionsSheet.toggle()
                            })
-                .sheet(isPresented: $showingOptionsSheet) {
-                    OptionsSheet()
-                }
-                .sheet(isPresented: $showingUsersSheet) {
-                    UsersSheet()
-                }
+                           .sheet(isPresented: $showingOptionsSheet) {
+                               OptionsSheet()
+                           }
+                           .sheet(isPresented: $showingUsersSheet) {
+                               UsersSheet()
+                           }
         }
         .onChange(of: focusedFields == .message, perform: { _ in
             withAnimation {
