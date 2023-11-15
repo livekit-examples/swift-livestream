@@ -53,7 +53,7 @@ struct StreamEventTileView: View {
 
             VStack(alignment: .leading, spacing: 5) {
                 if let participant = entry.participant {
-                    Text(participant.identity)
+                    Text(participant.identity ?? "")
                         .font(.system(size: 14))
                         .fontWeight(.bold)
                         .frame(maxWidth: .infinity, alignment: .leading)
