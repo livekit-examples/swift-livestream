@@ -58,19 +58,18 @@ struct StreamView: View {
                 ZStack {
                     // Participants layer
                     VStack {
-//                        ForEachParticipant(filter: .canPublishMedia) { _ in
-//
-//                            ZStack(alignment: .topLeading) {
-//
-//                                ParticipantView(showInformation: false)
-//                                    .background(Color(.darkGray))
-//                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-//                                    .cornerRadius(6)
-//
-//                                SwitchCameraButton()
-//                                    .padding()
-//                            }
-//                        }
+                        ForEachParticipant(filter: .canPublishVideoOrAudio) { _ in
+
+                            ZStack(alignment: .topLeading) {
+                                ParticipantView(showInformation: false)
+                                    .background(Color(.darkGray))
+                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                    .cornerRadius(6)
+
+                                SwitchCameraButton()
+                                    .padding()
+                            }
+                        }
                     }
 
                     // Overlay
