@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/kean/Nuke",
         "state": {
           "branch": null,
-          "revision": "3f666f120b63ea7de57d42e9a7c9b47f8e7a290b",
-          "version": "12.1.6"
+          "revision": "8ecbfc886da39bccb01c34abef5f2ff4073ad633",
+          "version": "12.4.0"
         }
       },
       {
@@ -51,8 +51,8 @@
         "repositoryURL": "https://github.com/apple/swift-log",
         "state": {
           "branch": null,
-          "revision": "532d8b529501fb73a2455b179e0bbb6d49b652ed",
-          "version": "1.5.3"
+          "revision": "e97a6fcb1ab07462881ac165fdbb37f067e205d5",
+          "version": "1.5.4"
         }
       },
       {
@@ -60,8 +60,8 @@
         "repositoryURL": "https://github.com/apple/swift-protobuf.git",
         "state": {
           "branch": null,
-          "revision": "07f7f26ded8df9645c072f220378879c4642e063",
-          "version": "1.25.1"
+          "revision": "65e8f29b2d63c4e38e736b25c27b83e012159be8",
+          "version": "1.25.2"
         }
       },
       {
@@ -84,11 +84,11 @@
       },
       {
         "package": "WebRTC",
-        "repositoryURL": "https://github.com/livekit/webrtc-xcframework-static.git",
+        "repositoryURL": "https://github.com/livekit/webrtc-xcframework.git",
         "state": {
           "branch": null,
-          "revision": "05fb98380b8c2c43041050be6170ffa3dbc64174",
-          "version": "114.5735.9"
+          "revision": "da80ea5be0a2b92ca805ab7ee9ad191f6d938a5f",
+          "version": "114.5735.10"
         }
       }
     ]
