@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 LiveKit
+ * Copyright 2024 LiveKit
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -101,15 +101,15 @@ class API {
         try await post(apiPath: "/api/stop_stream")
     }
 
-    public func inviteToStage(identity: String) async throws {
+    public func inviteToStage(identity: Participant.Identity) async throws {
         assert(authToken != nil)
-        let p = InviteToStageRequest(identity: identity)
+        let p = InviteToStageRequest(identity: identity.stringValue)
         try await post(apiPath: "/api/invite_to_stage", data: p)
     }
 
-    public func removeFromStage(identity: String? = nil) async throws {
+    public func removeFromStage(identity: Participant.Identity? = nil) async throws {
         assert(authToken != nil)
-        let p = InviteToStageRequest(identity: identity)
+        let p = InviteToStageRequest(identity: identity?.stringValue)
         try await post(apiPath: "/api/remove_from_stage", data: p)
     }
 

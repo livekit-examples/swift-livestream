@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 LiveKit
+ * Copyright 2024 LiveKit
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ struct UserTileView: View {
     }
 
     var isCreator: Bool {
-        room.typedMetadata.creatorIdentity == participant.identity
+        room.typedMetadata.creatorIdentity == participant.identity?.stringValue
     }
 
     var isCoHost: Bool {
@@ -77,7 +77,7 @@ struct UserTileView: View {
             image(for: participant)
                 .frame(width: 30, height: 30)
 
-            Text(participant.identity ?? "")
+            Text(String(describing: participant.identity))
                 .font(.system(size: 14, weight: .bold))
 
             if isCreator || isCoHost {
@@ -101,7 +101,9 @@ struct UserTileView: View {
                 actionButton(title: participant.invited ? "Cancel" : "Reject",
                              style: .destructive)
                 {
-                    roomCtx.removeFromStage(identity: participant.identity)
+                    if let identity = participant.identity {
+                        roomCtx.removeFromStage(identity: identity)
+                    }
                 }
             }
 
