@@ -41,12 +41,23 @@
 		68A108C72A5CFC2E00200FAE /* HideKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A108C62A5CFC2E00200FAE /* HideKeyboard.swift */; };
 		68D594E42A78B1C500ABBD2C /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 68D594E32A78B1C500ABBD2C /* AlertToast */; };
 		68D594E82A78C67500ABBD2C /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 68D594E72A78C67500ABBD2C /* NukeUI */; };
+		68E21C8A2B8CCC440079CD03 /* LiveKitLivestreamExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E21C892B8CCC440079CD03 /* LiveKitLivestreamExampleTests.swift */; };
 		68F4BE9A2A76903500E847F9 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F4BE992A76903500E847F9 /* ChatMessage.swift */; };
 		68FBA36F2A381A530015853E /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBA36E2A381A530015853E /* WelcomeView.swift */; };
 		68FBA3712A381F650015853E /* StyledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBA3702A381F650015853E /* StyledButton.swift */; };
 		68FBA3732A3824020015853E /* StreamerPrepareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBA3722A3824020015853E /* StreamerPrepareView.swift */; };
 		68FBA3752A3824D80015853E /* StyledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBA3742A3824D80015853E /* StyledTextField.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		68E21C8B2B8CCC440079CD03 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 683865992A29F9A3005D0947 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 683865A02A29F9A3005D0947;
+			remoteInfo = LiveKitLivestreamExample;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		6801A7652A3900CD009FC4DA /* ViewerPrepareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewerPrepareView.swift; sourceTree = "<group>"; };
@@ -79,6 +90,8 @@
 		68928F8E2A40CB9C005F084A /* StreamEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamEvent.swift; sourceTree = "<group>"; };
 		6895EA462A38B85000519535 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		68A108C62A5CFC2E00200FAE /* HideKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboard.swift; sourceTree = "<group>"; };
+		68E21C872B8CCC440079CD03 /* LiveKitLivestreamExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LiveKitLivestreamExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		68E21C892B8CCC440079CD03 /* LiveKitLivestreamExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveKitLivestreamExampleTests.swift; sourceTree = "<group>"; };
 		68F4BE992A76903500E847F9 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		68FBA36E2A381A530015853E /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		68FBA3702A381F650015853E /* StyledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyledButton.swift; sourceTree = "<group>"; };
@@ -101,6 +114,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		68E21C842B8CCC440079CD03 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -119,6 +139,7 @@
 				6801A7672A3903E2009FC4DA /* LiveKitLivestreamExample-Info.plist */,
 				6895EA452A38B82100519535 /* macOS */,
 				683865A32A29F9A3005D0947 /* Shared */,
+				68E21C882B8CCC440079CD03 /* LiveKitLivestreamExampleTests */,
 				683865A22A29F9A3005D0947 /* Products */,
 				687E311F2A2DCAC500032AE6 /* Frameworks */,
 			);
@@ -128,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				683865A12A29F9A3005D0947 /* LK Live.app */,
+				68E21C872B8CCC440079CD03 /* LiveKitLivestreamExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -225,6 +247,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		68E21C882B8CCC440079CD03 /* LiveKitLivestreamExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				68E21C892B8CCC440079CD03 /* LiveKitLivestreamExampleTests.swift */,
+			);
+			path = LiveKitLivestreamExampleTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -254,6 +284,24 @@
 			productReference = 683865A12A29F9A3005D0947 /* LK Live.app */;
 			productType = "com.apple.product-type.application";
 		};
+		68E21C862B8CCC440079CD03 /* LiveKitLivestreamExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 68E21C8D2B8CCC440079CD03 /* Build configuration list for PBXNativeTarget "LiveKitLivestreamExampleTests" */;
+			buildPhases = (
+				68E21C832B8CCC440079CD03 /* Sources */,
+				68E21C842B8CCC440079CD03 /* Frameworks */,
+				68E21C852B8CCC440079CD03 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				68E21C8C2B8CCC440079CD03 /* PBXTargetDependency */,
+			);
+			name = LiveKitLivestreamExampleTests;
+			productName = LiveKitLivestreamExampleTests;
+			productReference = 68E21C872B8CCC440079CD03 /* LiveKitLivestreamExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -261,11 +309,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1430;
+				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					683865A02A29F9A3005D0947 = {
 						CreatedOnToolsVersion = 14.3;
+					};
+					68E21C862B8CCC440079CD03 = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = 683865A02A29F9A3005D0947;
 					};
 				};
 			};
@@ -290,6 +342,7 @@
 			projectRoot = "";
 			targets = (
 				683865A02A29F9A3005D0947 /* LiveKitLivestreamExample */,
+				68E21C862B8CCC440079CD03 /* LiveKitLivestreamExampleTests */,
 			);
 		};
 /* End PBXProject section */
@@ -301,6 +354,13 @@
 			files = (
 				683865AD2A29F9A4005D0947 /* Preview Assets.xcassets in Resources */,
 				683865A92A29F9A4005D0947 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68E21C852B8CCC440079CD03 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,7 +404,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		68E21C832B8CCC440079CD03 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68E21C8A2B8CCC440079CD03 /* LiveKitLivestreamExampleTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		68E21C8C2B8CCC440079CD03 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 683865A02A29F9A3005D0947 /* LiveKitLivestreamExample */;
+			targetProxy = 68E21C8B2B8CCC440079CD03 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		683865AE2A29F9A4005D0947 /* Debug */ = {
@@ -546,6 +622,59 @@
 			};
 			name = Release;
 		};
+		68E21C8E2B8CCC440079CD03 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 76TVFCUKK7;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.livekit.LiveKitLivestreamExampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LK Live.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LK Live";
+			};
+			name = Debug;
+		};
+		68E21C8F2B8CCC440079CD03 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 76TVFCUKK7;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = io.livekit.LiveKitLivestreamExampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LK Live.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LK Live";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -563,6 +692,15 @@
 			buildConfigurations = (
 				683865B12A29F9A4005D0947 /* Debug */,
 				683865B22A29F9A4005D0947 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		68E21C8D2B8CCC440079CD03 /* Build configuration list for PBXNativeTarget "LiveKitLivestreamExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				68E21C8E2B8CCC440079CD03 /* Debug */,
+				68E21C8F2B8CCC440079CD03 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

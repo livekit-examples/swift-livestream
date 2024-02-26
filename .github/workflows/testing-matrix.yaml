@@ -34,15 +34,15 @@ jobs:
       - name: Show SDKs
         run: xcodebuild -showsdks
 
-      - name: Download iOS platforms
-        run: xcodebuild -downloadPlatform iOS
-
       # TODO: Add step to install iOS 13
       # - name: Install iOS 13
-      # run: xcversion simulators --install='iOS 13.0'
+      #   run: xcversion simulators --install='iOS 13.0'
+
+      # - name: Download iOS platforms
+      #   run: xcodebuild -downloadPlatform iOS
 
       - name: Show Destinations
-        run: xcodebuild -scheme LiveKitComponents -showdestinations
+        run: xcodebuild -scheme LiveKitLivestreamExample -showdestinations
 
       - name: Run All Tests
-        run: xcodebuild test -scheme LiveKitComponents -destination '${{ matrix.destination }}'
+        run: xcodebuild test -scheme LiveKitLivestreamExample -destination '${{ matrix.destination }}'
