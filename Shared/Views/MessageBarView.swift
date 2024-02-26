@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 LiveKit
+ * Copyright 2024 LiveKit
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,9 +27,6 @@ struct MessageBarView: View {
     let moreAction: () -> Void
 
     var body: some View {
-        let isCameraEnabled = room.localParticipant.isCameraEnabled()
-        let isMicEnabled = room.localParticipant.isMicrophoneEnabled()
-
         HStack {
             TextField("", text: $roomCtx.message, axis: .vertical)
                 .focused($focusFields, equals: .message)

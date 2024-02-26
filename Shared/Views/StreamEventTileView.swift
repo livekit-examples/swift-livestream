@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 LiveKit
+ * Copyright 2024 LiveKit
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ import SwiftUI
 func image(for participant: Participant?) -> some View {
     Group {
         if let participant {
-            LazyImage(url: URL(string: "https://api.multiavatar.com/\(participant.identity).png")) { state in
+            LazyImage(url: URL(string: "https://api.multiavatar.com/\(String(describing: participant.identity?.stringValue)).png")) { state in
                 if let image = state.image {
                     image
                         .resizable()
@@ -53,7 +53,7 @@ struct StreamEventTileView: View {
 
             VStack(alignment: .leading, spacing: 5) {
                 if let participant = entry.participant {
-                    Text(participant.identity ?? "")
+                    Text(String(describing: participant.identity))
                         .font(.system(size: 14))
                         .fontWeight(.bold)
                         .frame(maxWidth: .infinity, alignment: .leading)

@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 LiveKit
+ * Copyright 2024 LiveKit
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ final class RoomContext: NSObject, ObservableObject {
     // Network busy states
     @Published public var connectBusy = false
     @Published public var endStreamBusy = false
-    @Published public var inviteBusy: Set<String> = []
+    @Published public var inviteBusy: Set<Participant.Identity> = []
 
     @Published public private(set) var step: Step = .welcome
     @Published public var events = [ChatMessage]()
@@ -62,7 +62,7 @@ final class RoomContext: NSObject, ObservableObject {
 
     // Computed helpers
     public var isStreamOwner: Bool {
-        room.typedMetadata.creatorIdentity == room.localParticipant.identity
+        room.typedMetadata.creatorIdentity == room.localParticipant.identity?.stringValue
     }
 
     public var isStreamHost: Bool {
@@ -98,7 +98,7 @@ final class RoomContext: NSObject, ObservableObject {
 
             do {
                 // Ensure permissions...
-                guard await LiveKit.ensureDeviceAccess(for: [.video, .audio]) else {
+                guard await LiveKitSDK.ensureDeviceAccess(for: [.video, .audio]) else {
                     // Both .video and .audio device permissions are required...
                     throw LivestreamError.permissions
                 }
@@ -181,7 +181,7 @@ final class RoomContext: NSObject, ObservableObject {
         }
     }
 
-    public func inviteToStage(identity: String) {
+    public func inviteToStage(identity: Participant.Identity) {
         Task {
             Task { @MainActor in inviteBusy.insert(identity) }
             defer { Task { @MainActor in inviteBusy.remove(identity) } }
@@ -195,7 +195,7 @@ final class RoomContext: NSObject, ObservableObject {
         }
     }
 
-    public func removeFromStage(identity: String? = nil) {
+    public func removeFromStage(identity: Participant.Identity? = nil) {
         Task {
             do {
                 logger.info("Removing from stage \(String(describing: identity))...")
@@ -239,13 +239,13 @@ final class RoomContext: NSObject, ObservableObject {
             message = ""
 
             guard let jsonData = try? encoder.encode(chatMessage) else { return }
-            try await room.localParticipant.publish(data: jsonData, topic: RoomContext.chatTopic)
+            try await room.localParticipant.publish(data: jsonData, options: DataPublishOptions(topic: RoomContext.chatTopic))
         }
     }
 }
 
 extension RoomContext: RoomDelegate {
-    func room(_: Room, participant: RemoteParticipant?, didReceiveData data: Data, topic: String) {
+    func room(_: Room, participant: RemoteParticipant?, didReceiveData data: Data, forTopic topic: String) {
         // Check if chat topic
         guard topic == RoomContext.chatTopic else { return }
 
@@ -256,15 +256,7 @@ extension RoomContext: RoomDelegate {
         }
     }
 
-    func room(_: Room, didUpdate _: String?) {
-        // logger.info("room metadata: \()")
-    }
-
-    func room(_: Room, participant: Participant, didUpdate _: String?) {
-        logger.info("participant metadata: \(participant.typedMetadata)")
-    }
-
-    func room(_: Room, didUpdate connectionState: ConnectionState, oldValue: ConnectionState) {
+    func room(_: Room, didUpdateConnectionState connectionState: ConnectionState, from oldValue: ConnectionState) {
         if case .disconnected = connectionState,
            case .connected = oldValue
         {
@@ -285,7 +277,7 @@ extension RoomContext: RoomDelegate {
         }
     }
 
-    func room(_: Room, participant: Participant, didUpdate _: ParticipantPermissions) {
+    func room(_: Room, participant: Participant, didUpdatePermissions _: ParticipantPermissions) {
         if let participant = participant as? LocalParticipant,
            participant.canPublish
         {
@@ -293,7 +285,7 @@ extension RoomContext: RoomDelegate {
             Task {
                 do {
                     // Ensure permissions...
-                    guard await LiveKit.ensureDeviceAccess(for: [.video, .audio]) else {
+                    guard await LiveKitSDK.ensureDeviceAccess(for: [.video, .audio]) else {
                         // Both .video and .audio device permissions are required...
                         throw LivestreamError.permissions
                     }

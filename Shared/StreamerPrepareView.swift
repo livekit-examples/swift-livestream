@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 LiveKit
+ * Copyright 2024 LiveKit
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ struct StreamerPrepareView: View {
     @EnvironmentObject var room: Room
 
     @State private var showDialog = false
-    @State private var disconnectReason: DisconnectReason?
+    @State private var disconnectError: LiveKitError?
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -62,15 +62,15 @@ struct StreamerPrepareView: View {
         }
         .padding()
         .onChange(of: room.connectionState) { _ in
-            if case let .disconnected(reason) = room.connectionState {
-                disconnectReason = reason
+            if case .disconnected = room.connectionState {
+                disconnectError = room.disconnectError
                 showDialog = true
             }
         }
         .alert(isPresented: $showDialog) {
             Alert(title: Text("Disconnected"),
-                  message: Text("Reason: " + (disconnectReason != nil
-                          ? String(describing: disconnectReason!)
+                  message: Text("Reason: " + (disconnectError != nil
+                          ? String(describing: disconnectError!)
                           : "Unknown")))
         }
     }
