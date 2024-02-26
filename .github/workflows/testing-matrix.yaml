@@ -45,4 +45,4 @@ jobs:
         run: xcodebuild -scheme LiveKitLivestreamExample -showdestinations
 
       - name: Run All Tests
-        run: xcodebuild test -scheme LiveKitLivestreamExample -destination '${{ matrix.destination }}'
+        run: xcodebuild test -project ./LiveKitLivestreamExample.xcodeproj -scheme LiveKitLivestreamExample -destination '${{ matrix.destination }}'
