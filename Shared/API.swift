@@ -65,7 +65,13 @@ class API {
     private func post<U: Decodable>(apiPath: String, data: some Encodable) async throws -> U {
         let request = try await prepareRequest(apiPath: apiPath, data: data)
         let (data, _) = try await URLSession.shared.data(for: request)
-        return try decoder.decode(U.self, from: data)
+        do {
+            return try decoder.decode(U.self, from: data)
+        } catch {
+            let dataString = String(data: data, encoding: .utf8)
+            logger.error("Failed to decode response: \(String(describing: dataString)), error: \(error)")
+            throw error
+        }
     }
 
     private func post(apiPath: String, data: some Encodable) async throws {
