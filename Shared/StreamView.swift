@@ -123,6 +123,8 @@ struct StreamView: View {
                 }
             }
 
+            ReactionsBarView()
+
             MessageBarView(focusFields: _focusedFields,
                            moreAction: {
                                showingOptionsSheet.toggle()

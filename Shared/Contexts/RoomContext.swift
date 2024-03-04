@@ -26,7 +26,7 @@ enum DataTopics: String {
 final class RoomContext: NSObject, ObservableObject {
     // Private
     private let api = API(apiBaseURLString: "https://livestream.livekit.io/")
-    private let room = Room()
+    let room = Room()
 
     enum Step {
         case welcome
@@ -232,19 +232,37 @@ final class RoomContext: NSObject, ObservableObject {
         }
     }
 
-    public func send() {
+    public func sendChat() {
         Task { @MainActor in
-            let trimmedMessage = self.message.trimmingCharacters(in: .whitespacesAndNewlines)
-            let chatMessage = ChatMessage(timestamp: 0,
-                                          message: trimmedMessage,
-                                          participant: self.room.localParticipant)
-
-            events.append(chatMessage)
+            let eventEntry = try await sendData(string: message)
             message = ""
-
-            guard let jsonData = try? encoder.encode(chatMessage) else { return }
-            try await room.localParticipant.publish(data: jsonData, options: DataPublishOptions(topic: DataTopics.chat.rawValue))
+            events.append(eventEntry)
         }
+    }
+
+    public func sendReaction(string: String) {
+        Task { @MainActor in
+            let eventEntry = try await sendData(string: string, isReaction: true)
+            events.append(eventEntry)
+        }
+    }
+
+    public func sendData(string: String, isReaction: Bool = false) async throws -> ChatMessage {
+        let trimmedString = string.trimmingCharacters(in: .whitespacesAndNewlines)
+        let chatMessage = ChatMessage(timestamp: 0,
+                                      message: trimmedString,
+                                      participant: room.localParticipant)
+
+        let jsonData = try encoder.encode(chatMessage)
+        try await room.localParticipant.publish(data: jsonData, options: DataPublishOptions(topic: DataTopics.chat.rawValue))
+
+        if isReaction {
+            // Send reaction version
+            guard let reactionData = trimmedString.data(using: .utf8) else { throw LiveKitError(.invalidState) }
+            try await room.localParticipant.publish(data: reactionData, options: DataPublishOptions(topic: DataTopics.reaction.rawValue))
+        }
+
+        return chatMessage
     }
 }
 

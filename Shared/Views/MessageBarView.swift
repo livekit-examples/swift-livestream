@@ -43,7 +43,7 @@ struct MessageBarView: View {
                          isFullWidth: false,
                          isEnabled: roomCtx.canSendMessage)
             {
-                roomCtx.send()
+                roomCtx.sendChat()
             } label: {
                 Text("Send")
             }
