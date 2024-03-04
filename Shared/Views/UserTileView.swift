@@ -77,7 +77,7 @@ struct UserTileView: View {
             image(for: participant)
                 .frame(width: 30, height: 30)
 
-            Text(String(describing: participant.identity))
+            Text(participant.identity?.stringValue ?? "?")
                 .font(.system(size: 14, weight: .bold))
 
             if isCreator || isCoHost {
