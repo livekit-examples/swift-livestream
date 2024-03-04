@@ -21,7 +21,7 @@ import SwiftUI
 final class RoomContext: NSObject, ObservableObject {
     static let chatTopic = "lk-chat-topic"
 
-    let api = API(apiBaseURLString: "https://livestream-mobile-backend.vercel.app/")
+    let api = API(apiBaseURLString: "https://livestream.livekit.io/")
     let room = Room()
 
     enum Step {
