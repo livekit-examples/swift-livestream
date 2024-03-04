@@ -18,11 +18,15 @@ import LiveKit
 import Logging
 import SwiftUI
 
-final class RoomContext: NSObject, ObservableObject {
-    static let chatTopic = "lk-chat-topic"
+enum DataTopics: String {
+    case chat = "lk-chat-topic"
+    case reaction = "reactions"
+}
 
-    let api = API(apiBaseURLString: "https://livestream.livekit.io/")
-    let room = Room()
+final class RoomContext: NSObject, ObservableObject {
+    // Private
+    private let api = API(apiBaseURLString: "https://livestream.livekit.io/")
+    private let room = Room()
 
     enum Step {
         case welcome
@@ -239,20 +243,25 @@ final class RoomContext: NSObject, ObservableObject {
             message = ""
 
             guard let jsonData = try? encoder.encode(chatMessage) else { return }
-            try await room.localParticipant.publish(data: jsonData, options: DataPublishOptions(topic: RoomContext.chatTopic))
+            try await room.localParticipant.publish(data: jsonData, options: DataPublishOptions(topic: DataTopics.chat.rawValue))
         }
     }
 }
 
 extension RoomContext: RoomDelegate {
     func room(_: Room, participant: RemoteParticipant?, didReceiveData data: Data, forTopic topic: String) {
-        // Check if chat topic
-        guard topic == RoomContext.chatTopic else { return }
+        // Debug
+        if let dataString = String(data: data, encoding: .utf8) {
+            logger.debug("Received data: \(dataString) with topic: \(topic)")
+        }
 
-        Task { @MainActor in
-            guard var chatMessage = try? decoder.decode(ChatMessage.self, from: data) else { return }
-            chatMessage.participant = participant
-            events.append(chatMessage)
+        // Check if chat topic
+        if topic == DataTopics.chat.rawValue {
+            Task { @MainActor in
+                guard var chatMessage = try? decoder.decode(ChatMessage.self, from: data) else { return }
+                chatMessage.participant = participant
+                events.append(chatMessage)
+            }
         }
     }
 
