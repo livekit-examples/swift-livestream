@@ -31,21 +31,19 @@ extension Image {
 }
 
 struct PublisherVideoPreview: View {
-    var body: some View {
-        ZStack(alignment: .topLeading) {
-            LocalCameraPreview()
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .cornerRadius(6)
-        }
-    }
-}
+    @EnvironmentObject var roomCtx: RoomContext
+    @Environment(\.liveKitUIOptions) var ui: UIOptions
 
-struct PublisherVideoView: View {
     var body: some View {
         ZStack(alignment: .topLeading) {
-            LocalCameraVideoView()
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .cornerRadius(6)
+            GeometryReader { geometry in
+                ZStack {
+                    ui.videoDisabledView(geometry: geometry)
+                    SwiftUIVideoView(roomCtx.localCameraTrack, mirrorMode: .mirror)
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .cornerRadius(6)
         }
     }
 }

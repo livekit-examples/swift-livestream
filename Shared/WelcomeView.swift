@@ -42,13 +42,17 @@ struct WelcomeView: View {
             Spacer()
 
             StyledButton(style: .primary) {
-                roomCtx.set(step: .streamerPrepare)
+                Task {
+                    await roomCtx.set(step: .streamerPrepare)
+                }
             } label: {
                 Text("Start a livestream")
             }
 
             StyledButton {
-                roomCtx.set(step: .viewerPrepare)
+                Task {
+                    await roomCtx.set(step: .viewerPrepare)
+                }
             } label: {
                 Text("Join a livestream")
             }

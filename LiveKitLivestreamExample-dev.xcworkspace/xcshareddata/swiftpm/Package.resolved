@@ -10,6 +10,15 @@
       }
     },
     {
+      "identity" : "client-components-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/livekit/client-components-swift",
+      "state" : {
+        "revision" : "82fc74016db420393f425f54af12b5467f668e1f",
+        "version" : "0.0.1"
+      }
+    },
+    {
       "identity" : "jwt-kit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/vapor/jwt-kit.git",

@@ -49,7 +49,9 @@ struct ViewerPrepareView: View {
             }
 
             StyledButton(isEnabled: !roomCtx.connectBusy) {
-                roomCtx.backToWelcome()
+                Task {
+                    await roomCtx.set(step: .welcome)
+                }
             } label: {
                 Text("Back")
             }

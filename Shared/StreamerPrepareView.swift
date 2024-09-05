@@ -55,7 +55,9 @@ struct StreamerPrepareView: View {
             }
 
             StyledButton {
-                roomCtx.backToWelcome()
+                Task {
+                    await roomCtx.set(step: .welcome)
+                }
             } label: {
                 Text("Back")
             }

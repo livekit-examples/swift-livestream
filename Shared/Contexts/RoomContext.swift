@@ -64,6 +64,9 @@ final class RoomContext: NSObject, ObservableObject {
     @Published public var enableChat: Bool = true
     @Published public var viewersCanRequestToJoin: Bool = true
 
+    public let localCameraTrack = LocalVideoTrack.createCameraTrack()
+    public var localCameraTrackPublication: LocalTrackPublication?
+
     // Computed helpers
     public var isStreamOwner: Bool {
         room.typedMetadata.creatorIdentity == room.localParticipant.identity?.stringValue
@@ -79,19 +82,14 @@ final class RoomContext: NSObject, ObservableObject {
         logger.info("RoomContext created")
     }
 
-    public func set(step: Step) {
+    @MainActor
+    public func set(step: Step) async {
         self.step = step
-    }
 
-    public func backToWelcome() {
-        Task { @MainActor in
-            self.step = .welcome
-        }
-    }
-
-    public func backToPrepare() {
-        Task { @MainActor in
-            self.step = .streamerPrepare
+        if step == .streamerPrepare {
+            try? await localCameraTrack.start()
+        } else if step == .welcome {
+            try? await localCameraTrack.stop()
         }
     }
 
@@ -119,19 +117,12 @@ final class RoomContext: NSObject, ObservableObject {
                 logger.debug("Connecting to room... \(res.connectionDetails)")
 
                 try await room.connect(url: res.connectionDetails.wsURL, token: res.connectionDetails.token)
-                Task { @MainActor in
-                    self.step = .stream
 
-                    // Separate attempt to publish
-                    Task {
-                        do {
-                            try await room.localParticipant.setCamera(enabled: true)
-                            try await room.localParticipant.setMicrophone(enabled: true)
-                        } catch {
-                            logger.error("Failed to publish, error: \(error)")
-                        }
-                    }
-                }
+                await set(step: .stream)
+
+                localCameraTrackPublication = try await room.localParticipant.publish(videoTrack: localCameraTrack)
+                try await room.localParticipant.setMicrophone(enabled: true)
+
                 logger.info("Connected")
             } catch let publishError {
                 await room.disconnect()
@@ -155,9 +146,7 @@ final class RoomContext: NSObject, ObservableObject {
                 logger.debug("Connecting to room... \(res.connectionDetails)")
 
                 try await room.connect(url: res.connectionDetails.wsURL, token: res.connectionDetails.token)
-                Task { @MainActor in
-                    self.step = .stream
-                }
+                await set(step: .stream)
                 logger.info("Connected")
             } catch {
                 await room.disconnect()
@@ -287,8 +276,8 @@ extension RoomContext: RoomDelegate {
         if case .disconnected = connectionState,
            case .connected = oldValue
         {
-            Task { @MainActor in
-                self.step = .welcome
+            Task {
+                await set(step: .welcome)
             }
 
             logger.debug("Did disconnect")
@@ -305,22 +294,37 @@ extension RoomContext: RoomDelegate {
     }
 
     func room(_: Room, participant: Participant, didUpdatePermissions _: ParticipantPermissions) {
-        if let participant = participant as? LocalParticipant,
-           participant.canPublish
-        {
-            // Separate attempt to publish
-            Task {
-                do {
-                    // Ensure permissions...
-                    guard await LiveKitSDK.ensureDeviceAccess(for: [.video, .audio]) else {
-                        // Both .video and .audio device permissions are required...
-                        throw LivestreamError.permissions
-                    }
+        if let participant = participant as? LocalParticipant {
+            if participant.canPublish {
+                // Separate attempt to publish
+                Task {
+                    do {
+                        // Ensure permissions...
+                        guard await LiveKitSDK.ensureDeviceAccess(for: [.video, .audio]) else {
+                            // Both .video and .audio device permissions are required...
+                            throw LivestreamError.permissions
+                        }
 
-                    try await participant.setCamera(enabled: true)
-                    try await participant.setMicrophone(enabled: true)
-                } catch {
-                    logger.error("Failed to publish, error: \(error)")
+                        if localCameraTrackPublication == nil {
+                            localCameraTrackPublication = try await participant.publish(videoTrack: localCameraTrack)
+                        }
+
+                        try await participant.setMicrophone(enabled: true)
+                    } catch {
+                        logger.error("Failed to publish, error: \(error)")
+                    }
+                }
+            } else {
+                Task {
+                    do {
+                        if let localCameraTrackPublication {
+                            try await participant.unpublish(publication: localCameraTrackPublication)
+                            self.localCameraTrackPublication = nil
+                        }
+                        try await participant.setMicrophone(enabled: false)
+                    } catch {
+                        logger.error("Failed to unpublish, error: \(error)")
+                    }
                 }
             }
         }
