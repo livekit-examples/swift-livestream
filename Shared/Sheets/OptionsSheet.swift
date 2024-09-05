@@ -67,7 +67,7 @@ struct OptionsSheet: View {
         }
         .backport.presentationDetents([.medium])
         .backport.presentationDragIndicator(.visible)
-        .presentationBackground(.black)
+        // .presentationBackground(.black)
         .padding()
         .frame(minWidth: 300)
         .toast(isPresenting: $showCopiedToast) {

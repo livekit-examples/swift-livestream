@@ -45,8 +45,8 @@ struct StyledButton<Label>: View where Label: View {
     var style: StyledButtonStyle = .normal
     var size: StyledButtonSize = .normal
     var isFullWidth = true
-    var isBusy: Bool = false
-    var isEnabled: Bool = true
+    var isBusy = false
+    var isEnabled = true
 
     let action: () -> Void
     let label: () -> Label
@@ -61,8 +61,7 @@ struct StyledButton<Label>: View where Label: View {
                         .controlSize(.small)
                 }
                 label()
-                    .font(.system(size: size.toFontSize()))
-                    .fontWeight(.bold)
+                    .font(.system(size: size.toFontSize(), weight: .bold))
             }
             .padding(.horizontal, size.toHPadding())
             .padding(.vertical, size.toVPadding())

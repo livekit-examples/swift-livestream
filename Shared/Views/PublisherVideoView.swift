@@ -52,7 +52,7 @@ struct PublisherVideoView: View {
 
 struct SubscriberVideoView: View {
     @EnvironmentObject var room: Room
-    @EnvironmentObject var ui: UIPreference
+    @EnvironmentObject var ui: UIOptions
 
     var body: some View {
         ZStack(alignment: .topLeading) {

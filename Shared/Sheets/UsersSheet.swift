@@ -177,7 +177,7 @@ struct UsersSheet: View {
         }
         .backport.presentationDetents([.medium, .large])
         .backport.presentationDragIndicator(.visible)
-        .presentationBackground(.black)
+        // .presentationBackground(.black)
         .padding()
         .frame(minWidth: 370)
     }
